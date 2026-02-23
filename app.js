@@ -965,12 +965,13 @@ function refreshRabattDisplays() {
 
 function submitPage5() {
     const fields = [
-        {id: "bv-contact", name: "Kontakt / Ansprechpartner"},
-        {id: "bv-strasse", name: "Straße, Hausnummer"},
-        {id: "bv-ort", name: "PLZ, Ort"},
+        {id: "pj-contact", name: "Ansprechpartner bei PJ"},
+        {id: "pj-number", name: "SHK - PJ-Kunden-Nr."},
+        {id: "shk-name", name: "SHK Name/Firma"},
         {id: "shk-contact", name: "SHK Ansprechpartner"},
         {id: "shk-email", name: "SHK E-Mail"},
         {id: "shk-phone", name: "SHK Telefon-Nr."},
+        {id: "site-address", name: "Adresse Baustelle"},
         {id: "execution-date", name: "Gewünschter Ausführungstermin"},
         {id: "dachpfanne-ausfuehrung", name: "Ausführung - Dachpfanne"},
         {id: "zeichnung-plaene", name:"Zeichnung / Pläne"},
