@@ -1,0 +1,56 @@
+﻿EDV-Nr./Bezeichnung;Beschreibung;Preiseinheit;Preis;Bild
+Titel;Zubehör Fronius - Wechselrichter;;;
+Untertitel;Montage und Lieferung Enwitec;;;
+Beschreibung_fett;Materialien:;;;
+;- Fronius Netzumschaltbox Enwitec 20 kW;;;
+Beschreibung_fett;Leistungen:;;;
+;- Montage und Anschluss Netzumschaltbox;;;
+;- Verdrahtung Zählerschrank;;;
+;- Einrichtung Notstromfunktion Wechselrichter;;;
+;- Funktionsprüfung;;;
+;;;;
+100BJW821;Netzumschaltbox Enwitec 20 kW;€/Stk.;2061,2;5
+;;;;
+Untertitel;Montage und Lieferung PV-Point;;;
+Beschreibung_fett;Materialien:;;;
+;- Fronius PV-Point (zwei Notstromsteckdosen);;;
+Beschreibung_fett;Leistungen:;;;
+;- Montage und Anschluss PV-Point;;;
+;- Einrichtung Notstromfunktion Wechselrichter;;;
+;- Funktionsprüfung;;;
+;;;;
+100BJW822;PV-Point;€/Stk.;471,9;6
+;;;;
+Untertitel;Montage und Lieferung Backup Switch;;;
+Beschreibung_fett;Materialien:;;;
+;- Fronius Backup Switch 1PN/3PN-63A;;;
+Beschreibung_fett;Leistungen:;;;
+;- Montage und Anschluss Backup Switch;;;
+;- Programmierung und Inbetriebnahme am Wechselrichter;;;
+;- Funktionsprüfung;;;
+;;;;
+100BJW823;Backup Switch;€/Stk.;691;7
+;;;;
+Untertitel;Montage und Lieferung Backup Controller;;;
+Beschreibung_fett;Materialien:;;;
+;- Fronius Backup Controller 3PN-35A;;;
+Beschreibung_fett;Leistungen:;;;
+;- Montage und Anschluss Backup Controller;;;
+;- Programmierung und Inbetriebnahme am Wechselrichter;;;
+;- Funktionsprüfung;;;
+;;;;
+100BKG932;Backup Controller;€/Stk.;1112;8
+;;;;
+Untertitel;Montage und Lieferung Ohmpilot;;;
+Beschreibung_fett;Materialien:;;;
+;- Fronius Ohmpilot 9.0-3;;;
+;- Notwendiges Klein- und Befestigungsmaterial;;;
+Beschreibung_fett;Leistungen:;;;
+;- Montage Ohmpilot;;;
+;- Zuleitung von der UV zum Gerät;;;
+;- Zuleitung vom Gerät zum bauseitigen Heizstab;;;
+;;;;
+100BJW824;Ohmpilot;€/Stk.;1945,9;9
+;;;;
+;;;;
+;;;;

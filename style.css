@@ -1,0 +1,425 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: #efefef;
+    text-align: center;
+}
+
+.logo {
+    margin: 150px auto 30px;
+    display: block;
+    width: 50%;
+    max-width: 400px;
+}
+
+.Bild_Versicherung {
+    margin: 30px auto;
+    display: block;
+    width: 50%;
+    max-width: 150px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+input {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;   
+    width: 250px;
+    background: #fff6d5;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: #4dad32;
+    color: black;
+    border: none;
+    padding: 12px 22px;
+    margin: 6px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background: #6ff77f;
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0px);
+}
+
+.error {
+    color: darkred;
+    margin: 10px;
+}
+
+.hint {
+    max-width: 800px;
+    margin: 20px auto;
+    font-size: 14px;
+}
+
+#release-info {
+    position: fixed;
+    top: 10px;
+    right: 15px;
+    font-size: 14px;
+    text-align: right;
+}
+
+#timer {
+    position: fixed;
+    top: 30px;
+    right: 15px;
+    font-size: 14px;
+    text-align: right;
+}
+
+#login-info {
+    position: fixed;
+    top: 50px;              /* unter dem Timer */
+    right: 15px;
+    font-size: 14px;
+    text-align: right;
+}
+
+/* ================================
+   TITEL / UNTERTITEL / ZWISCHENTITEL – global
+================================ */
+.title { text-align: center;font-weight: bold; font-size: 24px; margin-top: 25px; }
+.subtitle { text-align: center;font-weight: bold; font-size: 18px; margin-top: 20px; }
+.midtitle { text-align: center;font-weight: bold; font-size: 16px; margin-top: 15px; }
+
+.beschreibung-fett {
+  font-weight: 700;
+}
+
+.price-table {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.price-table .row {
+    display: grid;
+    grid-template-columns: 160px 4fr 100px 100px 120px 120px;
+    gap: 15px;
+    margin-bottom: 12px;
+    align-items: center;
+}
+
+.price-table .col-a { text-align: left; font-weight: bold; }
+.price-table .col-b { text-align: left; padding-left: 5px; }
+.price-table .col-c,
+.price-table .col-d,
+.price-table .col-e { text-align: right; }
+.price-table .col-f { text-align: right; }
+
+
+.price-table input.menge-input {
+    background-color: #fff8dc;
+    padding: 5px;
+    width: 80px;
+    text-align: center;
+}
+/* ================================
+   Smartphone – global für alle Seiten
+================================ */
+@media (max-width: 600px) {
+    .row { display: block; }
+
+    .row > div,
+    .row > input {
+        display: block;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    input.menge-input { width: 100%; }
+}
+
+#page-40 {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px;
+    background: white;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+.row {
+    display: grid;
+    grid-template-columns: 
+        80px       /* Pos */
+        1.5fr      /* Beschreibung */
+        1fr        /* Zusatz */
+        100px      /* Menge */
+        120px      /* EP */
+        120px;     /* Gesamt */
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 6px;
+}
+.menge-input {
+    width: 80px;
+    text-align: right;
+}
+
+/* ================================
+   Allgemeine Hinweise (ndf4.csv)
+================================ */
+#hinweise-content {
+    text-align: left;
+}
+
+#hinweise-content .title,
+#hinweise-content .subtitle,
+#hinweise-content .midtitle {
+    text-align: left;
+}
+
+#hinweise-content .hinweis-row {
+    text-align: left;
+    margin: 6px 0;
+    line-height: 1.5;
+}
+#hinweise-content {
+    max-width: 1000px;
+    margin: 30px auto;
+}
+.hidden {
+  display: none !important;
+}
+
+.gesamt.rabatt {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 6px;
+  opacity: 0.9;
+}
+
+@media print {
+
+  /* alles ausblenden */
+  .page { display: none !important; }
+
+  /* nur Seite 40 drucken */
+  #page-40 { display: block !important; }
+
+  /* Buttons/Nav etc. ausblenden */
+  button, .nav, #timer, #login-info, #release-info, #user-actions {
+    display: none !important;
+  }
+}
+
+.table-header {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 6px;
+}
+
+.table-header > div {
+  opacity: 0.9;
+}
+
+.header-img-cell{
+  display:flex;
+  align-items:center;
+}
+
+.header-img{
+  width: 140px;     /* anpassen */
+  height: auto;
+  display:block;
+}
+
+.with-pos-images .row{
+  display:grid;
+  grid-template-columns: 60px 160px 4fr 100px 100px 120px 120px; /* Bild + 6 Spalten */
+  gap: 15px;
+  align-items:center;
+}
+
+.pos-img-cell{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.pos-img{
+  max-height: 42px;
+  width: auto;
+  display:block;
+}
+
+
+/* ===== PDF-Modus (für html2pdf/html2canvas) ===== */
+body.pdf-mode .button-bar,
+body.pdf-mode button,
+body.pdf-mode #timer,
+body.pdf-mode #login-info,
+body.pdf-mode #release-info {
+  display: none !important;
+}
+
+/* Das „normale“ Logo oben außerhalb von Seite 40 im PDF ausblenden */
+body.pdf-mode > img.logo {
+  display: none !important;
+}
+
+/* Temporäres PDF-Logo in Seite 40 */
+#page-40 .temp-pdf-logo {
+  display: block;
+  width: 260px;
+  max-width: 70%;
+  margin: 10px auto 20px auto;
+}
+
+/* verhindert, dass einzelne Zeilen im PDF “abgeschnitten” werden */
+#page-40 .row {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.loader {
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.loader.hidden {
+  display: none !important;
+}
+
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  border: 6px solid #ccc;
+  border-top-color: #0b2a4a;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+.loader-text {
+  margin-top: 12px;
+  font-weight: 600;
+  color: #0b2a4a;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+body.pdf-mode #loader40 { display: none !important; }
+
+select {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 250px;
+  background: #fff6d5;
+  border: 1px solid #ccc;
+}
+#user-menu-wrapper {
+  position: fixed;
+  top: 70px;          /* unter Release + Timer */
+  right: 15px;
+  text-align: right;
+  z-index: 1000;
+}
+
+#login-info {
+  position: fixed;
+  top: 50px;
+  right: 15px;
+  font-size: 14px;
+  text-align: right;
+
+  /* NEU: kein Link-Verhalten */
+  cursor: default;
+  font-weight: 400;
+  user-select: text;
+}
+
+#user-actions {
+  position: fixed;
+  top: 70px;        /* unterhalb von login-info */
+  right: 15px;
+  text-align: right;
+  z-index: 1000;
+}
+
+#user-actions select {
+  width: 210px;
+  padding: 8px;
+  background: #fff6d5;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+#user-action-select option[value="logout"] {
+  font-weight: 700;
+  color: #b00020; /* dezentes Rot */
+}
+.start-slogan {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+}
+/* ================================
+   KOMPLETT-FLOW BUTTONS (BLAU)
+================================ */
+button.btn-komplett {
+  background: #2f6fed;       /* Blau */
+  color: white;
+}
+
+button.btn-komplett:hover {
+  background: #5a8cff;       /* helleres Blau */
+  transform: translateY(-1px);
+}
+
+button.btn-komplett:active {
+  background: #1f55c9;       /* dunkler beim Klick */
+  transform: translateY(0px);
+}
+/* ================================
+   WR Empfehlung / Ausgrauen / Warnung
+================================ */
+.wr-reco-box{
+  max-width: 1100px;
+  margin: 10px auto 18px auto;
+  padding: 12px 14px;
+  border-radius: 10px;
+  text-align: left;
+  font-weight: 600;
+  background: #eaf2ff;
+  border: 1px solid rgba(47,111,237,0.35);
+}
+
+.wr-dimmed{
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+.wr-warn{
+  grid-column: 1 / -1;
+  text-align: left;
+  color: darkred;
+  font-weight: 700;
+  margin-top: 4px;
+}
