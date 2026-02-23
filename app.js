@@ -928,9 +928,9 @@ function getGesamtAngebotssumme() {
     return total;
 }
 
- -----------------------------
- SHK-Rabatt (15%)
- -----------------------------
+// -----------------------------
+// SHK-Rabatt (15%)
+// -----------------------------
 
 const SHK_RABATT = 0.15;
 
