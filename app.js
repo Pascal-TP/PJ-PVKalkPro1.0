@@ -568,6 +568,15 @@ if (id === "page-14" || id === "page-14-2") {
 // LOGIN - LOGOUT - PASSWORD
 // -----------------------------
 
+const loginUser  = document.getElementById("loginUser");
+const loginPass  = document.getElementById("loginPass");
+const loginError = document.getElementById("loginError");
+
+const newPass1   = document.getElementById("newPass1");
+const newPass2   = document.getElementById("newPass2");
+const changeError= document.getElementById("changeError");
+
+
 async function login() {
   const email = loginUser.value.trim();
   const pw = loginPass.value;
@@ -590,9 +599,9 @@ async function login() {
     });
 
 // const udoc = await getDoc(doc(db, "users", currentUser.uid));
-const approved = udoc.exists() && udoc.data().approved === true;
+// const approved = udoc.exists() && udoc.data().approved === true;
 
-//if (!approved) {
+//  if (!approved) {
 //  await signOut(auth);
 //  currentUser = null;
 //  showPage("page-login");
