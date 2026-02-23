@@ -3,68 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>TGA KalkPro1.0</title>
+<title>PJ KalkPro1.0</title>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="favicon.ico">
 </head>
 <body>
 <div id="app" class="hidden">
-
 <img src="logo.png" class="logo">
 
 <!-- Countdown -->
-<div id="release-info">Release: V1.0.6</div>
+<div id="release-info">Release: V1.0.10</div>
 <div id="timer">Logout in: 10:00</div>
 
 <!-- NEU: Angemeldet als -->
-  <div id="login-info" onclick="toggleUserMenu()"></div>
+<div id="login-info"></div>
 
-  <div id="user-actions" class="hidden">
+<div id="user-actions" class="hidden">
   <select id="user-action-select" onchange="handleUserAction(this.value)">
     <option value="">Aktion auswählen…</option>
-    
+
     <optgroup label="Aktionen">
     <option value="clear">Eingaben löschen</option>
     <option value="changePw">Passwort ändern</option>
     <option value="logout">⏻ Abmelden</option>
     </optgroup>
 
-    <option value="nav:page-3">➡️ Auswahl KV / Anfrage</option>
+    <option value="nav:page-3">➡️ Auswahl KV/Anfrage</option>
 
-    <optgroup label="DC">
-    <option value="nav:page-24">Flachdach</option>
-    <option value="nav:page-23">Schrägdach</option>
-    <option value="nav:page-8">Optimierer</option>
-    <option value="nav:page-9">Gerüst</option>
+    <optgroup label="Neubau">
+    <option value="nav:page-7">➡️ Hauptmenü Neubau</option>
+    <option value="nav:page-14-1">Tackersystem</option>
+    <option value="nav:page-26">Klettsystem</option>
+    <option value="nav:page-29">Noppensystem</option>
+    <option value="nav:page-33">Industrieboden</option>
     </optgroup>
 
-    <optgroup label="AC">
-    <option value="nav:page-11">Wechselrichter</option>
-    <option value="nav:page-21">Zubehör Wechselrichter</option>
-    <option value="nav:page-10">Speicher</option>
-    <option value="nav:page-24">Wallbox</option>
-    <option value="nav:page-20">Zählerschränke</option>
-    <option value="nav:page-22">Extras Zählerschränke</option>
+    <optgroup label="Sanierung">
+    <option value="nav:page-6">➡️ Hauptmenü Sanierung</option>
+    <option value="nav:page-8">Frässystem</option>
+    <option value="nav:page-10">3mm Klett</option>
+    <option value="nav:page-11">Trockenbausystem</option>
     </optgroup>
 
-    <option value="nav:page-15">➡️ Versicherung</option>
-    <option value="nav:page-14-1">➡️ Downloadbereich</option>
+    <optgroup label="Estrich + Unterdämmung">
+    <option value="nav:page-9">Estrich</option>
+    <option value="nav:page-18">Unterdämmung</option>
+    </optgroup>
+    
+    <option value="nav:page-20">➡️ Verteiler & Regeltechnik</option>
+    <option value="nav:page-21">➡️ Dienstleistung</option>
+    <option value="nav:page-22">➡️ Zuschläge</option>
+
     
   </select>
 </div>
 
-</div>
 
 <!-- SEITE 0: STARTSEITE -->
 <div class="page active" id="page-start">
   
   <div class="start-slogan">
-    Photovoltaik-Montage<br><br>
-    Von der Planung bis zur Anmeldung - Alles aus einer Hand.
+    Fußbodenheizung-Montage<br><br>
+    ...von Aufmaß bis Zeitmanagement...
   </div>
 </div>
-
-
 
 <!-- SEITE 1: LOGIN -->
 <div class="page" id="page-login">
@@ -77,51 +79,10 @@
 
     <button onclick="login()">Anmelden</button>
 
-    <button onclick="forgotPassword()">Passwort vergessen</button><br>
-    <br>
-    <br>
-    <br>
-    <p><strong>Noch keine Login-Daten?</strong><br>
-    <button onclick="showPage('page-register')">Hier registrieren</button>
+    <button onclick="forgotPassword()">Passwort vergessen</button><br><br>
+<p>(Auf dem Smartphone genießen Sie die optimale Ansicht im Querformat.)</p>
+    
 </div>
-
-<!-- SEITE 1.1 Registrierung:  -->
-<div id="page-register" class="page">
-  <h2>Registrierung</h2>
-
-  <input id="reg-firma" placeholder="Firmenname *">
-  <input id="reg-name" placeholder="Name Ansprechpartner *">
-  <input id="reg-strasse" placeholder="Straße *">
-  <input id="reg-hausnr" placeholder="Hausnummer *">
-  <input id="reg-plz" placeholder="PLZ *">
-  <input id="reg-ort" placeholder="Ort *">
-  <input id="reg-email" placeholder="E-Mail-Adresse *">
-  <input id="reg-tel" placeholder="Telefonnummer *">
-
-  <div id="reg-error" style="color:red; margin-top:8px;"></div>
-  <div id="reg-info" style="color:green; margin-top:8px;"></div><br>
-<br> 
-<p>Wir prüfen Ihre Angaben und Sie erhalten innerhalb<br>von 24h eine System-E-Mail für Ihre Passwortvergabe.<br>(Schauen Sie auch in Ihrem Spam-Ordner.)</p>
-<br> 
-<br> 
-
-  <button onclick="registerRequest()">Registrierung absenden</button>
-  </div>
-
-<!-- SEITE 1.1 Registrierung:  -->
-<div id="page-admin" class="page">
-  <h2>Adminbereich</h2>
-
-  <div style="margin: 10px 0;">
-    <button onclick="showPage('page-3')">← Zurück</button>
-  </div>
-
-  <h3>Registrierungen (wartend)</h3>
-  <div id="admin-registrations" class="box">
-    <div>Lade Daten…</div>
-  </div>
-</div>
-
 
 <!-- SEITE 2: PASSWORT ÄNDERN -->
 <div class="page" id="page-change">
@@ -144,74 +105,41 @@
     <h2>Bitte auswählen</h2>
 
     <button onclick="showPage('page-4')">KV</button>
-    <button onclick="showPage('page-5')">Anfrage an TGA</button><br>
-    <button onclick="showPage('page-3-1')">Info: Der Weg zur Photovoltaikanlage</button>
+    <button onclick="showPage('page-5')">Anfrage an NDF</button>
   
     <p class="hint">
         KV = Kostenvoranschlag – die schnelle und direkte Ermittlung eines Richtpreises für den Kunden<br><br>
-        Anfrage an TGA – Ermittlung eines Richtpreises für den Kunden, jedoch mit der Möglichkeit ein qualifiziertes Angebot von TGA per Mail anzufragen.<br>
+        Anfrage an NDF – Ermittlung eines Richtpreises für den Kunden, jedoch mit der Möglichkeit ein qualifiziertes Angebot von NDF per Mail anzufragen.<br>
     </p>
-    
-    <button id="btnExportLog" class="hidden" onclick="exportLoginLog()">Login-Log herunterladen</button>
-    <button id="btnAdmin" class="hidden" onclick="showPage('page-admin')">Adminbereich</button>
+      <button id="btnExportLog" class="hidden" onclick="exportLoginLog()">Login-Log herunterladen</button>
 
 </div>
-
-<!-- SEITE 3.1: Info: Der Weg zur Photovoltaikanlage</button -->
-<div class="page" id="page-3-1">
-    <h2>Der Weg zur Photovoltaikanlage</h2>
-
-    <div style="height:90vh; overflow:auto; border:1px solid #ccc;">
-  <iframe
-    src="Der Weg.pdf"
-    style="width:100%; height:100%; border:0;"
-  ></iframe>
-</div>
-    <button onclick="showPage('page-3')">Zurück</button>
-</div>
-
 
 <!-- SEITE 4: HAUPTMENÜ -->
 <div class="page" id="page-4">
     <h2>Hauptmenü</h2>
 
-    <button onclick="showPage('page-6')">DC</button>
-    <button onclick="showPage('page-7')">AC</button><br><br>
-    <button class="btn-komplett" onclick="startKomplettFlow()">Komplettleistung</button>
-<br><p>Wenn Sie die <strong>Komplettleistung</strong> auswählen, werden Sie Schritt für Schritt durch alle benötigten Punkte geführt.<br>
-Der <strong>blaue „Weiter“-Button</strong> signalisiert, dass Sie sich im geführten Komplett-Bereich befinden.<br>
-Durch Betätigen von <strong>F5 (Seite neu laden)</strong> oder der Aktion <strong>„Eingaben löschen“</strong> werden alle Eingaben zurückgesetzt.<br>
-Wenn Sie ins <strong>Hauptmenü zurückkehren</strong> oder den Bereich verlassen, bleiben Ihre Eingaben erhalten und<br>
-Sie können die Konfiguration jederzeit an beliebiger Stelle fortsetzen.</p>
-<br>
-<br>
-<br>
-    <button onclick="showPage('page-14-1')">Downloadbereich</button>
-<br>
-<br>
+    <button onclick="showPage('page-6')">Sanierung</button>
+    <button onclick="showPage('page-7')">Neubau</button>
+    <br>
+    <br>
+    <br>
     <button onclick="showPage('page-3')">Zurück zur Auswahl "KV oder Anfrage"</button>
+    </div>
 
-</div>
-
-<!-- SEITE 5: ANFRAGE AN TGA -->
+<!-- SEITE 5: ANFRAGE AN NDF -->
 <div class="page" id="page-5">
-    <h2>Anfrage an TGA</h2><br>
+    <h2>Anfrage an NDF</h2>
 
-    <p class="hint">
-        <strong>Bauvorhaben:</strong><br>
-    </p>
     <div class="input-field">
-        <input id="bv-contact" placeholder="Kontakt / Ansprechpartner">
+        <input id="pj-contact" placeholder="Ansprechpartner bei PJ">
     </div>
     <div class="input-field">
-        <input id="bv-strasse" placeholder="Straße, Hausnummer">
+        <input id="pj-number" placeholder="SHK – PJ-Kunden-Nr.">
     </div>
     <div class="input-field">
-        <input id="bv-ort" placeholder="PLZ, Ort">
+        <input id="shk-name" placeholder="SHK Name/Firma">
     </div>
-<p class="hint">
-        <strong>Kontakt SHK:</strong><br>
-    </p>
     <div class="input-field">
         <input id="shk-contact" placeholder="SHK Ansprechpartner">
     </div>
@@ -221,82 +149,22 @@ Sie können die Konfiguration jederzeit an beliebiger Stelle fortsetzen.</p>
     <div class="input-field">
         <input id="shk-phone" placeholder="SHK Telefon-Nr.">
     </div>
-<p class="hint">
+    <div class="input-field">
+        <input id="site-address" placeholder="Adresse Baustelle">
+    </div>
+    <p class="hint">
         <strong>Gewünschter Ausführungstermin:</strong><br>
     </p>
     <div class="input-field">
         <input id="execution-date" type="date" placeholder="Gewünschter Ausführungstermin">
     </div>
-
-<p class="hint">
-    <strong>Ausführung - Dachpfanne:</strong><br>
-</p>
-<div class="input-field">
-  <select id="dachpfanne-ausfuehrung">
-    <option value="" selected disabled>Auswahl</option>
-    <option value="Pappdocken">Pappdocken</option>
-    <option value="in Mörtel">in Mörtel</option>
-    <option value="verschraubt">verschraubt</option>
-    <option value="aktueller Standard">aktueller Standard</option>
-    <option value="unbekannt">unbekannt</option>
-  </select>
-</div>
-
-<p class="hint">
-    <strong>Liegen Zeichnungen / Pläne vom Dach vor?</strong><br>
-    Wenn ja: Bitte hängen Sie die Pläne der E-Mail an.<br>
-    Wenn nein: Alternativ hängen Sie bitte Fotos des ganzen Daches / der gesamten Fläche der E-Mail an.<br>
-</p>
-<div class="input-field">
-  <select id="zeichnung-plaene">
-    <option value="" selected disabled>Auswahl</option>
-    <option value="ja">ja</option>
-    <option value="nein">nein</option>
-  </select>
-</div>
-
-<p class="hint">
-    <strong>Wo befindet sich der Zählerschrank?</strong><br>
-    (Fotos vom geöffneten Zählerschrank der E-Mail bitte anhängen.)<br>
-</p>
-<div class="input-field">
-        <input id="zaehlerschrank" placeholder="Standort Zählerschrank">
-    </div>
-
-<p class="hint">
-   <strong>Nennen Sie bitte den Aufstellungsort von Wechselrichter und Speiher:</strong><br>
-    (Fotos an der E-Mail bitte anhängen.)<br>
-</p>
-<div class="input-field">
-        <input id="wechselrichter_speicher" placeholder="Standort Wechselrichter + Speicher">
-    </div>
-
-<p class="hint">
-    <strong>Aktueller Jahresstrombedarf in kWh:</strong><br>
-</p>
-<div class="input-field">
-        <input id="jahresstrombedarf" placeholder="kWh">
-    </div>
-
-<p class="hint">
-    <strong>Strombedarf Heizsystem in kWh:</strong><br>
-    (bei Umstellung auf Wärmepumpe bitte zusätzlich den voraussichtlichen Strombedarf angeben.)<br>
-</p>
-<div class="input-field">
-        <input id="waermepumpe_strombedarf" placeholder="kWh">
-    </div>
-
-<p class="hint">
-    <strong>Ist eine Wallbox angedacht?</strong><br>
-</p>
-<div class="input-field">
-  <select id="wallbox">
-    <option value="" selected disabled>Auswahl</option>
-    <option value="ja - E-Auto">ja - E-Auto</option>
-    <option value="ja - Plug-in Hybrid">ja - Plug-in Hybrid</option>
-    <option value="nein">nein</option>
-  </select>
-</div>
+    <p class="hint"><u>Für eine optimale Angebotserstellung, fügen Sie bitte der E-Mail als Anhang bei:</u><br><br>
+        <strong>• Bemaßter Grundriss</strong> (PDF oder DWG)<br>
+        <strong>• Gebäudeschnitt / Ansichten</strong> -> Wenn Dämmung angeboten werden soll.<br>
+        <strong>• EnEV-/GEG-Nachweis oder U-Wert-Vorgaben</strong> (Vorgabe der WLG)<br>
+        <strong>• Heizlastberechnung</strong> (falls vorhanden)<br>
+    <br>
+    </p>
 
     <div class="error" id="page5-error" style="color:darkred; margin:10px;"></div>
 
@@ -306,33 +174,39 @@ Sie können die Konfiguration jederzeit an beliebiger Stelle fortsetzen.</p>
     </div>
 </div>
 
-<!-- SEITE 6: MENÜ DC -->
+<!-- SEITE 6: HAUPTMENÜ SANIERUNG -->
 <div class="page" id="page-6">
-    <h2>Menü DC</h2>
+    <h2>Hauptmenü Sanierung</h2>
 
     <!-- Auswahlbuttons untereinander -->
     <div>
-        <button onclick="showPage('page-24')">Flachdach</button><br>
-        <button onclick="showPage('page-23')">Schrägdach</button><br>
+        <button onclick="showPage('page-8')">Fräsen</button><br>
+        <button onclick="showPage('page-9')">Estrich</button><br>
+        <button onclick="showPage('page-10')">Klett 3mm</button><br>
+        <button onclick="showPage('page-11')">Trockenbau</button>
     </div>
 
     <!-- Navigationsbuttons nebeneinander -->
     <div style="margin-top:40px;">
         <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="showPage('page-18')">Weiter</button>
     </div>
 </div>
 
-<!-- SEITE 7: MENÜ AC -->
+<!-- SEITE 7: HAUPTMENÜ NEUBAU -->
 <div class="page" id="page-7">
-    <h2>Menü AC</h2>
+    <h2>Hauptmenü Neubau</h2>
 
     <!-- Auswahlbuttons untereinander -->
     <div>
-        <button onclick="showPage('page-11')">Wechselrichter</button><br>
-        <button onclick="showPage('page-10')">Speicher</button><br>
-        <button onclick="showPage('page-18')">Wallbox</button><br>
-        <button onclick="showPage('page-20')">Zählerschrank</button><br>
-     </div>
+        <button onclick="showPage('page-9')">Estrich</button><br>
+        <button onclick="showPage('page-13')">unbeheizte Fläche</button><br>
+        <button onclick="showPage('page-14-1')">Tackersystem</button><br>
+        <button onclick="showPage('page-26')">Klettsystem</button><br>
+        <button onclick="showPage('page-29')">Noppensystem</button><br>
+        <button onclick="showPage('page-33')">Industrieboden</button><br>
+	<button onclick="showPage('page-18')">Unterdämmung</button>
+    </div>
 
     <!-- Navigationsbuttons nebeneinander -->
     <div style="margin-top:40px;">
@@ -341,60 +215,40 @@ Sie können die Konfiguration jederzeit an beliebiger Stelle fortsetzen.</p>
     </div>
 </div>
 
-<!-- SEITE 14: Wechselrichter strang -->
+<!-- SEITE 14: TACKERSYSTEM -->
 <div class="page" id="page-14">
-    <h2>Wechselrichter "strang"</h2>
+    <h2>Tackersystem</h2>
 
     <div id="page14-content" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button id="btnWeiter14Normal" onclick="showPage('page-10')">Weiter</button>
-        <button
-          id="btnWeiter14Komplett"
-          class="btn-komplett hidden"
-          onclick="showPage('page-10')">Weiter</button>
-
+        <button onclick="showPage('page-7')">Zurück zum Hauptmenü Neubau</button>
+        <button onclick="showPage('page-18')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-<!-- SEITE 14.1: Downloadbereich -->
+<!-- SEITE 14.1: AUSWAHL MARKE -->
 <div class="page" id="page-14-1">
-    <h2>Download - Datenblätter / Checklisten / Infos</h2>
+    <h2>Auswahl Marke</h2>
 
-   <a href="Fronius Symo Gen24 Plus_Datenblatt.pdf" target="_blank">
-  Datenblatt – Fronius Symo Gen24 Plus
-</a><br><br>
-
-<a href="BYD Battery-Box Premium HVS-HVM.pdf" target="_blank">
-  Datenblatt – BYD Battery-Box Premium HVS-HVM
-</a><br><br>
-
-<a href="2026-01-28-Gesamtpaket PV-TGA.pdf" target="_blank">
-  Info – Gesamtpaket Photovoltaik
-</a><br><br>
-
-<a href="TGA_Schema.pdf" target="_blank">
-  Info – Ihr Weg zur eigenen Photovoltaikanlage
-</a><br><br>
-
-<a href="Zählerschrank Checkliste.pdf" target="_blank">
-  Checkliste – Zählerschrank
-</a><br><br>
+    <button onclick="showPage('page-14')">Handelsmarke</button>
+    <button onclick="showPage('page-14-2')">Uponor</button>
+    <button onclick="showPage('page-14-3')">Roth</button>
 
     <br><br>
 
-    <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+    <button onclick="showPage('page-7')">Zurück zum Hauptmenü Neubau</button>
 </div>
 
-                                                                              <!-- SEITE 14.3:   -->
+<!-- SEITE 14.3: ROTH -->
 <div class="page" id="page-14-3">
 
        <div id="content-14-3" class="price-table"></div>
 
 <div class="button-bar">
-                <button onclick="showPage('page-10')">Zurück</button>
+                <button onclick="showPage('page-7')">Zurück zum Hauptmenü Neubau</button>
+                <button onclick="showPage('page-18')">Weiter</button>
                 <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
                </div>
 </div>
@@ -415,15 +269,17 @@ Sie können die Konfiguration jederzeit an beliebiger Stelle fortsetzen.</p>
 
     <!-- Gesamtsumme / Angebotspreis -->
     <div id="angebotspreis" class="gesamt">Gesamtpreis: 0,00 €</div>
-    <!--<div id="angebotspreisRabatt" class="gesamt rabatt">Gesamtpreis abzgl. SHK-Rabatt (15%): 0,00 €</div>-->
+    <div id="angebotspreisRabatt" class="gesamt rabatt">
+  Gesamtpreis abzgl. SHK-Rabatt (15%): 0,00 €
+</div>
 
     <div style="text-align:center; margin-bottom:20px;">(netto, freibleibend)</div>
 
-<div id="optimierer-hinweis-print" style="display:none; margin-top:20px; color:darkred; font-weight:600;">
+<div id="fraesen-hinweis-print" style="display:none; margin-top:20px; color:darkred; font-weight:600;">
   Achtung!<br>
-  Sie haben keinen Optimierer ausgewählt!
+  Bei Frässystemen können je nach Entfernung und Flächengröße zusätzliche Aufschläge anfallen.<br>
+  Bitte erfragen Sie hierzu ein individuelles Angebot.
 </div>
-
 
 
 <!-- Allgemeine Hinweise aus CSV -->
@@ -435,7 +291,8 @@ Sie können die Konfiguration jederzeit an beliebiger Stelle fortsetzen.</p>
         <button onclick="printPage40()">Drucken / speichern als PDF</button>
         <button onclick="sendMailPage40()">Senden als Text-Mail</button>
         <button onclick="sharePdf()">PDF download</button>
-     </div>
+        
+    </div>
 </div>
 
 <!-- SEITE 41: Hinweis fehlende Anfrage-Daten -->
@@ -443,248 +300,46 @@ Sie können die Konfiguration jederzeit an beliebiger Stelle fortsetzen.</p>
     <h2>Hinweis</h2>
 
     <p>
-        Für eine Anfrage an TGA müssen zuerst die Kontaktdaten vollständig ausgefüllt werden.
+        Für eine Anfrage an NDF müssen zuerst die Kontaktdaten vollständig ausgefüllt werden.
     </p>
 
     <div class="button-bar">
         <button onclick="showPage('page-5')">Zur Anfrage</button>
-        <button onclick="showPage('page-40')">KV anzeigen</button><br>
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="showPage('page-40')">KV anzeigen</button>
     </div>
 </div>
 
-<!-- SEITE 15: Versicherung -->
-<div class="page" id="page-15">
-    <h2>12 Monate Rundum-Versicherung inklusive!</h2>
-
-    <img src="bild17.png" class="Bild_Versicherung">
-
-    <p><strong>Ihre neue PV-Anlage ist ab Inbetriebnahme für 12 Monate automatisch versichert – ohne Zusatzkosten!</strong>
-    <br>
-    <br>
-    <strong>Dank ALL-RISK Deckung sind alle Bestandsteile wie...</strong>
-    <br>
-     → Modul<br>
-     → Wallbox<br>
-     → Wechselrichter<br>
-     → Verkabelung<br>
-     → Speicher<br>
-     → etc.<br>
-     <strong>...gegen Schäden jeglicher Art geschützt.</strong>
-     <br>
-     <br>
-     <strong>Nutzungsausfall</strong><br>
-     → Zusätzlich sichern wir Sie gegen Nutzungsausfall mit einer Ausfallentschädigung i.H.v. 1,50 € pro kWp und Tag ab. 
-     <br>
-     <br>
-     Sie genießen sorgenfreie Energie – wir kümmern uns um den Rest!
-     <br>
-     <br>
-     </p>
-
-    <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button id="btnWeiter15Normal" onclick="showPage('page-6')">Weiter</button>
-        <button
-          id="btnWeiter15Komplett"
-          class="btn-komplett hidden"
-          onclick="showPage('page-6')">Weiter</button>
-         </div>
-</div>
-
-
-
-<!-- SEITE 14.2: Wechselrichter "hyprid" -->
+<!-- SEITE 14.2: UPONOR -->
 <div class="page" id="page-14-2">
-<h2>Wechselrichter "hyprid"</h2>
 
     <div id="content-14-2" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button id="btnWeiter142Normal" onclick="showPage('page-21')">Weiter</button>
-        <button
-          id="btnWeiter142Komplett"
-          class="btn-komplett hidden"
-          onclick="showPage('page-21')">Weiter</button>
+        <button onclick="showPage('page-7')">Zurück zum Hauptmenü Neubau</button>
+        <button onclick="showPage('page-18')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
+
 </div>
 
-<!-- SEITE 8: Optimierer -->
+<!-- SEITE 8: Frässystem -->
 <div class="page" id="page-8">
-    <h2>Optimierer</h2>
+    <h2>Fräsen</h2>
 
     <div id="content-8" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button id="btnWeiter8Normal" onclick="direktZumAngebot()">>Direkt zum Angebot</button>
-        <button
-          id="btnWeiter8Komplett"
-          class="btn-komplett hidden"
-          onclick="showPage('page-9')">Weiter</button>
-        </div>
+        <button onclick="showPage('page-6')">Zurück zum Hauptmenü Sanierung</button>
+        <button onclick="showPage('page-20')">Weiter</button>
+        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+    </div>
 </div>
 
-<!-- SEITE 18: Wallbox -->
+<!-- SEITE 18: Unterdämmung -->
 <div class="page" id="page-18">
-    <h2>Wallbox</h2>
+    <h2>Unterdämmung</h2>
 
     <div id="content-18" class="price-table"></div>
-
-    <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        
-        <button id="btnWeiter18Normal" onclick="direktZumAngebot()">Direkt zum Angebot</button>
-        <button
-          id="btnWeiter18Komplett"
-          class="btn-komplett hidden"
-          onclick="showPage('page-20')">Weiter</button>
-
-    </div>
-</div>
-
-<!-- SEITE 20: Zählerschrank -->
-<div class="page" id="page-20">
-    <h2>Zählerschrank</h2>
-
-    <div id="content-20" class="price-table"></div>
-
-    <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-       <button id="btnWeiter20Normal" onclick="showPage('page-22')">Weiter</button>
-        <button
-          id="btnWeiter20Komplett"
-          class="btn-komplett hidden"
-          onclick="showPage('page-22')">Weiter</button>
-
-        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
-    </div>
-</div>
-
-<!-- SEITE 21: Zubehör -->
-<div class="page" id="page-21">
-    <h2>Zubehör</h2>
-
-    <div id="content-21" class="price-table"></div>
-
-    <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button id="btnWeiter21Normal" onclick="direktZumAngebot()">Direkt zum Angebot</button>
-        <button
-          id="btnWeiter21Komplett"
-          class="btn-komplett hidden"
-          onclick="showPage('page-10')">Weiter</button>
-    </div>
-</div>
-
-<!-- SEITE 22: Extras (Zählerschrank) -->
-<div class="page" id="page-22">
-    <h2>Extras</h2>
-
-    <div id="content-22" class="price-table"></div>
-
-    <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-         <button id="btnWeiter22Normal" onclick="direktZumAngebot()">Direkt zum Angebot</button>
-        <button
-          id="btnWeiter22Komplett"
-          class="btn-komplett hidden"
-          onclick="direktZumAngebot()">Direkt zum Angebot</button>
-    </div>
-</div>
-
-<!-- SEITE 9: Gerüst -->
-<div class="page" id="page-9">
-    <h2>Gerüst</h2>
-
-    <div id="content-9" class="price-table"></div>
-
-    <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>       
-        <button id="btnWeiter9Normal" onclick="showPage('page-11')">Weiter</button>
-        <button
-          id="btnWeiter9Komplett"
-          class="btn-komplett hidden"
-          onclick="showPage('page-11')">Weiter</button>
-        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
-    </div>
-</div>
-
-<!-- SEITE 10: Speicher -->
-<div class="page" id="page-10">
-    <h2>Speicher</h2>
-
-    <div id="content-10" class="price-table"></div>
-
-    <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button id="btnWeiter10Normal" onclick="direktZumAngebot()">Direkt zum Angebot</button>
-        <button
-          id="btnWeiter10Komplett"
-          class="btn-komplett hidden"
-          onclick="showPage('page-18')">Weiter</button>
-
-    </div>
-</div>
-
-<!-- SEITE 11: MENÜ Wechselrichter -->
-<div class="page" id="page-11">
-    <h2>Menü Wechselrichter</h2>
-
-    <!-- Auswahlbuttons untereinander -->
-    <div>
-        <button onclick="showPage('page-14')">Typ "strang"</button><br>
-        <button onclick="showPage('page-14-2')">Typ "hybrid"</button><br>
-    </div>
-
-    <!-- Navigationsbuttons nebeneinander -->
-    <div style="margin-top:40px;">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-    </div>
-</div>
-
-<!-- SEITE 23: Schrägdach -->
-<div class="page" id="page-23">
-    <h2>Schrägdach</h2>
-
-    <div id="content-23" class="price-table"></div>
-
-    <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>        
-        <button id="btnWeiter23Normal" onclick="showPage('page-8')">Weiter</button>
-        <button
-          id="btnWeiter23Komplett"
-          class="btn-komplett hidden"
-          onclick="showPage('page-8')">Weiter</button>
-        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
-    </div>
-</div>
-
-<!-- SEITE 24: Flachdach -->
-<div class="page" id="page-24">
-    <h2>Flachdach</h2>
-
-    <div id="content-24" class="price-table"></div>
-
-    <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        
-        <button id="btnWeiter24Normal" onclick="showPage('page-8')">Weiter</button>
-        <button
-          id="btnWeiter24Komplett"
-          class="btn-komplett hidden"
-          onclick="showPage('page-8')">Weiter</button>
-        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
-    </div>
-</div>
-
-                                                                         <!-- SEITE 25:  -->
-<div class="page" id="page-25">
-    <h2>Aufbau 25mm (XPS)</h2>
-
-    <div id="content-25" class="price-table"></div>
 
     <div class="button-bar">
         <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
@@ -693,7 +348,128 @@ Sie können die Konfiguration jederzeit an beliebiger Stelle fortsetzen.</p>
     </div>
 </div>
 
-                                                                                <!-- SEITE 26:  -->
+<!-- SEITE 20: Verteiler & Regeltechnik -->
+<div class="page" id="page-20">
+    <h2>Verteiler & Regeltechnik</h2>
+
+    <div id="content-20" class="price-table"></div>
+
+    <div class="button-bar">
+        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="showPage('page-21')">Weiter</button>
+        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+    </div>
+</div>
+
+<!-- SEITE 21: Dienstleistungen -->
+<div class="page" id="page-21">
+    <h2>Dienstleistungen</h2>
+
+    <div id="content-21" class="price-table"></div>
+
+    <div class="button-bar">
+        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="showPage('page-22')">Weiter</button>
+        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+    </div>
+</div>
+
+<!-- SEITE 22: Zuschläge -->
+<div class="page" id="page-22">
+    <h2>Zuschläge</h2>
+
+    <div id="content-22" class="price-table"></div>
+
+    <div class="button-bar">
+        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="direktZumAngebot()">Weiter</button>
+    </div>
+</div>
+
+<!-- SEITE 9: Estrich -->
+<div class="page" id="page-9">
+    <h2>Estrich</h2>
+
+    <div id="content-9" class="price-table"></div>
+
+    <div class="button-bar">
+        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="showPage('page-18')">Weiter</button>
+        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+    </div>
+</div>
+
+<!-- SEITE 10: Klett3mm -->
+<div class="page" id="page-10">
+    <h2>Klett 3mm</h2>
+
+    <div id="content-10" class="price-table"></div>
+
+    <div class="button-bar">
+        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="showPage('page-18')">Weiter</button>
+        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+    </div>
+</div>
+
+<!-- SEITE 11: MENÜ TROCKENBAU -->
+<div class="page" id="page-11">
+    <h2>Menü Trockenbau</h2>
+
+    <!-- Auswahlbuttons untereinander -->
+    <div>
+        <button onclick="showPage('page-23')">Aufbau 50mm</button><br>
+        <button onclick="showPage('page-24')">Aufbau 20/30mm + 3mm Deckschicht</button><br>
+        <button onclick="showPage('page-25')">Aufbau 25mm (XPS)</button><br>
+    </div>
+
+    <!-- Navigationsbuttons nebeneinander -->
+    <div style="margin-top:40px;">
+        <button onclick="showPage('page-6')">Zurück zum Hauptmenü Sanierung</button>
+        <button onclick="showPage('page-18')">Weiter</button>
+    </div>
+</div>
+
+<!-- SEITE 23: Aufbau 50mm -->
+<div class="page" id="page-23">
+    <h2>Aufbau 50mm</h2>
+
+    <div id="content-23" class="price-table"></div>
+
+    <div class="button-bar">
+        <button onclick="showPage('page-6')">Zurück zum Hauptmenü Sanierung</button>
+        <button onclick="showPage('page-18')">Weiter</button>
+        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+    </div>
+</div>
+
+<!-- SEITE 24: Aufbau 20/30mm + 3mm Deckschicht -->
+<div class="page" id="page-24">
+    <h2>Aufbau 20/30mm + 3mm Deckschicht</h2>
+
+    <div id="content-24" class="price-table"></div>
+
+    <div class="button-bar">
+        <button onclick="showPage('page-6')">Zurück zum Hauptmenü Sanierung</button>
+        <button onclick="showPage('page-18')">Weiter</button>
+        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+    </div>
+</div>
+
+<!-- SEITE 25: Aufbau 25mm (XPS) -->
+<div class="page" id="page-25">
+    <h2>Aufbau 25mm (XPS)</h2>
+
+    <div id="content-25" class="price-table"></div>
+
+    <div class="button-bar">
+        <button onclick="showPage('page-6')">Zurück zum Hauptmenü Sanierung</button>
+        <button onclick="showPage('page-20')">Weiter</button>
+        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+    </div>
+</div>
+
+<!-- SEITE 26: AUSWAHL MARKE Klett -->
 <div class="page" id="page-26">
     <h2>Auswahl Marke Klettsystem</h2>
 
@@ -701,10 +477,10 @@ Sie können die Konfiguration jederzeit an beliebiger Stelle fortsetzen.</p>
     <button onclick="showPage('page-28')">Uponor</button>
     <br><br>
 
-    <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+    <button onclick="showPage('page-7')">Zurück zum Hauptmenü Neubau</button>
 </div>
 
-                                                                               <!-- SEITE 29:  -->
+<!-- SEITE 29: AUSWAHL MARKE Noppensystem -->
 <div class="page" id="page-29">
     <h2>Auswahl Marke Noppensystem</h2>
 
@@ -713,95 +489,96 @@ Sie können die Konfiguration jederzeit an beliebiger Stelle fortsetzen.</p>
     <button onclick="showPage('page-32')">Roth</button>
     <br><br>
 
-    <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+    <button onclick="showPage('page-7')">Zurück zum Hauptmenü Neubau</button>
 </div>
 
-                                                                         <!-- SEITE 27:  -->
+<!-- SEITE 27: Klett Handelsmarke -->
 <div class="page" id="page-27">
     <h2>Klettsystem Handelsmarke</h2>
 
     <div id="content-27" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="showPage('page-7')">Zurück zum Hauptmenü Neubau</button>
         <button onclick="showPage('page-18')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-                                                                       <!-- SEITE 28:  -->
+<!-- SEITE 28: Klett Uponor -->
 <div class="page" id="page-28">
     <h2>Klettsystem Uponor</h2>
 
     <div id="content-28" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="showPage('page-7')">Zurück zum Hauptmenü Neubau</button>
         <button onclick="showPage('page-18')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-                                                                         <!-- SEITE 30:  -->
+<!-- SEITE 30: Noppen Handelsmarke -->
 <div class="page" id="page-30">
     <h2>Noppensystem Handelsmarke</h2>
 
     <div id="content-30" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="showPage('page-7')">Zurück zum Hauptmenü Neubau</button>
         <button onclick="showPage('page-18')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-                                                                             <!-- SEITE 31:  -->
+<!-- SEITE 31: Noppen Uponor -->
 <div class="page" id="page-31">
     <h2>Noppensystem Uponor</h2>
 
     <div id="content-31" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="showPage('page-7')">Zurück zum Hauptmenü Neubau</button>
         <button onclick="showPage('page-18')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-                                                                          <!-- SEITE 32:  -->
+<!-- SEITE 32: Noppen Roth -->
 <div class="page" id="page-32">
     <h2>Noppensystem Roth</h2>
 
     <div id="content-32" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="showPage('page-7')">Zurück zum Hauptmenü Neubau</button>
         <button onclick="showPage('page-18')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-                                                                          <!-- SEITE 33:  -->
+<!-- SEITE 33: Industrieboden -->
 <div class="page" id="page-33">
     <h2>Industrieboden</h2>
 
     <div id="content-33" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="showPage('page-7')">Zurück zum Hauptmenü Neubau</button>
         <button onclick="showPage('page-20')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-									<!-- SEITE 13:  -->
+<!-- SEITE 13: unbeheizte Fläche -->
 <div class="page" id="page-13">
-    <h2>          </h2>
+    <h2>unbeheizte Fläche</h2>
 
     <div id="content-13" class="price-table"></div>
 
     <div class="button-bar">
-        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="showPage('page-7')">Zurück zum Hauptmenü Neubau</button>
+        <button onclick="showPage('page-18')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
@@ -811,13 +588,9 @@ Sie können die Konfiguration jederzeit an beliebiger Stelle fortsetzen.</p>
   <div class="spinner"></div>
   <div class="loader-text">Ausgabe wird erstellt…</div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script type="module" src="app.js"></script>
-
 
 </body>
 </html>
