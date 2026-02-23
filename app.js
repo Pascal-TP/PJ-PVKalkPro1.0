@@ -568,13 +568,14 @@ if (id === "page-14" || id === "page-14-2") {
 // LOGIN - LOGOUT - PASSWORD
 // -----------------------------
 
-const loginUser  = document.getElementById("loginUser");
-const loginPass  = document.getElementById("loginPass");
-const loginError = document.getElementById("loginError");
+				// Wenn keine Registrierung, dann dieser Bereich nötig!
+				const loginUser  = document.getElementById("loginUser");
+				const loginPass  = document.getElementById("loginPass");
+				const loginError = document.getElementById("loginError");
 
-const newPass1   = document.getElementById("newPass1");
-const newPass2   = document.getElementById("newPass2");
-const changeError= document.getElementById("changeError");
+				const newPass1   = document.getElementById("newPass1");
+				const newPass2   = document.getElementById("newPass2");
+				const changeError= document.getElementById("changeError");
 
 
 async function login() {
