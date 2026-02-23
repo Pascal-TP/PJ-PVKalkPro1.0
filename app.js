@@ -1635,6 +1635,63 @@ function sendMailPage40() {
 }
 
 // -----------------------------
+// SEITE 40 – Export als CSV - (Button "Export CsV")
+// -----------------------------
+
+
+function exportCsvPage40() {
+  const rows = document.querySelectorAll("#summary-content .summary-row");
+  if (!rows.length) {
+    alert("Keine Tabelleninhalte zum Export vorhanden.");
+    return;
+  }
+
+  // Gewünschtes Trennzeichen:
+  const SEP = "-";
+
+  // CSV Kopf (Zeile 1)
+  const header = ["Artikelnummer", "Menge", "Mengeneinheit"];
+
+  function esc(val) {
+    const s = String(val ?? "").trim();
+    // Standard-CSV-Quoting: alles in "..." und Anführungszeichen doppeln
+    return `"${s.replace(/"/g, '""')}"`;
+  }
+
+  const lines = [];
+  lines.push(header.map(esc).join(SEP));
+
+  rows.forEach(r => {
+    const artikel = r.querySelector(".col-a")?.innerText ?? "";
+    const einheit = r.querySelector(".col-c")?.innerText ?? "";
+    const menge   = r.querySelector(".col-d")?.innerText ?? "";
+
+    lines.push([artikel, menge, einheit].map(esc).join(SEP));
+  });
+
+  const csv = lines.join("\n");
+
+  const datum = new Date().toLocaleDateString("de-DE").replaceAll(".", "-");
+  const filename = `Seite40_Tabelle_${datum}.csv`;
+
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+window.exportCsvPage40 = exportCsvPage40;
+
+
+
+// -----------------------------
 // clearInputs - Button "Eingaben löschen"
 // -----------------------------
 
