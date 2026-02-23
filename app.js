@@ -589,16 +589,16 @@ async function login() {
       time: serverTimestamp()
     });
 
-const udoc = await getDoc(doc(db, "users", currentUser.uid));
+// const udoc = await getDoc(doc(db, "users", currentUser.uid));
 const approved = udoc.exists() && udoc.data().approved === true;
 
-if (!approved) {
-  await signOut(auth);
-  currentUser = null;
-  showPage("page-login");
-  loginError.innerText = "Account ist noch nicht freigeschaltet. Bitte auf Freigabe warten.";
-  return;
-}
+//if (!approved) {
+//  await signOut(auth);
+//  currentUser = null;
+//  showPage("page-login");
+//  loginError.innerText = "Account ist noch nicht freigeschaltet. Bitte auf Freigabe warten.";
+//  return;
+//}
 
     updateAdminUI_();
     startTimer();
