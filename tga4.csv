@@ -1,26 +1,44 @@
-﻿EDV-Nr./Bezeichnung;Beschreibung;Preiseinheit;Preis
-Titel;AC-MONTAGE WECHSELRICHTER Fronius;;
-Untertitel;Montage und Lieferung Fronius Wechselrichter;;
-Beschreibung_fett;Materialien:;;
-;- Fronius Wechselrichter GEN24 inkl. Smart Energy Meter;;
-;- DC-Überspannungsschutz;;
-;- Zuleitung Wechselrichter;;
-;- Netzwerkleitung;;
-;- Notwendiges Kleinmaterial und Leitungen;;
-Beschreibung_fett;Leistungen:;;
-;- Montage und Anschluss Wechselrichter;;
-;- Leitungsverlegung String- und Erdungsleitung bis Wechselrichter (Aufputz) maximal 20 m Kabel im weißen Kunststoff oder weißen Blechkanal;;
-;- Anschluss an die Zähleranlage;;
-;- Inbetriebnahme;;
-;- Restmaterial-/Verpackungsmüllentsorgung;;
-;- Anmeldung und Registrierung im Marktstammdatenregister;;
-;;;
-H66TG2430 01;Wechselrichter 3.0 (3,0 kW);€/Stk.;3646,4
-H66TG2435 01;Wechselrichter 4.0 (4,0 kW);€/Stk.;3886,8
-H66TG2440 01;Wechselrichter 5.0 (5,0 kW);€/Stk.;3941,2
-H66TG2445 01;Wechselrichter 6.0 (6,0 kW);€/Stk.;4160,6
-H66TG2450 01;Wechselrichter 7.0 (8,0 kW);€/Stk.;4742,1
-H66TG2455 01;Wechselrichter 10.0 (10,0 kW);€/Stk.;4908,8
-XXXXXXXXXX;Wechselrichter 15.0 (15,0 kW);€/Stk.;5228,9
-;;;
-;;;
+﻿EDV-Nr./Bezeichnung;Beschreibung;Preiseinheit;Preis;Bild
+Titel;AC-MONTAGE WECHSELRICHTER Fronius;;;
+Untertitel;Montage und Lieferung Fronius Wechselrichter GEN24;;;
+Beschreibung_fett;Materialien:;;;
+;- Fronius Wechselrichter GEN24 inkl. Smart Energy Meter;;;
+;- DC-Überspannungsschutz;;;
+;- Zuleitung Wechselrichter;;;
+;- Netzwerkleitung;;;
+;- Notwendiges Kleinmaterial und Leitungen;;;
+Beschreibung_fett;Leistungen:;;;
+;- Montage und Anschluss Wechselrichter;;;
+;- Leitungsverlegung String- und Erdungsleitung bis Wechselrichter (Aufputz) maximal 20 m Kabel im weißen Kunststoff oder weißen Blechkanal;;;
+;- Anschluss an die Zähleranlage;;;
+;- Inbetriebnahme;;;
+;- Restmaterial-/Verpackungsmüllentsorgung;;;
+;- Anmeldung und Registrierung im Marktstammdatenregister;;;
+;;;;
+H66TG243001;Wechselrichter Fronius GEN24 3.0 (3,0 kW);€/Stk.;3646,4;3
+H66TG243501;Wechselrichter Fronius GEN24 4.0 (4,0 kW);€/Stk.;3886,8;
+H66TG244001;Wechselrichter Fronius GEN24 5.0 (5,0 kW);€/Stk.;3941,2;
+H66TG244501;Wechselrichter Fronius GEN24 6.0 (6,0 kW);€/Stk.;4160,6;
+H66TG245001;Wechselrichter Fronius GEN24 7.0 (8,0 kW);€/Stk.;4742,1;
+H66TG245501;Wechselrichter Fronius GEN24 10.0 (10,0 kW);€/Stk.;4908,8;
+;;;;
+Untertitel;Montage und Lieferung Fronius Wechselrichter Verto;;;
+Beschreibung_fett;Materialien:;;;
+;- Fronius Wechselrichter Verto inkl. Smart Energy Meter;;;
+;- DC-Überspannungsschutz;;;
+;- Zuleitung Wechselrichter;;;
+;- Netzwerkleitung;;;
+;- Notwendiges Kleinmaterial und Leitungen;;;
+Beschreibung_fett;Leistungen:;;;
+;- Montage und Anschluss Wechselrichter;;;
+;- Leitungsverlegung String- und Erdungsleitung bis Wechselrichter (Aufputz) maximal 20 m Kabel im weißen Kunststoff oder weißen Blechkanal;;;
+;- Anschluss an die Zähleranlage;;;
+;- Inbetriebnahme;;;
+;- Restmaterial-/Verpackungsmüllentsorgung;;;
+;- Anmeldung und Registrierung im Marktstammdatenregister;;;
+;;;;
+100BJW815;Wechselrichter  Fronius Verto 15.0 (15,0 kW);€/Stk.;6218,9;28
+100BJW816;Wechselrichter  Fronius Verto 17.5 (17,5 kW);€/Stk.;6275,1;
+100BJW817;Wechselrichter  Fronius Verto 20.0 (20,0 kW);€/Stk.;6408,4;
+100BJW818;Wechselrichter  Fronius Verto 25.0 (25,0 kW);€/Stk.;6515,5;
+100BKH640;Wechselrichter  Fronius Verto 33,3 (33,3 kW);€/Stk.;6966,5;

@@ -179,6 +179,9 @@
 
     <button onclick="showPage('page-6')">DC</button>
     <button onclick="showPage('page-7')">AC</button><br><br>
+    <button onclick="showPage('page-35')">Dienstleistungen</button>
+    <button onclick="showPage('page-36')">Zuschläge</button>
+
 <!--    <button class="btn-komplett" onclick="startKomplettFlow()">Komplettleistung</button> -->
 <!-- <br><p>Wenn Sie die <strong>Komplettleistung</strong> auswählen, werden Sie Schritt für Schritt durch alle benötigten Punkte geführt.<br> -->
 <!-- Der <strong>hellblaue „Weiter“-Button</strong> signalisiert, dass Sie sich im geführten Komplett-Bereich befinden.<br> -->
@@ -334,6 +337,7 @@
         <button onclick="showPage('page-10')">Speicher</button><br>
         <button onclick="showPage('page-18')">Wallbox</button><br>
         <button onclick="showPage('page-20')">Zählerschrank</button><br>
+        <button onclick="showPage('page-32')">Heizstäbe</button><br>
      </div>
 
     <!-- Navigationsbuttons nebeneinander -->
@@ -377,12 +381,16 @@
   Checkliste - Kostenschätzung Photovoltaik-Anlagen.pdf
 </a><br><br>
 
+<a href="Zählerschrank Checkliste.pdf" target="_blank">
+  Checkliste – Zählerschrank
+</a><br><br>
+
 <a href="Der Weg.pdf" target="_blank">
   Info – Ihr Weg zur eigenen Photovoltaikanlage
 </a><br><br>
 
-<a href="Zählerschrank Checkliste.pdf" target="_blank">
-  Checkliste – Zählerschrank
+<a href="Versicherung.pdf" target="_blank">
+  Info – 12 Monate Rundum-Versicherung inklusive!
 </a><br><br>
 
     <br><br>
@@ -390,15 +398,15 @@
     <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
 </div>
 
-                                                                              <!-- SEITE 14.3:   -->
+<!-- SEITE 14.3:   -->
 <div class="page" id="page-14-3">
+       <h2>Wechselrichter "hybrid"</h2>
 
        <div id="content-14-3" class="price-table"></div>
 
-<div class="button-bar">
-                <button onclick="showPage('page-10')">Zurück</button>
-                <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
-               </div>
+       <div class="button-bar">
+       <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+       </div>
 </div>
 
 <!-- SEITE 40: KOSTENVORANSCHLAG / ANFRAGE -->
@@ -421,12 +429,7 @@
 
     <div style="text-align:center; margin-bottom:20px;">(netto, freibleibend)</div>
 
-<div id="optimierer-hinweis-print" style="display:none; margin-top:20px; color:darkred; font-weight:600;">
-  Achtung!<br>
-  Sie haben keinen Optimierer ausgewählt!
-</div>
-
-
+<!-- <div id="optimierer-hinweis-print" style="display:none; margin-top:20px; color:darkred; font-weight:600;">Achtung!<br>Sie haben keinen Optimierer ausgewählt!</div> -->
 
 <!-- Allgemeine Hinweise aus CSV -->
     <div id="hinweise-content"></div>
@@ -632,15 +635,59 @@
     </div>
 </div>
 
+<!-- SEITE 10.1: MENÜ Speicher -->
+<div class="page" id="page-11">
+    <h2>Menü Speicher</h2>
+
+    <div>
+    <button onclick="showPage('page-25')">Typ "a-Tronix"</button>
+    <button onclick="showPage('page-26')">Typ "Fronius"</button>
+    <button onclick="showPage('page-10')">Typ "BYD"</button>
+    <button onclick="showPage('page-31')">Typ "SMA"</button>
+    <button onclick="showPage('page-13')">Typ "Huawei"</button>
+    </div>
+
+   <br>
+    <br>
+    </div>
+
+
 <!-- SEITE 11: MENÜ Wechselrichter -->
 <div class="page" id="page-11">
     <h2>Menü Wechselrichter</h2>
 
-    <!-- Auswahlbuttons untereinander -->
+    <p><strong> Hybrid:</strong></p>
+    
     <div>
-        <button onclick="showPage('page-14')">Typ "strang"</button><br>
-        <button onclick="showPage('page-14-2')">Typ "hybrid"</button><br>
+    <button onclick="showPage('page-14-2')">Typ "Fronius GEN24 Plus + Verto Plus"</button>
+    <button onclick="showPage('page-14-3')">Typ "a-Tronix"</button>
+    <button onclick="showPage('page-28')">Typ "SMA"</button>
+    <button onclick="showPage('page-33')">Typ "Huawei"</button>
     </div>
+
+    <p><strong> Strang:</strong></p>
+
+    <div>
+    <button onclick="showPage('page-14')">Typ "Fronius GEN24 + Verto"</button>
+    <br>
+    <br>
+    </div>
+
+<!-- SEITE 18.1: MENÜ Wallbox -->
+<div class="page" id="page-18-1">
+    <h2>Menü Wallbox</h2>
+
+    <div>
+    <button onclick="showPage('page-18')">Typ "Fronius"</button>
+    <button onclick="showPage('page-27')">Typ "a-Tronix"</button>
+    <button onclick="showPage('page-30')">Typ "SMA"</button>
+    <button onclick="showPage('page-34')">Typ "Huawei"</button>
+    </div>
+
+    <br>
+    <br>
+    </div>
+
 
     <!-- Navigationsbuttons nebeneinander -->
     <div style="margin-top:40px;">
@@ -683,28 +730,28 @@
     </div>
 </div>
 
-                                                                         <!-- SEITE 25:  -->
+<!-- SEITE 25:  -->
 <div class="page" id="page-25">
-    <h2>Aufbau 25mm (XPS)</h2>
+    <h2>Speicher a-TroniX</h2>
 
     <div id="content-25" class="price-table"></div>
 
     <div class="button-bar">
         <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button onclick="showPage('page-20')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-                                                                                <!-- SEITE 26:  -->
+<!-- SEITE 26:  -->
 <div class="page" id="page-26">
-    <h2>Auswahl Marke Klettsystem</h2>
+    <h2>Speicher Fronius</h2>
+    
+    <div id="content-26" class="price-table"></div>
 
-    <button onclick="showPage('page-27')">Handelsmarke</button>
-    <button onclick="showPage('page-28')">Uponor</button>
-    <br><br>
-
-    <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+    <div class="button-bar">
+        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+    </div>
 </div>
 
                                                                                <!-- SEITE 29:  -->
@@ -719,87 +766,117 @@
     <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
 </div>
 
-                                                                         <!-- SEITE 27:  -->
+<!-- SEITE 27:  -->
 <div class="page" id="page-27">
-    <h2>Klettsystem Handelsmarke</h2>
+    <h2>Wallbox a-TroniX</h2>
 
     <div id="content-27" class="price-table"></div>
 
     <div class="button-bar">
         <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button onclick="showPage('page-18')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-                                                                       <!-- SEITE 28:  -->
+<!-- SEITE 28:  -->
 <div class="page" id="page-28">
-    <h2>Klettsystem Uponor</h2>
+    <h2>Wechselrichter SMA</h2>
 
     <div id="content-28" class="price-table"></div>
 
     <div class="button-bar">
         <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button onclick="showPage('page-18')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-                                                                         <!-- SEITE 30:  -->
+<!-- SEITE 30:  -->
 <div class="page" id="page-30">
-    <h2>Noppensystem Handelsmarke</h2>
+    <h2>Wallbox SMA</h2>
 
     <div id="content-30" class="price-table"></div>
 
     <div class="button-bar">
         <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button onclick="showPage('page-18')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-                                                                             <!-- SEITE 31:  -->
+<!-- SEITE 31:  -->
 <div class="page" id="page-31">
-    <h2>Noppensystem Uponor</h2>
+    <h2>Speicher SMA</h2>
 
     <div id="content-31" class="price-table"></div>
 
     <div class="button-bar">
         <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button onclick="showPage('page-18')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-                                                                          <!-- SEITE 32:  -->
+<!-- SEITE 32:  -->
 <div class="page" id="page-32">
-    <h2>Noppensystem Roth</h2>
+    <h2>Heizstab</h2>
 
     <div id="content-32" class="price-table"></div>
 
     <div class="button-bar">
         <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button onclick="showPage('page-18')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-                                                                          <!-- SEITE 33:  -->
+<!-- SEITE 33:  -->
 <div class="page" id="page-33">
-    <h2>Industrieboden</h2>
+    <h2>Wechselrikchter Huawei</h2>
 
     <div id="content-33" class="price-table"></div>
 
     <div class="button-bar">
         <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-        <button onclick="showPage('page-20')">Weiter</button>
         <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
     </div>
 </div>
 
-									<!-- SEITE 13:  -->
+<!-- SEITE 34:  -->
+<div class="page" id="page-34">
+    <h2>Speicher Huawei</h2>
+
+    <div id="content-34" class="price-table"></div>
+
+    <div class="button-bar">
+        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+    </div>
+</div>
+
+<!-- SEITE 35:  -->
+<div class="page" id="page-35">
+    <h2>Dienstleistungen</h2>
+
+    <div id="content-35" class="price-table"></div>
+
+    <div class="button-bar">
+        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+    </div>
+</div>
+
+<!-- SEITE 36:  -->
+<div class="page" id="page-36">
+    <h2>Zuschläge</h2>
+
+    <div id="content-36" class="price-table"></div>
+
+    <div class="button-bar">
+        <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
+        <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+    </div>
+</div>
+
+<!-- SEITE 13:  -->
 <div class="page" id="page-13">
-    <h2>          </h2>
+    <h2> Speicher Huawei </h2>
 
     <div id="content-13" class="price-table"></div>
 

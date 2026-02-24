@@ -1,0 +1,31 @@
+﻿EDV-Nr./Bezeichnung;Beschreibung;Preiseinheit;Preis
+Titel;Dienstleistungen;;
+Untertitel;Wartung PV-Anlage bis 29,99 kWp;;
+Beschreibung_fett;In Leistung enthalten:;;
+;- Isolationsmessung der Strings;;
+;- Sichtprüfung Modulfläche;;
+;- Sichtprüfung der AC-Komponenten (Wechselrichter, Batteriespeicher);;
+;- Überprüfung aller elektrischen Verbindungen sowie ggf. notwendiges Nachziehen von Verbindungen und Verschraubungen;;
+;- Überprüfung des Batteriezustandes;;
+;- Überprüfung des Fehlerstromschutzschalters;;
+;- Lüfterreinigung der Wechselrichter;;
+;- Durchführung ggf. notwendiger Softwareupdates;;
+;;;
+Beschreibung_fett;In Leistung nicht enthalten:;;
+;- Behebung von erkannten Fehlern und Defekten;;
+;;;
+H66TG303501;Wartung;€/Stk.;563,5
+;;;
+Untertitel;Beratungspauschale in der Angebotsphase;;
+;- Ausführliche technische Beratung;;
+;- Baustellentermin Bauleitung;;
+;- Dokumentation per Drohne;;
+;- Beratung Kunde;;
+;;;
+H66TG500001;Beratungspauschale;€/Stk.;310
+;;;
+Untertitel;Erstellung einer detaillierten Planung mittels PV-SOL in der Angebotsphase;;
+;- Inklusive Stromlaufplan;;
+;- Ertragsberechnung;;
+;;;
+H66TG500501;detaillierten Planung;€/Stk.;186

@@ -28,4 +28,33 @@ Beschreibung_fett;In Leistung nicht enthalten:;;;
 ;;;;
 H66TG3045 01;Smart Grid;€/Stk.;248,6;16
 ;;;;
+Untertitel;Externes APZ-Feld nachrüsten;;;
+Beschreibung_fett;Materialien:;;;
+;- Spannungsabgriff;;;
+;- Netzwerkleitung;;;
+;- notwendiges Kleinmaterial und Leitungen;;;
+Beschreibung_fett;Leistungen:;;;
+;- Montieren des APZ-Feldes;;;
+;- Errichtung eines geschlossenen Kabelweges zwischen APZ-Feld und Zählerschrank (NAR);;;
 ;;;;
+H66TG302001;Externes APZ-Feld;€/Stk.;463,9;33
+;;;;
+Untertitel;Überspannungsschutz nachrüsten;;;
+Beschreibung_fett;Materialien:;;;
+;- Kombiableiter Typ 1+2;;;
+Beschreibung_fett;Leistungen:;;;
+;- Montieren des Kombiableiters auf Sammelschiene;;;
+;- Herstellen einer Verbindung zu vorhandener Potentialausgleichsschiene;;;
+;;;;
+H66TG302501;Überspannungsschutz;€/Stk.;495,3;34
+;;;;
+Untertitel;Tiefenerder inkl. Leitungsverlegung und Anschluss an vorhandene Potentialausgleichsschiene;;;
+Beschreibung_fett;Materialien:;;;
+;- Tiefenerder V4A;;;
+;- Schutzleiter;;;
+Beschreibung_fett;Leistungen:;;;
+;- Eintreiben des Tiefenerders;;;
+;- Montage der Anschlussklemme;;;
+;- Verlegen und Anklemmen des Schutzleiters von der Tiefenerderanschlussklemme bis zur vorhandenen Potentialausgleichschiene;;;
+;;;;
+H66TG305001;Tiefenerder;€/Stk.;966,4;35
