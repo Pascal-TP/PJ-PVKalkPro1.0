@@ -307,7 +307,20 @@ function resetStoredInputsOnReload() {
     "page9Data",
     "page10Data",
     "page23Data",
-    "page24Data"
+    "page24Data",
+    "page143Data",
+    "page25Data",
+    "page26Data",
+    "page27Data",
+    "page28Data",
+    "page30Data",
+    "page31Data",
+    "page32Data",
+    "page33Data",
+    "page13Data",
+    "page34Data",
+    "page35Data",
+    "page36Data",
   ];
 
   keysToRemove.forEach(k => localStorage.removeItem(k));
@@ -342,13 +355,13 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDGTbUVB8jRu0M-u9sVWpBw3vNOMaks1ZM",
-  authDomain: "pw-pj-tga.firebaseapp.com",
-  projectId: "pw-pj-tga",
-  storageBucket: "pw-pj-tga.firebasestorage.app",
-  messagingSenderId: "141220543977",
-  appId: "1:141220543977:web:f80fea468409096f519f78",
-  measurementId: "G-JPPY3GN200"
+  apiKey: "AIzaSyA1IlRiD3kEBiT8CDgqVBtg-s9phE4jdRE",
+  authDomain: "pw-pj-tga-1e88c.firebaseapp.com",
+  projectId: "pw-pj-tga-1e88c",
+  storageBucket: "pw-pj-tga-1e88c.firebasestorage.app",
+  messagingSenderId: "623523113789",
+  appId: "1:623523113789:web:84b25b858d4ee7645b3354",
+  measurementId: "G-KGW9JW04EH"
 };
 
 const fbApp = initializeApp(firebaseConfig);
@@ -529,8 +542,8 @@ if (id === "page-14" || id === "page-14-2") {
   setTimeout(() => applyWrRecommendation(id), 0);
 }
 
-    if (id === "page-14") loadPage14();
-  //if (id === "page-14-3") loadPage143();
+  if (id === "page-14") loadPage14();
+  if (id === "page-14-3") loadPage143();
   if (id === "page-14-2") loadPage142();
   if (id === "page-8") loadPage8();
   if (id === "page-18") loadPage18();
@@ -541,14 +554,19 @@ if (id === "page-14" || id === "page-14-2") {
   if (id === "page-10") loadPage10();
   if (id === "page-23") loadPage23();
   if (id === "page-24") loadPage24();
-  //if (id === "page-25") loadPage25();
-  //if (id === "page-27") loadPage27();
-  //if (id === "page-28") loadPage28();
-  //if (id === "page-30") loadPage30();
-  //if (id === "page-31") loadPage31();
-  //if (id === "page-32") loadPage32();
-  //if (id === "page-33") loadPage33();
-  //if (id === "page-13") loadPage13();
+  if (id === "page-25") loadPage25();
+  if (id === "page-27") loadPage27();
+  if (id === "page-28") loadPage28();
+  if (id === "page-30") loadPage30();
+  if (id === "page-31") loadPage31();
+  if (id === "page-32") loadPage32();
+  if (id === "page-33") loadPage33();
+  if (id === "page-13") loadPage13();
+  if (id === "page-34") loadPage34();
+  if (id === "page-35") loadPage35();
+  if (id === "page-36") loadPage36();
+  if (id === "page-26") loadPage26();
+  
  //   if (id === "page-admin") loadAdminPage();
 
   applyFlowUI(id);
@@ -568,7 +586,7 @@ if (id === "page-14" || id === "page-14-2") {
 // LOGIN - LOGOUT - PASSWORD
 // -----------------------------
 
-				// Wenn keine Registrierung, dann dieser Bereich nötig!
+				// Wenn keine Registrierung, dann ist dieser Bereich nötig!
 				const loginUser  = document.getElementById("loginUser");
 				const loginPass  = document.getElementById("loginPass");
 				const loginError = document.getElementById("loginError");
@@ -599,16 +617,17 @@ async function login() {
       time: serverTimestamp()
     });
 
-// const udoc = await getDoc(doc(db, "users", currentUser.uid));
-// const approved = udoc.exists() && udoc.data().approved === true;
+				// Wenn Registrierung gewünscht...
+				// const udoc = await getDoc(doc(db, "users", currentUser.uid));
+				// const approved = udoc.exists() && udoc.data().approved === true;
 
-//  if (!approved) {
-//  await signOut(auth);
-//  currentUser = null;
-//  showPage("page-login");
-//  loginError.innerText = "Account ist noch nicht freigeschaltet. Bitte auf Freigabe warten.";
-//  return;
-//}
+				//  if (!approved) {
+				//  await signOut(auth);
+				//  currentUser = null;
+				//  showPage("page-login");
+				//  loginError.innerText = "Account ist noch nicht freigeschaltet. Bitte auf Freigabe warten.";
+				//  return;
+				//}
 
     updateAdminUI_();
     startTimer();
@@ -791,19 +810,19 @@ window.exportLoginLog = exportLoginLog;
  //   alert("User ist bereits freigegeben.");
  //   return;
  // }
-
+//
  // await updateDoc(uref, {
  //   approved: true,
  //   approvedAt: serverTimestamp(),
  //   approvedBy: auth.currentUser.email
  // });
-
+//
  // await sendPasswordResetEmail(auth, email);
-
+//
  // alert("Freigegeben. Passwort-Reset-Mail wurde gesendet.");
  // if (typeof loadAdminPage === "function") loadAdminPage();
 //}
-
+//
 //window.loadPendingUsers = loadPendingUsers;
 //window.approveUser = approveUser;
 
@@ -882,10 +901,6 @@ function updateAdminUI_() {
 //}
 //
 //window.loadAdminPage = loadAdminPage;
-
-
-
-
 
 // -----------------------------
 //  LOGOUT-TIMER
@@ -1020,141 +1035,163 @@ function savePage5Data() {
 // SEITE 14 – Wechselrichter "strang" (tga4.csv)
 // -----------------------------
 
-let page14Loaded = false;
-
 function loadPage14() {
 
-    if (page14Loaded) return; // nicht doppelt laden
-    page14Loaded = true;
+  const container = document.getElementById("content-14");
+  if (!container) return;
 
-    fetch("tga4.csv")
-        .then(response => response.text())
-        .then(data => {
+  if (container.innerHTML.trim() !== "") return;
 
-            const lines = data.split("\n").slice(1);
-            const container = document.getElementById("page14-content");
+  fetch("tga4.csv")
+    .then(response => response.text())
+    .then(data => {
 
-            let html = "";
-let headerInserted = false;            
-let gespeicherteWerte = JSON.parse(localStorage.getItem("page14Data") || "{}");
+      const lines = data.split("\n").slice(1);
+      let html = "";
 
-            lines.forEach((line, index) => {
+      let headerInserted = false;
 
-                if (!line.trim()) return;
+      const gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page14Data") || "{}");
 
-                const cols = line.split(";");
-                const colA = cols[0]?.trim();
-                const colB = cols[1]?.trim();
-                const colC = cols[2]?.trim();
-                const colD = cols[3]?.trim();
+      // Bild-Auflösung: 1..40 -> bildX.jpg (oder direkt Dateiname in CSV)
+      function resolvePosImg(colImg) {
+        const v = (colImg || "").trim();
+        if (!v) return "";
+        const n = parseInt(v, 40);
+        if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
+        return v;
+      }
 
-                if (colA === "Titel") {
-                    html += `<div class="title">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Untertitel") {
-                    html += `<div class="subtitle">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Zwischentitel") {
-                    html += `<div class="midtitle">${colB}</div>`;
-                    return;
-                }
-if (colA === "Beschreibung_fett") {
-  html += `
-    <div class="row beschreibung-fett-row">
-      <div class="col-a"></div>
-      <div class="col-b beschreibung-fett">${colB}</div>
-      <div class="col-c"></div>
-      <div class="col-d"></div>
-      <div class="col-e"></div>
-      <div class="col-f"></div>
-    </div>
-  `;
-  return;
+      // Header (mit Bild links)
+      function renderHeader14(imgSrc) {
+        return `
+          <div class="row table-header">
+            <div class="header-img-cell">
+              ${imgSrc ? `<img src="${imgSrc}" class="header-img" alt="Bild">` : ""}
+            </div>
+            <div>Beschreibung</div>
+            <div>Einheit</div>
+            <div style="text-align:center;">Menge</div>
+            <div style="text-align:right;">Preis / Einheit</div>
+            <div style="text-align:right;">Positionsergebnis</div>
+          </div>
+        `;
+      }
+
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
+
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
+        const colImg = cols[4]?.trim(); // <-- NEU: 5. Spalte Bild
+
+        // ====== Abschnittstrenner: Header soll später wieder kommen ======
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+
+        // Beschreibung_fett (wie bei Seite 20 sauber auf Beschreibung-Spalte ausgerichtet)
+        if (colA === "Beschreibung_fett") {
+          html += `
+            <div class="row beschreibung-fett-row">
+              <div class="col-a"></div>
+              <div class="col-b beschreibung-fett" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+          return;
+        }
+
+        const preis = parseFloat((colD || "").replace(",", "."));
+        const preisVorhanden = !isNaN(preis);
+
+        if (preisVorhanden) {
+
+          // Bild aus 5. Spalte
+          const imgSrc = resolvePosImg(colImg);
+
+          // Header + Bild DIREKT vor dieser Position
+          html += renderHeader14(imgSrc);
+          headerInserted = true;
+
+          const menge = gespeicherteWerte[index] || 0;
+
+          html += `
+            <div class="row">
+              <div class="col-a">${colA}</div>
+              <div class="col-b">${colB}</div>
+              <div class="col-c">${colC}</div>
+
+              <input class="menge-input"
+                     type="number" min="0" step="any"
+                     value="${menge}"
+                     oninput="calcRow14(this, ${preis}, ${index})">
+
+              <div class="col-d">
+                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
+              </div>
+
+              <div class="col-e">0,00 €</div>
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="row no-price">
+              <div class="col-a">${colA}</div>
+              <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+        }
+      });
+
+      html += `<div id="gesamtSumme14" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      html += `<div id="gesamtSumme14Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      </div>`;
+
+      container.innerHTML = html;
+      berechneGesamt14();
+    });
 }
 
-                const preisVorhanden = colD && !isNaN(parseFloat(colD.replace(",", ".")));
-
-                if (preisVorhanden) {
-
-  if (!headerInserted) {
-    html += `
-      <div class="row table-header">
-        <div class="header-img-cell">
-          <img src="bild3.jpg" class="header-img" alt="Bild">
-        </div>
-        <div>Beschreibung</div>
-        <div>Einheit</div>
-        <div style="text-align:center;">Menge</div>
-        <div style="text-align:right;">Preis / Einheit</div>
-        <div style="text-align:right;">Positionsergebnis</div>
-      </div>
-    `;
-    headerInserted = true;
-  }
-
-  // … danach kommen ganz normal die Positionszeilen
-
-
-                    const preis = parseFloat(colD.replace(",", "."));
-                    const gespeicherteMenge = gespeicherteWerte[index] || 0;
-
-                    html += `
-                    <div class="row">
-                        <div class="col-a">${colA}</div>
-                        <div class="col-b">${colB}</div>
-                        <div class="col-c">${colC}</div>
-                        <input class="menge-input" 
-                               type="number" min="0" step="any"
-                               value="${gespeicherteMenge}"
-                               oninput="calcRowPage14(this,${preis},${index})">
-                        <div class="col-d">${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €</div>
-                        <div class="col-e">0,00 €</div>
-                    </div>`;
-                } else {
-
-                    html += `
-                    <div class="row no-price">
-                        <div class="col-a">${colA}</div>
-                        <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
-                    </div>`;
-                }
-            });
-
-            html += `<div id="gesamtSumme14" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-            html += `<div id="gesamtSumme14Rabatt" class="gesamt rabatt" data-rabatt="angebot">Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €</div>`;
-
-            container.innerHTML = html;
-
-            berechneGesamt14();
-            applyWrRecommendation("page-14");
-        });
-}
-
-function calcRowPage14(input, preisWert, index) {
+function calcRow14(input, preis, index) {
 
     const row = input.parentElement;
     const ergebnis = row.querySelector(".col-e");
     const menge = parseFloat(input.value.replace(",", ".")) || 0;
 
-    const wert = menge * preisWert;
-
+    const sum = menge * preis;
     ergebnis.innerText =
-        wert.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
 
     let gespeicherteWerte =
         JSON.parse(localStorage.getItem("page14Data") || "{}");
 
     gespeicherteWerte[index] = menge;
-
-    localStorage.setItem("page14Data",
-        JSON.stringify(gespeicherteWerte));
+    localStorage.setItem("page14Data", JSON.stringify(gespeicherteWerte));
 
     berechneGesamt14();
 }
 
 function berechneGesamt14() {
+
     let sum = 0;
 
     document.querySelectorAll("#page-14 .col-e").forEach(el => {
@@ -1167,183 +1204,18 @@ function berechneGesamt14() {
         sum += wert;
     });
 
-    // Zwischensumme für Seite 14 speichern
     saveSeitenSumme("page-14", sum);
 
-    // Gesamtsumme über alle Seiten
     const gesamtDiv = document.getElementById("gesamtSumme14");
     if (gesamtDiv) {
         gesamtDiv.innerText =
-            "Gesamtsumme Angebot: " + getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
     }
 }
 
-// -----------------------------
-// SEITE 14.3 –  (xxx.csv)
-// -----------------------------
-//
-//function loadPage143() {
-//
-//  const container = document.getElementById("content-14-3");
-//  if (!container) return;
-//
-//  // Falls schon geladen → nicht nochmal laden
-//  if (container.innerHTML.trim() !== "") return;
-//
-//  fetch("xxx.csv")
-//    .then(response => response.text())
-//    .then(data => {
-//
-//      const lines = data.split("\n").slice(1);
-//     let html = "";
-//let headerInserted = false;
-//
-//      lines.forEach((line, index) => {
-//        if (!line.trim()) return;
-//
-//        const cols = line.split(";");
-//        const colA = cols[0]?.trim();
-//        const colB = cols[1]?.trim();
-//        const colC = cols[2]?.trim();
-//        const colD = cols[3]?.trim();
-//
-//        // TITEL / UNTERTITEL / ZWISCHENTITEL
-//        if (colA === "Titel") {
-//          html += `<div class="title">${colB}</div>`;
-//          return;
-//        }
-//        if (colA === "Untertitel") {
-//          html += `<div class="subtitle">${colB}</div>`;
-//          return;
-//        }
-//        if (colA === "Zwischentitel") {
-//          html += `<div class="midtitle">${colB}</div>`;
-//          return;
-//        }
-//if (colA === "Beschreibung_fett") {
-//  html += `
-//    <div class="row beschreibung-fett-row">
-//      <div class="col-a"></div>
-//      <div class="col-b beschreibung-fett">${colB}</div>
-//      <div class="col-c"></div>
-//      <div class="col-d"></div>
-//      <div class="col-e"></div>
-//      <div class="col-f"></div>
-//    </div>
-//  `;
-//  return;
-//}
-//
-//
-//        const preisVorhanden = colD && !isNaN(parseFloat(colD.replace(",", ".")));
-//
-//        if (preisVorhanden) {
-//
-//if (!headerInserted) {
-//    html += `
-//      <div class="row table-header">
-//        <div class="header-img-cell">
-//          <img src="xxx.jpg" class="header-img" alt="Bild">
-//        </div>
-//        <div>Beschreibung</div>
-//        <div>Einheit</div>
-//        <div style="text-align:center;">Menge</div>
-//        <div style="text-align:right;">Preis / Einheit</div>
-//        <div style="text-align:right;">Positionsergebnis</div>
-//      </div>
-//    `;
-//    headerInserted = true;
-//  } 
-//
-//          const preis = parseFloat(colD.replace(",", "."));
-//          const savedValue = localStorage.getItem("page143Data" + index) || "0";
-//
-//          html += `<div class="row">
-//                      <div class="col-a">${colA}</div>
-//                      <div class="col-b">${colB}</div>
-//                      <div class="col-c">${colC}</div>
-//
-//                      <input class="menge-input" type="number" min="0" step="any"
-//                             value="${savedValue}"
-//                             oninput="calcRow143(this, ${preis}, ${index})">
-//
-//                      <div class="col-d">
-//                        ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
-//                      </div>
-//
-//                      <div class="col-e">0,00 €</div>
-//                   </div>`;
-//        } else {
-//
-//          html += `<div class="row no-price">
-//                      <div class="col-a">${colA}</div>
-//                      <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
-//                   </div>`;
-//        }
-//      });
-//
-//      html += `<div id="gesamtSumme143" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-//      html += `<div id="gesamtSumme143Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-//          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-//         </div>`;
-//
-//     container.innerHTML = html;
-//
-//      berechneGesamt143();
-//    });
-//}
-//
-//// Berechnung einzelner Zeilen
-//	function calcRow143(input, preisWert, index) {
-//
-//  	const row = input.parentElement;
-//  	const ergebnis = row.querySelector(".col-e");
-//
-//  	const menge = parseFloat(input.value.replace(",", ".")) || 0;
-//
-//  	const sum = menge * preisWert;
-//
-//  	ergebnis.innerText =
-//    	sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-//
-// 	let gespeicherteWerte =
-//    		JSON.parse(localStorage.getItem("page143Data") || "{}");
-//
-//gespeicherteWerte[index] = menge;
-//
-//localStorage.setItem("page143Data",
-//    JSON.stringify(gespeicherteWerte));
-//
-//  berechneGesamt143();
-//}
-//
-//// Berechnung Gesamtsumme
-// 	function berechneGesamt143() {
-//
-//  	let sum = 0;
-//
-//  	document.querySelectorAll("#page-14-3 .col-e").forEach(el => {
-//
-//    	const wert = parseFloat(
-//      		el.innerText.replace("€","")
-//                 .replace(/\./g,"")
-//                 .replace(",",".")
-//                 .trim()
-//    	) || 0;
-//
-//    	sum += wert;
-//  	});
-//
-//// Zwischensumme für Seite 14.3 speichern
-//    saveSeitenSumme("page-14-3", sum);
-//
-//// Gesamtsumme über alle Seiten
-//    const gesamtDiv = document.getElementById("gesamtSumme143");
-//    if (gesamtDiv) {
-//        gesamtDiv.innerText =
-//            "Gesamtsumme Angebot: " + getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-//    }
-//}
+
+
 
 // -----------------------------
 // SEITE 40 – Ausgabeseite Kostenvoranschlag / Anfrage
@@ -1381,7 +1253,6 @@ async function loadPage40() {
         "wallbox":"Wallbox"
 
     };
-
 
     let html = "";
     Object.keys(labels).forEach(id => {
@@ -1430,16 +1301,20 @@ container.innerHTML += `
         { key: "page9Data", csv: "tga3.csv" },
         { key: "page10Data", csv: "tga6.csv" },
         { key: "page23Data", csv: "tga1.csv" },
-        { key: "page24Data", csv: "tga2.csv" }
- //       { key: "page25Data", csv: "xxx.csv" },
- //       { key: "page27Data", csv: "xxx.csv" },
- //       { key: "page28Data", csv: "xxx.csv" },
- //       { key: "page30Data", csv: "xxx.csv" },
- //       { key: "page31Data", csv: "xxx.csv" },
- //       { key: "page32Data", csv: "xxx.csv" },
- //       { key: "page33Data", csv: "xxx.csv" },
- //       { key: "page13Data", csv: "xxx.csv" },
- //       { key: "page143Data", csv: "xxx.csv" }
+        { key: "page24Data", csv: "tga2.csv" },
+        { key: "page25Data", csv: "tga14.csv" },
+        { key: "page27Data", csv: "tga16.csv" },
+        { key: "page28Data", csv: "tga17.csv" },
+        { key: "page30Data", csv: "tga19.csv" },
+        { key: "page31Data", csv: "tga18.csv" },
+        { key: "page32Data", csv: "tga20.csv" },
+        { key: "page33Data", csv: "tga21.csv" },
+        { key: "page13Data", csv: "tga22.csv" },
+        { key: "page143Data", csv: "tga13.csv" },
+        { key: "page26Data", csv: "tga15.csv" },
+        { key: "page34Data", csv: "tga23.csv" },
+        { key: "page35Data", csv: "tga24.csv" },
+        { key: "page36Data", csv: "tga25.csv" }
     ];
 
     for (const seite of seitenConfig) {
@@ -1489,45 +1364,45 @@ container.innerHTML += `
         });
     }
 
-// ===== Optimierer-Hinweis nur unter bestimmten Bedingungen =====
+		// ===== Optimierer-Hinweis nur unter bestimmten Bedingungen =====
 
 // true, wenn in einem Page-Storage (page23Data/page24Data) irgendein Wert > 0 ist
 function hasAnyPositiveInput(storageKey) {
   const data = JSON.parse(localStorage.getItem(storageKey) || "{}");
   return Object.values(data).some(v => (parseFloat(String(v).replace(",", ".")) || 0) > 0);
 }
-// ===== Wechselrichter-Hinweis in Seite 40 =====
-const wrMismatch = localStorage.getItem("wrMismatch") === "1";
-const wrRecoSize = localStorage.getItem("wrRecoSize") || "";
-const wrRecoModules = localStorage.getItem("wrRecoModules") || "";
-
-let wrHinweis = document.getElementById("wr-hinweis-print");
-if (!wrHinweis) {
-  wrHinweis = document.createElement("div");
-  wrHinweis.id = "wr-hinweis-print";
-  wrHinweis.style.display = "none";
-  wrHinweis.style.marginTop = "20px";
-  wrHinweis.style.color = "darkred";
-  wrHinweis.style.fontWeight = "700";
-
-  // Platzierung: unter Optimierer-Hinweis (falls vorhanden), sonst unter Angebotspreis
-  const opt = document.getElementById("optimierer-hinweis-print");
-  if (opt && opt.parentNode) opt.parentNode.insertBefore(wrHinweis, opt.nextSibling);
-  else {
-    const preis = document.getElementById("angebotspreis");
-    if (preis && preis.parentNode) preis.parentNode.insertBefore(wrHinweis, preis.nextSibling);
-  }
-}
-
-if (wrMismatch && wrRecoSize && wrRecoModules) {
-  wrHinweis.innerHTML =
-    `Achtung!<br>` +
-    `Wechselrichter nicht passend!<br>` +
-    `Empfehlung bei ${wrRecoModules} PV-Modulen: Wechselrichter <strong>${wrRecoSize}</strong>`;
-  wrHinweis.style.display = "block";
-} else {
-  wrHinweis.style.display = "none";
-}
+//// ===== Wechselrichter-Hinweis in Seite 40 =====
+//const wrMismatch = localStorage.getItem("wrMismatch") === "1";
+//const wrRecoSize = localStorage.getItem("wrRecoSize") || "";
+//const wrRecoModules = localStorage.getItem("wrRecoModules") || "";
+//
+//let wrHinweis = document.getElementById("wr-hinweis-print");
+//if (!wrHinweis) {
+//  wrHinweis = document.createElement("div");
+//  wrHinweis.id = "wr-hinweis-print";
+//  wrHinweis.style.display = "none";
+//  wrHinweis.style.marginTop = "20px";
+//  wrHinweis.style.color = "darkred";
+//  wrHinweis.style.fontWeight = "700";
+//
+//  // Platzierung: unter Optimierer-Hinweis (falls vorhanden), sonst unter Angebotspreis
+//  const opt = document.getElementById("optimierer-hinweis-print");
+//  if (opt && opt.parentNode) opt.parentNode.insertBefore(wrHinweis, opt.nextSibling);
+//  else {
+//    const preis = document.getElementById("angebotspreis");
+//    if (preis && preis.parentNode) preis.parentNode.insertBefore(wrHinweis, preis.nextSibling);
+//  }
+//}
+//
+//if (wrMismatch && wrRecoSize && wrRecoModules) {
+//  wrHinweis.innerHTML =
+//    `Achtung!<br>` +
+//    `Wechselrichter nicht passend!<br>` +
+//    `Empfehlung bei ${wrRecoModules} PV-Modulen: Wechselrichter <strong>${wrRecoSize}</strong>`;
+//  wrHinweis.style.display = "block";
+//} else {
+//  wrHinweis.style.display = "none";
+//}
 const optimiererSelected = isOptimiererSelected(); // Seite 8
 const hasInput23 = hasAnyPositiveInput("page23Data"); // Schrägdach
 const hasInput24 = hasAnyPositiveInput("page24Data"); // Flachdach
@@ -1689,8 +1564,6 @@ function exportCsvPage40() {
 
 window.exportCsvPage40 = exportCsvPage40;
 
-
-
 // -----------------------------
 // clearInputs - Button "Eingaben löschen"
 // -----------------------------
@@ -1710,7 +1583,7 @@ optimiererVerwendet = false;
 // Dynamische Inhalte leeren (damit nichts „stehen bleibt“)
     const idsToClear = [
         "page14-content",
-//       "content-14-3",
+        "content-14-3",
         "content-14-2",
         "content-8",
         "content-18",
@@ -1721,14 +1594,18 @@ optimiererVerwendet = false;
         "content-10",
         "content-23",
 	"content-24",
-//       "content-25",
-//       "content-27",
-//       "content-28",
-//       "content-30",
-//	"content-31",
-//       "content-32",
-//       "content-33",
-//        "content-13",
+        "content-25",
+        "content-27",
+        "content-28",
+        "content-30",
+	"content-31",
+        "content-32",
+        "content-33",
+        "content-13",
+        "content-34",
+        "content-35",
+        "content-36",
+        "content-26",
         "summary-content",
         "hinweise-content"
     ];
@@ -1747,8 +1624,8 @@ optimiererVerwendet = false;
     const sum143 = document.getElementById("gesamtSumme143");
     if (sum143) sum143.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-  //  const sum142 = document.getElementById("gesamtSumme142");
-  //  if (sum142) sum142.innerText = "Gesamtsumme Angebot: 0,00 €";
+   const sum142 = document.getElementById("gesamtSumme142");
+   if (sum142) sum142.innerText = "Gesamtsumme Angebot: 0,00 €";
 
     const sum8 = document.getElementById("gesamtSumme8");
     if (sum8) sum8.innerText = "Gesamtsumme Angebot: 0,00 €";
@@ -1777,34 +1654,44 @@ optimiererVerwendet = false;
     const sum24 = document.getElementById("gesamtSumme24");
     if (sum24) sum24.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum25 = document.getElementById("gesamtSumme25");
-   // if (sum25) sum25.innerText = "Gesamtsumme Angebot: 0,00 €";
+    const sum25 = document.getElementById("gesamtSumme25");
+    if (sum25) sum25.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum27 = document.getElementById("gesamtSumme27");
-   // if (sum27) sum27.innerText = "Gesamtsumme Angebot: 0,00 €";
+    const sum27 = document.getElementById("gesamtSumme27");
+    if (sum27) sum27.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum28 = document.getElementById("gesamtSumme28");
-   // if (sum28) sum28.innerText = "Gesamtsumme Angebot: 0,00 €";
+    const sum28 = document.getElementById("gesamtSumme28");
+    if (sum28) sum28.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum30 = document.getElementById("gesamtSumme30");
-   // if (sum30) sum30.innerText = "Gesamtsumme Angebot: 0,00 €";
+    const sum30 = document.getElementById("gesamtSumme30");
+    if (sum30) sum30.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum31 = document.getElementById("gesamtSumme31");
-   // if (sum31) sum31.innerText = "Gesamtsumme Angebot: 0,00 €";
+    const sum31 = document.getElementById("gesamtSumme31");
+    if (sum31) sum31.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum32 = document.getElementById("gesamtSumme32");
-   // if (sum32) sum32.innerText = "Gesamtsumme Angebot: 0,00 €";
+    const sum32 = document.getElementById("gesamtSumme32");
+    if (sum32) sum32.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum33 = document.getElementById("gesamtSumme33");
-   // if (sum33) sum33.innerText = "Gesamtsumme Angebot: 0,00 €";
+    const sum33 = document.getElementById("gesamtSumme33");
+    if (sum33) sum33.innerText = "Gesamtsumme Angebot: 0,00 €";
 
-   // const sum13 = document.getElementById("gesamtSumme13");
-   // if (sum13) sum13.innerText = "Gesamtsumme Angebot: 0,00 €";
+    const sum13 = document.getElementById("gesamtSumme13");
+    if (sum13) sum13.innerText = "Gesamtsumme Angebot: 0,00 €";
+
+    const sum26 = document.getElementById("gesamtSumme26");
+    if (sum26) sum26.innerText = "Gesamtsumme Angebot: 0,00 €";
+
+    const sum34 = document.getElementById("gesamtSumme34");
+    if (sum34) sum34.innerText = "Gesamtsumme Angebot: 0,00 €";
+
+    const sum35 = document.getElementById("gesamtSumme35");
+    if (sum35) sum35.innerText = "Gesamtsumme Angebot: 0,00 €";
+
+    const sum36 = document.getElementById("gesamtSumme36");
+    if (sum36) sum36.innerText = "Gesamtsumme Angebot: 0,00 €";
 
 // Flags zurücksetzen, damit Seiten neu aus CSV geladen werden
     page14Loaded = false;
-
-// Seite 14.3 hat kein Flag, daher reicht Container leeren
 
 // Angebots-Summen Objekt zurücksetzen (falls du es im RAM nutzt)
     angebotSummen = {};
@@ -1829,66 +1716,39 @@ if (p40r) p40r.innerText = "Gesamtpreis abzgl. SHK-Rabatt (15%): 0,00 €";
 
 function loadPage142() {
 
-    const container = document.getElementById("content-14-2");
-    if (!container) return;
+  const container = document.getElementById("content-142");
+  if (!container) return;
 
-    if (container.innerHTML.trim() !== "") return;
+  if (container.innerHTML.trim() !== "") return;
 
-    fetch("tga5.csv")
-        .then(response => response.text())
-        .then(data => {
+  fetch("tga5.csv")
+    .then(response => response.text())
+    .then(data => {
 
-            const lines = data.split("\n").slice(1);
-            let html = "";
-		let headerInserted = false;
+      const lines = data.split("\n").slice(1);
+      let html = "";
 
-            const gespeicherteWerte =
-                JSON.parse(localStorage.getItem("page142Data") || "{}");
+      let headerInserted = false;
 
-            lines.forEach((line, index) => {
-                if (!line.trim()) return;
+      const gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page142Data") || "{}");
 
-                const cols = line.split(";");
-                const colA = cols[0]?.trim();
-                const colB = cols[1]?.trim();
-                const colC = cols[2]?.trim();
-                const colD = cols[3]?.trim();
+      // Bild-Auflösung: 1..40 -> bildX.jpg (oder direkt Dateiname in CSV)
+      function resolvePosImg(colImg) {
+        const v = (colImg || "").trim();
+        if (!v) return "";
+        const n = parseInt(v, 40);
+        if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
+        return v;
+      }
 
-                if (colA === "Titel") {
-                    html += `<div class="title">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Untertitel") {
-                    html += `<div class="subtitle">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Zwischentitel") {
-                    html += `<div class="midtitle">${colB}</div>`;
-                    return;
-                }
-if (colA === "Beschreibung_fett") {
-  html += `
-    <div class="row beschreibung-fett-row">
-      <div class="col-a"></div>
-      <div class="col-b beschreibung-fett">${colB}</div>
-      <div class="col-c"></div>
-      <div class="col-d"></div>
-      <div class="col-e"></div>
-      <div class="col-f"></div>
-    </div>
-  `;
-  return;
-}
-
-                const preis = parseFloat(colD?.replace(",", "."));
-                if (!isNaN(preis)) {
-
-if (!headerInserted) {
-        html += `
+      // Header (mit Bild links)
+      function renderHeader142(imgSrc) {
+        return `
           <div class="row table-header">
             <div class="header-img-cell">
-          <img src="bild3.jpg" class="header-img" alt="Bild">
-        </div>
+              ${imgSrc ? `<img src="${imgSrc}" class="header-img" alt="Bild">` : ""}
+            </div>
             <div>Beschreibung</div>
             <div>Einheit</div>
             <div style="text-align:center;">Menge</div>
@@ -1896,46 +1756,98 @@ if (!headerInserted) {
             <div style="text-align:right;">Positionsergebnis</div>
           </div>
         `;
-        headerInserted = true;
-}
+      }
 
-                    const menge = gespeicherteWerte[index] || 0;
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
 
-                    html += `
-                        <div class="row">
-                            <div class="col-a">${colA}</div>
-                            <div class="col-b">${colB}</div>
-                            <div class="col-c">${colC}</div>
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
+        const colImg = cols[4]?.trim(); // <-- NEU: 5. Spalte Bild
 
-                            <input class="menge-input"
-                                   type="number" min="0" step="any"
-                                   value="${menge}"
-                                   oninput="calcRow142(this, ${preis}, ${index})">
+        // ====== Abschnittstrenner: Header soll später wieder kommen ======
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
 
-                            <div class="col-d">
-                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
-                            </div>
+        // Beschreibung_fett (wie bei Seite 20 sauber auf Beschreibung-Spalte ausgerichtet)
+        if (colA === "Beschreibung_fett") {
+          html += `
+            <div class="row beschreibung-fett-row">
+              <div class="col-a"></div>
+              <div class="col-b beschreibung-fett" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+          return;
+        }
 
-                            <div class="col-e">0,00 €</div>
-                        </div>`;
-                } else {
-                    html += `
-                        <div class="row no-price">
-                            <div class="col-a">${colA}</div>
-                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
-                        </div>`;
-                }
-            });
+        const preis = parseFloat((colD || "").replace(",", "."));
+        const preisVorhanden = !isNaN(preis);
 
-            html += `<div id="gesamtSumme142" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-            html += `<div id="gesamtSumme142Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-         </div>`;
+        if (preisVorhanden) {
 
-            container.innerHTML = html;
-            berechneGesamt142();
-            applyWrRecommendation("page-14-2");
-        });
+          // Bild aus 5. Spalte
+          const imgSrc = resolvePosImg(colImg);
+
+          // Header + Bild DIREKT vor dieser Position
+          html += renderHeader142(imgSrc);
+          headerInserted = true;
+
+          const menge = gespeicherteWerte[index] || 0;
+
+          html += `
+            <div class="row">
+              <div class="col-a">${colA}</div>
+              <div class="col-b">${colB}</div>
+              <div class="col-c">${colC}</div>
+
+              <input class="menge-input"
+                     type="number" min="0" step="any"
+                     value="${menge}"
+                     oninput="calcRow142(this, ${preis}, ${index})">
+
+              <div class="col-d">
+                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
+              </div>
+
+              <div class="col-e">0,00 €</div>
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="row no-price">
+              <div class="col-a">${colA}</div>
+              <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+        }
+      });
+
+      html += `<div id="gesamtSumme142" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      html += `<div id="gesamtSumme142Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      </div>`;
+
+      container.innerHTML = html;
+      berechneGesamt142();
+    });
 }
 
 function calcRow142(input, preis, index) {
@@ -1956,6 +1868,7 @@ function calcRow142(input, preis, index) {
 
     berechneGesamt142();
 }
+
 function berechneGesamt142() {
 
     let sum = 0;
@@ -1980,6 +1893,9 @@ function berechneGesamt142() {
     }
 }
 
+
+
+
 // -----------------------------
 // SEITE 8 – Optimierer (tga10.csv)
 // -----------------------------
@@ -2002,50 +1918,22 @@ function loadPage8() {
             const gespeicherteWerte =
                 JSON.parse(localStorage.getItem("page8Data") || "{}");
 
-            lines.forEach((line, index) => {
-                if (!line.trim()) return;
+      // Bild-Auflösung: 1..20 -> bildX.jpg (oder direkt Dateiname in CSV)
+      function resolvePosImg(colImg) {
+        const v = (colImg || "").trim();
+        if (!v) return "";
+        const n = parseInt(v, 20);
+        if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
+        return v;
+      }
 
-                const cols = line.split(";");
-                const colA = cols[0]?.trim();
-                const colB = cols[1]?.trim();
-                const colC = cols[2]?.trim();
-                const colD = cols[3]?.trim();
-
-                if (colA === "Titel") {
-                    html += `<div class="title">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Untertitel") {
-                    html += `<div class="subtitle">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Zwischentitel") {
-                    html += `<div class="midtitle">${colB}</div>`;
-                    return;
-                }
-if (colA === "Beschreibung_fett") {
-  html += `
-    <div class="row beschreibung-fett-row">
-      <div class="col-a"></div>
-      <div class="col-b beschreibung-fett">${colB}</div>
-      <div class="col-c"></div>
-      <div class="col-d"></div>
-      <div class="col-e"></div>
-      <div class="col-f"></div>
-    </div>
-  `;
-  return;
-}
-
-                const preis = parseFloat(colD?.replace(",", "."));
-                if (!isNaN(preis)) {
-
-if (!headerInserted) {
-        html += `
+      // Header (mit Bild links)
+      function renderHeader8(imgSrc) {
+        return `
           <div class="row table-header">
             <div class="header-img-cell">
-          <img src="bild2.jpg" class="header-img" alt="Bild">
-        </div>
+              ${imgSrc ? `<img src="${imgSrc}" class="header-img" alt="Bild">` : ""}
+            </div>
             <div>Beschreibung</div>
             <div>Einheit</div>
             <div style="text-align:center;">Menge</div>
@@ -2053,45 +1941,100 @@ if (!headerInserted) {
             <div style="text-align:right;">Positionsergebnis</div>
           </div>
         `;
-        headerInserted = true;
+      }
+
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
+
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
+        const colImg = cols[4]?.trim(); // <-- NEU: 5. Spalte Bild
+
+        // ====== Abschnittstrenner: Header soll später wieder kommen ======
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+
+        // Beschreibung_fett (wie bei Seite 20 sauber auf Beschreibung-Spalte ausgerichtet)
+        if (colA === "Beschreibung_fett") {
+          html += `
+            <div class="row beschreibung-fett-row">
+              <div class="col-a"></div>
+              <div class="col-b beschreibung-fett" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+          return;
+        }
+
+        const preis = parseFloat((colD || "").replace(",", "."));
+        const preisVorhanden = !isNaN(preis);
+
+        if (preisVorhanden) {
+
+          // Bild aus 5. Spalte
+          const imgSrc = resolvePosImg(colImg);
+
+          // Header + Bild DIREKT vor dieser Position
+          html += renderHeader8(imgSrc);
+          headerInserted = true;
+
+          const menge = gespeicherteWerte[index] || 0;
+
+          html += `
+            <div class="row">
+              <div class="col-a">${colA}</div>
+              <div class="col-b">${colB}</div>
+              <div class="col-c">${colC}</div>
+
+              <input class="menge-input"
+                     type="number" min="0" step="any"
+                     value="${menge}"
+                     oninput="calcRow8(this, ${preis}, ${index})">
+
+              <div class="col-d">
+                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
+              </div>
+
+              <div class="col-e">0,00 €</div>
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="row no-price">
+              <div class="col-a">${colA}</div>
+              <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+        }
+      });
+
+      html += `<div id="gesamtSumme8" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      html += `<div id="gesamtSumme8Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      </div>`;
+
+      container.innerHTML = html;
+      berechneGesamt8();
+    });
 }
-                    const menge = gespeicherteWerte[index] || 0;
 
-                    html += `
-                        <div class="row">
-                            <div class="col-a">${colA}</div>
-                            <div class="col-b">${colB}</div>
-                            <div class="col-c">${colC}</div>
-
-                            <input class="menge-input"
-                                   type="number" min="0" step="any"
-                                   value="${menge}"
-                                   oninput="calcRow8(this, ${preis}, ${index})">
-
-                            <div class="col-d">
-                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
-                            </div>
-
-                            <div class="col-e">0,00 €</div>
-                        </div>`;
-                } else {
-                    html += `
-                        <div class="row no-price">
-                            <div class="col-a">${colA}</div>
-                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
-                        </div>`;
-                }
-            });
-
-            html += `<div id="gesamtSumme8" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-            html += `<div id="gesamtSumme8Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-         </div>`;
-
-            container.innerHTML = html;
-            berechneGesamt8();
-        });
-}
 
 function isOptimiererSelected() {
   const data = JSON.parse(localStorage.getItem("page8Data") || "{}");
@@ -2325,10 +2268,6 @@ function berechneGesamt18() {
             getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
     }
 }
-
-// -----------------------------
-// SEITE 20 – Zählerschrank (tga9.csv)
-// -----------------------------
 
 // -----------------------------
 // SEITE 20 – Zählerschrank (tga9.csv)
@@ -2694,6 +2633,588 @@ function berechneGesamt21() {
     }
 }
 
+
+
+
+
+// -----------------------------
+// SEITE 13 – Speicher Huawei (tga22.csv)
+// -----------------------------
+
+function loadPage13() {
+
+  const container = document.getElementById("content-13");
+  if (!container) return;
+
+  if (container.innerHTML.trim() !== "") return;
+
+  fetch("tga22.csv")
+    .then(response => response.text())
+    .then(data => {
+
+      const lines = data.split("\n").slice(1);
+      let html = "";
+
+      let headerInserted = false;
+
+      const gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page13Data") || "{}");
+
+      // Bild-Auflösung: 1..40 -> bildX.jpg (oder direkt Dateiname in CSV)
+      function resolvePosImg(colImg) {
+        const v = (colImg || "").trim();
+        if (!v) return "";
+        const n = parseInt(v, 40);
+        if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
+        return v;
+      }
+
+      // Header (mit Bild links)
+      function renderHeader13(imgSrc) {
+        return `
+          <div class="row table-header">
+            <div class="header-img-cell">
+              ${imgSrc ? `<img src="${imgSrc}" class="header-img" alt="Bild">` : ""}
+            </div>
+            <div>Beschreibung</div>
+            <div>Einheit</div>
+            <div style="text-align:center;">Menge</div>
+            <div style="text-align:right;">Preis / Einheit</div>
+            <div style="text-align:right;">Positionsergebnis</div>
+          </div>
+        `;
+      }
+
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
+
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
+        const colImg = cols[4]?.trim(); // <-- NEU: 5. Spalte Bild
+
+        // ====== Abschnittstrenner: Header soll später wieder kommen ======
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+
+        // Beschreibung_fett (wie bei Seite 20 sauber auf Beschreibung-Spalte ausgerichtet)
+        if (colA === "Beschreibung_fett") {
+          html += `
+            <div class="row beschreibung-fett-row">
+              <div class="col-a"></div>
+              <div class="col-b beschreibung-fett" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+          return;
+        }
+
+        const preis = parseFloat((colD || "").replace(",", "."));
+        const preisVorhanden = !isNaN(preis);
+
+        if (preisVorhanden) {
+
+          // Bild aus 5. Spalte
+          const imgSrc = resolvePosImg(colImg);
+
+          // Header + Bild DIREKT vor dieser Position
+          html += renderHeader13(imgSrc);
+          headerInserted = true;
+
+          const menge = gespeicherteWerte[index] || 0;
+
+          html += `
+            <div class="row">
+              <div class="col-a">${colA}</div>
+              <div class="col-b">${colB}</div>
+              <div class="col-c">${colC}</div>
+
+              <input class="menge-input"
+                     type="number" min="0" step="any"
+                     value="${menge}"
+                     oninput="calcRow13(this, ${preis}, ${index})">
+
+              <div class="col-d">
+                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
+              </div>
+
+              <div class="col-e">0,00 €</div>
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="row no-price">
+              <div class="col-a">${colA}</div>
+              <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+        }
+      });
+
+      html += `<div id="gesamtSumme13" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      html += `<div id="gesamtSumme13Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      </div>`;
+
+      container.innerHTML = html;
+      berechneGesamt13();
+    });
+}
+
+function calcRow13(input, preis, index) {
+
+    const row = input.parentElement;
+    const ergebnis = row.querySelector(".col-e");
+    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+
+    const sum = menge * preis;
+    ergebnis.innerText =
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+
+    let gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page13Data") || "{}");
+
+    gespeicherteWerte[index] = menge;
+    localStorage.setItem("page13Data", JSON.stringify(gespeicherteWerte));
+
+    berechneGesamt13();
+}
+
+function berechneGesamt13() {
+
+    let sum = 0;
+
+    document.querySelectorAll("#page-13 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+        sum += wert;
+    });
+
+    saveSeitenSumme("page-13", sum);
+
+    const gesamtDiv = document.getElementById("gesamtSumme13");
+    if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
+}
+
+
+// -----------------------------
+// SEITE 26 – Speicher Fronius (tga14.csv)
+// -----------------------------
+
+function loadPage26() {
+
+  const container = document.getElementById("content-26");
+  if (!container) return;
+
+  if (container.innerHTML.trim() !== "") return;
+
+  fetch("tga14.csv")
+    .then(response => response.text())
+    .then(data => {
+
+      const lines = data.split("\n").slice(1);
+      let html = "";
+
+      let headerInserted = false;
+
+      const gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page26Data") || "{}");
+
+      // Bild-Auflösung: 1..40 -> bildX.jpg (oder direkt Dateiname in CSV)
+      function resolvePosImg(colImg) {
+        const v = (colImg || "").trim();
+        if (!v) return "";
+        const n = parseInt(v, 40);
+        if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
+        return v;
+      }
+
+      // Header (mit Bild links)
+      function renderHeader26(imgSrc) {
+        return `
+          <div class="row table-header">
+            <div class="header-img-cell">
+              ${imgSrc ? `<img src="${imgSrc}" class="header-img" alt="Bild">` : ""}
+            </div>
+            <div>Beschreibung</div>
+            <div>Einheit</div>
+            <div style="text-align:center;">Menge</div>
+            <div style="text-align:right;">Preis / Einheit</div>
+            <div style="text-align:right;">Positionsergebnis</div>
+          </div>
+        `;
+      }
+
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
+
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
+        const colImg = cols[4]?.trim(); // <-- NEU: 5. Spalte Bild
+
+        // ====== Abschnittstrenner: Header soll später wieder kommen ======
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+
+        // Beschreibung_fett (wie bei Seite 20 sauber auf Beschreibung-Spalte ausgerichtet)
+        if (colA === "Beschreibung_fett") {
+          html += `
+            <div class="row beschreibung-fett-row">
+              <div class="col-a"></div>
+              <div class="col-b beschreibung-fett" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+          return;
+        }
+
+        const preis = parseFloat((colD || "").replace(",", "."));
+        const preisVorhanden = !isNaN(preis);
+
+        if (preisVorhanden) {
+
+          // Bild aus 5. Spalte
+          const imgSrc = resolvePosImg(colImg);
+
+          // Header + Bild DIREKT vor dieser Position
+          html += renderHeader26(imgSrc);
+          headerInserted = true;
+
+          const menge = gespeicherteWerte[index] || 0;
+
+          html += `
+            <div class="row">
+              <div class="col-a">${colA}</div>
+              <div class="col-b">${colB}</div>
+              <div class="col-c">${colC}</div>
+
+              <input class="menge-input"
+                     type="number" min="0" step="any"
+                     value="${menge}"
+                     oninput="calcRow26(this, ${preis}, ${index})">
+
+              <div class="col-d">
+                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
+              </div>
+
+              <div class="col-e">0,00 €</div>
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="row no-price">
+              <div class="col-a">${colA}</div>
+              <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+        }
+      });
+
+      html += `<div id="gesamtSumme26" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      html += `<div id="gesamtSumme26Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      </div>`;
+
+      container.innerHTML = html;
+      berechneGesamt26();
+    });
+}
+
+function calcRow26(input, preis, index) {
+
+    const row = input.parentElement;
+    const ergebnis = row.querySelector(".col-e");
+    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+
+    const sum = menge * preis;
+    ergebnis.innerText =
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+
+    let gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page26Data") || "{}");
+
+    gespeicherteWerte[index] = menge;
+    localStorage.setItem("page26Data", JSON.stringify(gespeicherteWerte));
+
+    berechneGesamt26();
+}
+
+function berechneGesamt26() {
+
+    let sum = 0;
+
+    document.querySelectorAll("#page-26 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+        sum += wert;
+    });
+
+    saveSeitenSumme("page-26", sum);
+
+    const gesamtDiv = document.getElementById("gesamtSumme26");
+    if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
+}
+
+
+// -----------------------------
+// SEITE 14.3 – Wechselrichter hybrid a-TroniX (tga13.csv)
+// -----------------------------
+
+function loadPage143() {
+
+  const container = document.getElementById("content-143");
+  if (!container) return;
+
+  if (container.innerHTML.trim() !== "") return;
+
+  fetch("tga13.csv")
+    .then(response => response.text())
+    .then(data => {
+
+      const lines = data.split("\n").slice(1);
+      let html = "";
+
+      let headerInserted = false;
+
+      const gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page143Data") || "{}");
+
+      // Bild-Auflösung: 1..40 -> bildX.jpg (oder direkt Dateiname in CSV)
+      function resolvePosImg(colImg) {
+        const v = (colImg || "").trim();
+        if (!v) return "";
+        const n = parseInt(v, 40);
+        if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
+        return v;
+      }
+
+      // Header (mit Bild links)
+      function renderHeader143(imgSrc) {
+        return `
+          <div class="row table-header">
+            <div class="header-img-cell">
+              ${imgSrc ? `<img src="${imgSrc}" class="header-img" alt="Bild">` : ""}
+            </div>
+            <div>Beschreibung</div>
+            <div>Einheit</div>
+            <div style="text-align:center;">Menge</div>
+            <div style="text-align:right;">Preis / Einheit</div>
+            <div style="text-align:right;">Positionsergebnis</div>
+          </div>
+        `;
+      }
+
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
+
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
+        const colImg = cols[4]?.trim(); // <-- NEU: 5. Spalte Bild
+
+        // ====== Abschnittstrenner: Header soll später wieder kommen ======
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+
+        // Beschreibung_fett (wie bei Seite 20 sauber auf Beschreibung-Spalte ausgerichtet)
+        if (colA === "Beschreibung_fett") {
+          html += `
+            <div class="row beschreibung-fett-row">
+              <div class="col-a"></div>
+              <div class="col-b beschreibung-fett" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+          return;
+        }
+
+        const preis = parseFloat((colD || "").replace(",", "."));
+        const preisVorhanden = !isNaN(preis);
+
+        if (preisVorhanden) {
+
+          // Bild aus 5. Spalte
+          const imgSrc = resolvePosImg(colImg);
+
+          // Header + Bild DIREKT vor dieser Position
+          html += renderHeader143(imgSrc);
+          headerInserted = true;
+
+          const menge = gespeicherteWerte[index] || 0;
+
+          html += `
+            <div class="row">
+              <div class="col-a">${colA}</div>
+              <div class="col-b">${colB}</div>
+              <div class="col-c">${colC}</div>
+
+              <input class="menge-input"
+                     type="number" min="0" step="any"
+                     value="${menge}"
+                     oninput="calcRow143(this, ${preis}, ${index})">
+
+              <div class="col-d">
+                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
+              </div>
+
+              <div class="col-e">0,00 €</div>
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="row no-price">
+              <div class="col-a">${colA}</div>
+              <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+        }
+      });
+
+      html += `<div id="gesamtSumme143" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      html += `<div id="gesamtSumme143Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      </div>`;
+
+      container.innerHTML = html;
+      berechneGesamt143();
+    });
+}
+
+function calcRow143(input, preis, index) {
+
+    const row = input.parentElement;
+    const ergebnis = row.querySelector(".col-e");
+    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+
+    const sum = menge * preis;
+    ergebnis.innerText =
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+
+    let gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page143Data") || "{}");
+
+    gespeicherteWerte[index] = menge;
+    localStorage.setItem("page143Data", JSON.stringify(gespeicherteWerte));
+
+    berechneGesamt143();
+}
+
+function berechneGesamt143() {
+
+    let sum = 0;
+
+    document.querySelectorAll("#page-14-3 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+        sum += wert;
+    });
+
+    saveSeitenSumme("page-14-3", sum);
+
+    const gesamtDiv = document.getElementById("gesamtSumme143");
+    if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // -----------------------------
 // SEITE 22 – Extras (Zählerschrank) (tga11.csv)
 // -----------------------------
@@ -3053,50 +3574,22 @@ function loadPage10() {
             const gespeicherteWerte =
                 JSON.parse(localStorage.getItem("page10Data") || "{}");
 
-            lines.forEach((line, index) => {
-                if (!line.trim()) return;
+      // Bild-Auflösung: 1..20 -> bildX.jpg (oder direkt Dateiname in CSV)
+      function resolvePosImg(colImg) {
+        const v = (colImg || "").trim();
+        if (!v) return "";
+        const n = parseInt(v, 20);
+        if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
+        return v;
+      }
 
-                const cols = line.split(";");
-                const colA = cols[0]?.trim();
-                const colB = cols[1]?.trim();
-                const colC = cols[2]?.trim();
-                const colD = cols[3]?.trim();
-
-                if (colA === "Titel") {
-                    html += `<div class="title">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Untertitel") {
-                    html += `<div class="subtitle">${colB}</div>`;
-                    return;
-                }
-                if (colA === "Zwischentitel") {
-                    html += `<div class="midtitle">${colB}</div>`;
-                    return;
-                }
-if (colA === "Beschreibung_fett") {
-  html += `
-    <div class="row beschreibung-fett-row">
-      <div class="col-a"></div>
-      <div class="col-b beschreibung-fett">${colB}</div>
-      <div class="col-c"></div>
-      <div class="col-d"></div>
-      <div class="col-e"></div>
-      <div class="col-f"></div>
-    </div>
-  `;
-  return;
-}
-
-                const preis = parseFloat(colD?.replace(",", "."));
-                if (!isNaN(preis)) {
-
-if (!headerInserted) {
-        html += `
+      // Header (mit Bild links)
+      function renderHeader10(imgSrc) {
+        return `
           <div class="row table-header">
             <div class="header-img-cell">
-          <img src="bild10.jpg" class="header-img" alt="Bild">
-        </div>
+              ${imgSrc ? `<img src="${imgSrc}" class="header-img" alt="Bild">` : ""}
+            </div>
             <div>Beschreibung</div>
             <div>Einheit</div>
             <div style="text-align:center;">Menge</div>
@@ -3104,46 +3597,100 @@ if (!headerInserted) {
             <div style="text-align:right;">Positionsergebnis</div>
           </div>
         `;
-        headerInserted = true;
+      }
+
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
+
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
+        const colImg = cols[4]?.trim(); // <-- NEU: 5. Spalte Bild
+
+        // ====== Abschnittstrenner: Header soll später wieder kommen ======
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+
+        // Beschreibung_fett (wie bei Seite 20 sauber auf Beschreibung-Spalte ausgerichtet)
+        if (colA === "Beschreibung_fett") {
+          html += `
+            <div class="row beschreibung-fett-row">
+              <div class="col-a"></div>
+              <div class="col-b beschreibung-fett" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+          return;
+        }
+
+        const preis = parseFloat((colD || "").replace(",", "."));
+        const preisVorhanden = !isNaN(preis);
+
+        if (preisVorhanden) {
+
+          // Bild aus 5. Spalte
+          const imgSrc = resolvePosImg(colImg);
+
+          // Header + Bild DIREKT vor dieser Position
+          html += renderHeader10(imgSrc);
+          headerInserted = true;
+
+          const menge = gespeicherteWerte[index] || 0;
+
+          html += `
+            <div class="row">
+              <div class="col-a">${colA}</div>
+              <div class="col-b">${colB}</div>
+              <div class="col-c">${colC}</div>
+
+              <input class="menge-input"
+                     type="number" min="0" step="any"
+                     value="${menge}"
+                     oninput="calcRow10(this, ${preis}, ${index})">
+
+              <div class="col-d">
+                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
+              </div>
+
+              <div class="col-e">0,00 €</div>
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="row no-price">
+              <div class="col-a">${colA}</div>
+              <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+        }
+      });
+
+      html += `<div id="gesamtSumme10" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      html += `<div id="gesamtSumme10Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      </div>`;
+
+      container.innerHTML = html;
+      berechneGesamt10();
+    });
 }
 
-                    const menge = gespeicherteWerte[index] || 0;
-
-                    html += `
-                        <div class="row">
-                            <div class="col-a">${colA}</div>
-                            <div class="col-b">${colB}</div>
-                            <div class="col-c">${colC}</div>
-
-                            <input class="menge-input"
-                                   type="number" min="0" step="any"
-                                   value="${menge}"
-                                   oninput="calcRow10(this, ${preis}, ${index})">
-
-                            <div class="col-d">
-                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
-                            </div>
-
-                            <div class="col-e">0,00 €</div>
-                        </div>`;
-                } else {
-                    html += `
-                        <div class="row no-price">
-                            <div class="col-a">${colA}</div>
-                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
-                        </div>`;
-                }
-            });
-
-            html += `<div id="gesamtSumme10" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-            html += `<div id="gesamtSumme10Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-         </div>`;
-
-            container.innerHTML = html;
-            berechneGesamt10();
-        });
-}
 
 function calcRow10(input, preis, index) {
 
@@ -3505,223 +4052,1199 @@ function berechneGesamt24() {
 }
 
 // -----------------------------
-// SEITE 25 –  (xxx.csv)
+// SEITE 30 – Wallbox SMA (tga17.csv)
 // -----------------------------
-//
-//function loadPage25() {
-//
-//    const container = document.getElementById("content-25");
-//    if (!container) return;
-//
-//    if (container.innerHTML.trim() !== "") return;
-//
-//    fetch("xxx.csv")
-//        .then(response => response.text())
-//        .then(data => {
-//
-//            const lines = data.split("\n").slice(1);
-//            let html = "";
-//		let headerInserted = false;
-//
-//            const gespeicherteWerte =
-//                JSON.parse(localStorage.getItem("page25Data") || "{}");
-//
-//            lines.forEach((line, index) => {
-//               if (!line.trim()) return;
-//
-//                const cols = line.split(";");
-//                const colA = cols[0]?.trim();
-//                const colB = cols[1]?.trim();
-//                const colC = cols[2]?.trim();
-//                const colD = cols[3]?.trim();
-//
-//                if (colA === "Titel") {
-//                    html += `<div class="title">${colB}</div>`;
-//                    return;
-//                }
-//                if (colA === "Untertitel") {
-//                    html += `<div class="subtitle">${colB}</div>`;
-//                    return;
-//                }
-//                if (colA === "Zwischentitel") {
-//                    html += `<div class="midtitle">${colB}</div>`;
-//                    return;
-//                }
-//if (colA === "Beschreibung_fett") {
-//  html += `
-//    <div class="row beschreibung-fett-row">
-//      <div class="col-a"></div>
-//      <div class="col-b beschreibung-fett">${colB}</div>
-//      <div class="col-c"></div>
-//      <div class="col-d"></div>
-//      <div class="col-e"></div>
-//      <div class="col-f"></div>
-//    </div>
-//  `;
-//  return;
-//}
-//
-//
-//                const preis = parseFloat(colD?.replace(",", "."));
-//                if (!isNaN(preis)) {
-//
-//
-//if (!headerInserted) {
-//       html += `
-//          <div class="row table-header">
-//            <div class="header-img-cell">
-//        <img src="xxx.jpg" class="header-img" alt="Bild">
-//        </div>
-//            <div>Beschreibung</div>
-//            <div>Einheit</div>
-//            <div style="text-align:center;">Menge</div>
-//            <div style="text-align:right;">Preis / Einheit</div>
-//            <div style="text-align:right;">Positionsergebnis</div>
-//          </div>
-//        `;
-//        headerInserted = true;
-//}
-//
-//                    const menge = gespeicherteWerte[index] || 0;
-//
-//                    html += `
-//                        <div class="row">
-//                            <div class="col-a">${colA}</div>
-//                            <div class="col-b">${colB}</div>
-//                            <div class="col-c">${colC}</div>
-//
-//                            <input class="menge-input"
-//                                   type="number" min="0" step="any"
-//                                   value="${menge}"
-//                                   oninput="calcRow25(this, ${preis}, ${index})">
-//
-//                            <div class="col-d">
-//                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
-//                            </div>
-//
-//                            <div class="col-e">0,00 €</div>
-//                        </div>`;
-//                } else {
-//                    html += `
-//                        <div class="row no-price">
-//                            <div class="col-a">${colA}</div>
-//                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
-//                        </div>`;
-//                }
-//            });
-//
-//            html += `<div id="gesamtSumme25" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-//            html += `<div id="gesamtSumme25Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-//          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-//         </div>`;
-//
-//            container.innerHTML = html;
-//            berechneGesamt25();
-//        });
-//}
-//
-//function calcRow25(input, preis, index) {
-//
-//    const row = input.parentElement;
-//    const ergebnis = row.querySelector(".col-e");
-//    const menge = parseFloat(input.value.replace(",", ".")) || 0;
-//
-//    const sum = menge * preis;
-//    ergebnis.innerText =
-//        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-//
-//    let gespeicherteWerte =
-//        JSON.parse(localStorage.getItem("page25Data") || "{}");
-//
-//    gespeicherteWerte[index] = menge;
-//    localStorage.setItem("page25Data", JSON.stringify(gespeicherteWerte));
-//
-//    berechneGesamt25();
-//}
-//
-//function berechneGesamt25() {
-//
-//   let sum = 0;
-//
-//    document.querySelectorAll("#page-25 .col-e").forEach(el => {
-//        const wert = parseFloat(
-//            el.innerText.replace("€","")
-//                       .replace(/\./g,"")
-//                       .replace(",",".")
-//                       .trim()
-//        ) || 0;
-//       sum += wert;
-//   });
-//
-//    saveSeitenSumme("page-25", sum);
-//
-//    const gesamtDiv = document.getElementById("gesamtSumme25");
-//    if (gesamtDiv) {
-//        gesamtDiv.innerText =
-//            "Gesamtsumme Angebot: " +
-//            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-//    }
-//}
+
+function loadPage30() {
+
+    const container = document.getElementById("content-30");
+    if (!container) return;
+
+    if (container.innerHTML.trim() !== "") return;
+
+    fetch("tga17.csv")
+        .then(response => response.text())
+        .then(data => {
+
+            const lines = data.split("\n").slice(1);
+            let html = "";
+		let headerInserted = false;
+
+            const gespeicherteWerte =
+                JSON.parse(localStorage.getItem("page30Data") || "{}");
+
+            lines.forEach((line, index) => {
+                if (!line.trim()) return;
+
+                const cols = line.split(";");
+                const colA = cols[0]?.trim();
+                const colB = cols[1]?.trim();
+                const colC = cols[2]?.trim();
+                const colD = cols[3]?.trim();
+
+                if (colA === "Titel") {
+                    html += `<div class="title">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Untertitel") {
+                    html += `<div class="subtitle">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Zwischentitel") {
+                    html += `<div class="midtitle">${colB}</div>`;
+                    return;
+                }
+if (colA === "Beschreibung_fett") {
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
+  return;
+}
+
+                const preis = parseFloat(colD?.replace(",", "."));
+                if (!isNaN(preis)) {
+
+if (!headerInserted) {
+        html += `
+          <div class="row table-header">
+            <div class="header-img-cell">
+          <img src="bild31.jpg" class="header-img" alt="Bild">
+        </div>
+            <div>Beschreibung</div>
+            <div>Einheit</div>
+            <div style="text-align:center;">Menge</div>
+            <div style="text-align:right;">Preis / Einheit</div>
+            <div style="text-align:right;">Positionsergebnis</div>
+          </div>
+        `;
+        headerInserted = true;
+}
+
+
+                    const menge = gespeicherteWerte[index] || 0;
+
+                    html += `
+                        <div class="row">
+                            <div class="col-a">${colA}</div>
+                            <div class="col-b">${colB}</div>
+                            <div class="col-c">${colC}</div>
+
+                            <input class="menge-input"
+                                   type="number" min="0" step="any"
+                                   value="${menge}"
+                                   oninput="calcRow30(this, ${preis}, ${index})">
+
+                            <div class="col-d">
+                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                            </div>
+
+                            <div class="col-e">0,00 €</div>
+                        </div>`;
+                } else {
+                    html += `
+                        <div class="row no-price">
+                            <div class="col-a">${colA}</div>
+                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+                        </div>`;
+                }
+            });
+
+            html += `<div id="gesamtSumme30" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+            html += `<div id="gesamtSumme30Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+         </div>`;
+
+            container.innerHTML = html;
+            berechneGesamt30();
+        });
+}
+
+function calcRow30(input, preis, index) {
+
+    const row = input.parentElement;
+    const ergebnis = row.querySelector(".col-e");
+    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+
+    const sum = menge * preis;
+    ergebnis.innerText =
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+
+    let gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page30Data") || "{}");
+
+    gespeicherteWerte[index] = menge;
+    localStorage.setItem("page30Data", JSON.stringify(gespeicherteWerte));
+
+    berechneGesamt30();
+}
+
+function berechneGesamt30() {
+
+    let sum = 0;
+
+    document.querySelectorAll("#page-30 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+        sum += wert;
+    });
+
+    saveSeitenSumme("page-30", sum);
+
+    const gesamtDiv = document.getElementById("gesamtSumme30");
+    if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 // -----------------------------
-// SEITE 27 –  (xxx.csv)
+// SEITE 25 – Speicher a-TroniX (tga14.csv)
 // -----------------------------
-//
-//function loadPage27() {
-//
-//   const container = document.getElementById("content-27");
-//    if (!container) return;
-//
-//    if (container.innerHTML.trim() !== "") return;
-//
-//    fetch("xxx.csv")
-//        .then(response => response.text())
-//        .then(data => {
-//
-//            const lines = data.split("\n").slice(1);
-//            let html = "";
-//let headerInserted = false;
-//
-//           const gespeicherteWerte =
-//                JSON.parse(localStorage.getItem("page27Data") || "{}");
-//
-//            lines.forEach((line, index) => {
-//                if (!line.trim()) return;
-//
-//                const cols = line.split(";");
-//                const colA = cols[0]?.trim();
-//                const colB = cols[1]?.trim();
-//                const colC = cols[2]?.trim();
-//                const colD = cols[3]?.trim();
-//
-//                if (colA === "Titel") {
-//                    html += `<div class="title">${colB}</div>`;
-//                    return;
-//                }
-//                if (colA === "Untertitel") {
-//                    html += `<div class="subtitle">${colB}</div>`;
-//                    return;
-//                }
-//                if (colA === "Zwischentitel") {
-//                    html += `<div class="midtitle">${colB}</div>`;
-//                    return;
-//                }
-//if (colA === "Beschreibung_fett") {
-//  html += `
-//    <div class="row beschreibung-fett-row">
-//      <div class="col-a"></div>
-//      <div class="col-b beschreibung-fett">${colB}</div>
-//      <div class="col-c"></div>
-//      <div class="col-d"></div>
-//      <div class="col-e"></div>
-//      <div class="col-f"></div>
-//    </div>
-//  `;
-//  return;
-//}
-//                const preis = parseFloat(colD?.replace(",", "."));
-//                if (!isNaN(preis)) {
-//
+
+function loadPage25() {
+
+    const container = document.getElementById("content-25");
+    if (!container) return;
+
+    if (container.innerHTML.trim() !== "") return;
+
+    fetch("tga14.csv")
+        .then(response => response.text())
+        .then(data => {
+
+            const lines = data.split("\n").slice(1);
+            let html = "";
+		let headerInserted = false;
+
+            const gespeicherteWerte =
+                JSON.parse(localStorage.getItem("page25Data") || "{}");
+
+      // Bild-Auflösung: 1..20 -> bildX.jpg (oder direkt Dateiname in CSV)
+      function resolvePosImg(colImg) {
+        const v = (colImg || "").trim();
+        if (!v) return "";
+        const n = parseInt(v, 20);
+        if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
+        return v;
+      }
+
+      // Header (mit Bild links)
+      function renderHeader25(imgSrc) {
+        return `
+          <div class="row table-header">
+            <div class="header-img-cell">
+              ${imgSrc ? `<img src="${imgSrc}" class="header-img" alt="Bild">` : ""}
+            </div>
+            <div>Beschreibung</div>
+            <div>Einheit</div>
+            <div style="text-align:center;">Menge</div>
+            <div style="text-align:right;">Preis / Einheit</div>
+            <div style="text-align:right;">Positionsergebnis</div>
+          </div>
+        `;
+      }
+
+      lines.forEach((line, index) => {
+        if (!line.trim()) return;
+
+        const cols = line.split(";");
+        const colA = cols[0]?.trim();
+        const colB = cols[1]?.trim();
+        const colC = cols[2]?.trim();
+        const colD = cols[3]?.trim();
+        const colImg = cols[4]?.trim(); // <-- NEU: 5. Spalte Bild
+
+        // ====== Abschnittstrenner: Header soll später wieder kommen ======
+        if (colA === "Titel") {
+          html += `<div class="title">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Untertitel") {
+          html += `<div class="subtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+        if (colA === "Zwischentitel") {
+          html += `<div class="midtitle">${colB}</div>`;
+          headerInserted = false;
+          return;
+        }
+
+        // Beschreibung_fett (wie bei Seite 20 sauber auf Beschreibung-Spalte ausgerichtet)
+        if (colA === "Beschreibung_fett") {
+          html += `
+            <div class="row beschreibung-fett-row">
+              <div class="col-a"></div>
+              <div class="col-b beschreibung-fett" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+          return;
+        }
+
+        const preis = parseFloat((colD || "").replace(",", "."));
+        const preisVorhanden = !isNaN(preis);
+
+        if (preisVorhanden) {
+
+          // Bild aus 5. Spalte
+          const imgSrc = resolvePosImg(colImg);
+
+          // Header + Bild DIREKT vor dieser Position
+          html += renderHeader25(imgSrc);
+          headerInserted = true;
+
+          const menge = gespeicherteWerte[index] || 0;
+
+          html += `
+            <div class="row">
+              <div class="col-a">${colA}</div>
+              <div class="col-b">${colB}</div>
+              <div class="col-c">${colC}</div>
+
+              <input class="menge-input"
+                     type="number" min="0" step="any"
+                     value="${menge}"
+                     oninput="calcRow25(this, ${preis}, ${index})">
+
+              <div class="col-d">
+                ${preis.toLocaleString("de-DE", { minimumFractionDigits: 2 })} €
+              </div>
+
+              <div class="col-e">0,00 €</div>
+            </div>
+          `;
+        } else {
+          html += `
+            <div class="row no-price">
+              <div class="col-a">${colA}</div>
+              <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+            </div>
+          `;
+          headerInserted = false;
+        }
+      });
+
+      html += `<div id="gesamtSumme25" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+      html += `<div id="gesamtSumme25Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+        Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+      </div>`;
+
+      container.innerHTML = html;
+      berechneGesamt25();
+    });
+}
+
+
+function calcRow25(input, preis, index) {
+
+    const row = input.parentElement;
+    const ergebnis = row.querySelector(".col-e");
+    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+
+    const sum = menge * preis;
+    ergebnis.innerText =
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+
+    let gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page25Data") || "{}");
+
+    gespeicherteWerte[index] = menge;
+    localStorage.setItem("page25Data", JSON.stringify(gespeicherteWerte));
+
+    berechneGesamt25();
+}
+
+function berechneGesamt25() {
+
+   let sum = 0;
+
+    document.querySelectorAll("#page-25 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+       sum += wert;
+   });
+
+    saveSeitenSumme("page-25", sum);
+
+    const gesamtDiv = document.getElementById("gesamtSumme25");
+    if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
+}
+
+// -----------------------------
+// SEITE 27 – Wallbox a-TroniX (tga16.csv)
+// -----------------------------
+
+function loadPage27() {
+
+   const container = document.getElementById("content-27");
+    if (!container) return;
+
+    if (container.innerHTML.trim() !== "") return;
+
+    fetch("tga16.csv")
+        .then(response => response.text())
+        .then(data => {
+
+            const lines = data.split("\n").slice(1);
+            let html = "";
+let headerInserted = false;
+
+           const gespeicherteWerte =
+                JSON.parse(localStorage.getItem("page27Data") || "{}");
+
+            lines.forEach((line, index) => {
+                if (!line.trim()) return;
+
+                const cols = line.split(";");
+                const colA = cols[0]?.trim();
+                const colB = cols[1]?.trim();
+                const colC = cols[2]?.trim();
+                const colD = cols[3]?.trim();
+
+                if (colA === "Titel") {
+                    html += `<div class="title">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Untertitel") {
+                    html += `<div class="subtitle">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Zwischentitel") {
+                    html += `<div class="midtitle">${colB}</div>`;
+                    return;
+                }
+if (colA === "Beschreibung_fett") {
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
+  return;
+}
+                const preis = parseFloat(colD?.replace(",", "."));
+                if (!isNaN(preis)) {
+
+if (!headerInserted) {
+        html += `
+          <div class="row table-header">
+            <div class="header-img-cell">
+        <img src="bild25.jpg" class="header-img" alt="Bild">
+        </div>
+            <div>Beschreibung</div>
+            <div>Einheit</div>
+            <div style="text-align:center;">Menge</div>
+            <div style="text-align:right;">Preis / Einheit</div>
+            <div style="text-align:right;">Positionsergebnis</div>
+          </div>
+        `;
+        headerInserted = true;
+}
+
+                    const menge = gespeicherteWerte[index] || 0;
+
+                    html += `
+                       <div class="row">
+                            <div class="col-a">${colA}</div>
+                           <div class="col-b">${colB}</div>
+                            <div class="col-c">${colC}</div>
+
+                           <input class="menge-input"
+                                   type="number" min="0" step="any"
+                                   value="${menge}"
+                                   oninput="calcRow27(this, ${preis}, ${index})">
+
+                            <div class="col-d">
+                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                            </div>
+
+                            <div class="col-e">0,00 €</div>
+                        </div>`;
+                } else {
+                    html += `
+                        <div class="row no-price">
+                            <div class="col-a">${colA}</div>
+                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+                        </div>`;
+                }
+            });
+
+            html += `<div id="gesamtSumme27" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+            html += `<div id="gesamtSumme27Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+         </div>`;
+
+            container.innerHTML = html;
+            berechneGesamt27();
+        });
+}
+
+function calcRow27(input, preis, index) {
+
+    const row = input.parentElement;
+    const ergebnis = row.querySelector(".col-e");
+    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+
+    const sum = menge * preis;
+    ergebnis.innerText =
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+
+    let gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page27Data") || "{}");
+
+    gespeicherteWerte[index] = menge;
+    localStorage.setItem("page27Data", JSON.stringify(gespeicherteWerte));
+
+    berechneGesamt27();
+}
+
+function berechneGesamt27() {
+
+    let sum = 0;
+
+   document.querySelectorAll("#page-27 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+        sum += wert;
+    });
+
+    saveSeitenSumme("page-27", sum);
+
+    const gesamtDiv = document.getElementById("gesamtSumme27");
+    if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
+}
+
+// -----------------------------
+// SEITE 31 – Speicher SMA (tga18.csv)
+// -----------------------------
+
+function loadPage31() {
+
+   const container = document.getElementById("content-31");
+    if (!container) return;
+
+    if (container.innerHTML.trim() !== "") return;
+
+    fetch("tga18.csv")
+        .then(response => response.text())
+        .then(data => {
+
+            const lines = data.split("\n").slice(1);
+            let html = "";
+let headerInserted = false;
+
+           const gespeicherteWerte =
+                JSON.parse(localStorage.getItem("page31Data") || "{}");
+
+            lines.forEach((line, index) => {
+                if (!line.trim()) return;
+
+                const cols = line.split(";");
+                const colA = cols[0]?.trim();
+                const colB = cols[1]?.trim();
+                const colC = cols[2]?.trim();
+                const colD = cols[3]?.trim();
+
+                if (colA === "Titel") {
+                    html += `<div class="title">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Untertitel") {
+                    html += `<div class="subtitle">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Zwischentitel") {
+                    html += `<div class="midtitle">${colB}</div>`;
+                    return;
+                }
+if (colA === "Beschreibung_fett") {
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
+  return;
+}
+                const preis = parseFloat(colD?.replace(",", "."));
+                if (!isNaN(preis)) {
+
+if (!headerInserted) {
+        html += `
+          <div class="row table-header">
+            <div class="header-img-cell">
+        <img src="bild30.jpg" class="header-img" alt="Bild">
+        </div>
+            <div>Beschreibung</div>
+            <div>Einheit</div>
+            <div style="text-align:center;">Menge</div>
+            <div style="text-align:right;">Preis / Einheit</div>
+            <div style="text-align:right;">Positionsergebnis</div>
+          </div>
+        `;
+        headerInserted = true;
+}
+
+                    const menge = gespeicherteWerte[index] || 0;
+
+                    html += `
+                       <div class="row">
+                            <div class="col-a">${colA}</div>
+                           <div class="col-b">${colB}</div>
+                            <div class="col-c">${colC}</div>
+
+                           <input class="menge-input"
+                                   type="number" min="0" step="any"
+                                   value="${menge}"
+                                   oninput="calcRow31(this, ${preis}, ${index})">
+
+                            <div class="col-d">
+                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                            </div>
+
+                            <div class="col-e">0,00 €</div>
+                        </div>`;
+                } else {
+                    html += `
+                        <div class="row no-price">
+                            <div class="col-a">${colA}</div>
+                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+                        </div>`;
+                }
+            });
+
+            html += `<div id="gesamtSumme31" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+            html += `<div id="gesamtSumme31Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+         </div>`;
+
+            container.innerHTML = html;
+            berechneGesamt31();
+        });
+}
+
+function calcRow31(input, preis, index) {
+
+    const row = input.parentElement;
+    const ergebnis = row.querySelector(".col-e");
+    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+
+    const sum = menge * preis;
+    ergebnis.innerText =
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+
+    let gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page31Data") || "{}");
+
+    gespeicherteWerte[index] = menge;
+    localStorage.setItem("page31Data", JSON.stringify(gespeicherteWerte));
+
+    berechneGesamt31();
+}
+
+function berechneGesamt31() {
+
+    let sum = 0;
+
+   document.querySelectorAll("#page-31 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+        sum += wert;
+    });
+
+    saveSeitenSumme("page-31", sum);
+
+    const gesamtDiv = document.getElementById("gesamtSumme31");
+    if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
+}
+
+// -----------------------------
+// SEITE 32 – Heizstäbe (tga20.csv)
+// -----------------------------
+
+function loadPage32() {
+
+   const container = document.getElementById("content-32");
+    if (!container) return;
+
+    if (container.innerHTML.trim() !== "") return;
+
+    fetch("tga20.csv")
+        .then(response => response.text())
+        .then(data => {
+
+            const lines = data.split("\n").slice(1);
+            let html = "";
+let headerInserted = false;
+
+           const gespeicherteWerte =
+                JSON.parse(localStorage.getItem("page32Data") || "{}");
+
+            lines.forEach((line, index) => {
+                if (!line.trim()) return;
+
+                const cols = line.split(";");
+                const colA = cols[0]?.trim();
+                const colB = cols[1]?.trim();
+                const colC = cols[2]?.trim();
+                const colD = cols[3]?.trim();
+
+                if (colA === "Titel") {
+                    html += `<div class="title">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Untertitel") {
+                    html += `<div class="subtitle">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Zwischentitel") {
+                    html += `<div class="midtitle">${colB}</div>`;
+                    return;
+                }
+if (colA === "Beschreibung_fett") {
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
+  return;
+}
+                const preis = parseFloat(colD?.replace(",", "."));
+                if (!isNaN(preis)) {
+
+if (!headerInserted) {
+        html += `
+          <div class="row table-header">
+            <div class="header-img-cell">
+        <img src="bild36.jpg" class="header-img" alt="Bild">
+        </div>
+            <div>Beschreibung</div>
+            <div>Einheit</div>
+            <div style="text-align:center;">Menge</div>
+            <div style="text-align:right;">Preis / Einheit</div>
+            <div style="text-align:right;">Positionsergebnis</div>
+          </div>
+        `;
+        headerInserted = true;
+}
+
+                    const menge = gespeicherteWerte[index] || 0;
+
+                    html += `
+                       <div class="row">
+                            <div class="col-a">${colA}</div>
+                           <div class="col-b">${colB}</div>
+                            <div class="col-c">${colC}</div>
+
+                           <input class="menge-input"
+                                   type="number" min="0" step="any"
+                                   value="${menge}"
+                                   oninput="calcRow32(this, ${preis}, ${index})">
+
+                            <div class="col-d">
+                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                            </div>
+
+                            <div class="col-e">0,00 €</div>
+                        </div>`;
+                } else {
+                    html += `
+                        <div class="row no-price">
+                            <div class="col-a">${colA}</div>
+                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+                        </div>`;
+                }
+            });
+
+            html += `<div id="gesamtSumme32" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+            html += `<div id="gesamtSumme32Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+         </div>`;
+
+            container.innerHTML = html;
+            berechneGesamt32();
+        });
+}
+
+function calcRow32(input, preis, index) {
+
+    const row = input.parentElement;
+    const ergebnis = row.querySelector(".col-e");
+    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+
+    const sum = menge * preis;
+    ergebnis.innerText =
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+
+    let gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page32Data") || "{}");
+
+    gespeicherteWerte[index] = menge;
+    localStorage.setItem("page32Data", JSON.stringify(gespeicherteWerte));
+
+    berechneGesamt32();
+}
+
+function berechneGesamt32() {
+
+    let sum = 0;
+
+   document.querySelectorAll("#page-32 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+        sum += wert;
+    });
+
+    saveSeitenSumme("page-32", sum);
+
+    const gesamtDiv = document.getElementById("gesamtSumme32");
+    if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
+}
+
+
+// -----------------------------
+// SEITE 33 – Wechselrichter hybrid Huawei (tga21.csv)
+// -----------------------------
+
+function loadPage33() {
+
+   const container = document.getElementById("content-33");
+    if (!container) return;
+
+    if (container.innerHTML.trim() !== "") return;
+
+    fetch("tga21.csv")
+        .then(response => response.text())
+        .then(data => {
+
+            const lines = data.split("\n").slice(1);
+            let html = "";
+let headerInserted = false;
+
+           const gespeicherteWerte =
+                JSON.parse(localStorage.getItem("page33Data") || "{}");
+
+            lines.forEach((line, index) => {
+                if (!line.trim()) return;
+
+                const cols = line.split(";");
+                const colA = cols[0]?.trim();
+                const colB = cols[1]?.trim();
+                const colC = cols[2]?.trim();
+                const colD = cols[3]?.trim();
+
+                if (colA === "Titel") {
+                    html += `<div class="title">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Untertitel") {
+                    html += `<div class="subtitle">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Zwischentitel") {
+                    html += `<div class="midtitle">${colB}</div>`;
+                    return;
+                }
+if (colA === "Beschreibung_fett") {
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
+  return;
+}
+                const preis = parseFloat(colD?.replace(",", "."));
+                if (!isNaN(preis)) {
+
+if (!headerInserted) {
+        html += `
+          <div class="row table-header">
+            <div class="header-img-cell">
+        <img src="bild37.jpg" class="header-img" alt="Bild">
+        </div>
+            <div>Beschreibung</div>
+            <div>Einheit</div>
+            <div style="text-align:center;">Menge</div>
+            <div style="text-align:right;">Preis / Einheit</div>
+            <div style="text-align:right;">Positionsergebnis</div>
+          </div>
+        `;
+        headerInserted = true;
+}
+
+                    const menge = gespeicherteWerte[index] || 0;
+
+                    html += `
+                       <div class="row">
+                            <div class="col-a">${colA}</div>
+                           <div class="col-b">${colB}</div>
+                            <div class="col-c">${colC}</div>
+
+                           <input class="menge-input"
+                                   type="number" min="0" step="any"
+                                   value="${menge}"
+                                   oninput="calcRow33(this, ${preis}, ${index})">
+
+                            <div class="col-d">
+                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                            </div>
+
+                            <div class="col-e">0,00 €</div>
+                        </div>`;
+                } else {
+                    html += `
+                        <div class="row no-price">
+                            <div class="col-a">${colA}</div>
+                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+                        </div>`;
+                }
+            });
+
+            html += `<div id="gesamtSumme33" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+            html += `<div id="gesamtSumme33Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+         </div>`;
+
+            container.innerHTML = html;
+            berechneGesamt33();
+        });
+}
+
+function calcRow33(input, preis, index) {
+
+    const row = input.parentElement;
+    const ergebnis = row.querySelector(".col-e");
+    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+
+    const sum = menge * preis;
+    ergebnis.innerText =
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+
+    let gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page33Data") || "{}");
+
+    gespeicherteWerte[index] = menge;
+    localStorage.setItem("page33Data", JSON.stringify(gespeicherteWerte));
+
+    berechneGesamt33();
+}
+
+function berechneGesamt33() {
+
+    let sum = 0;
+
+   document.querySelectorAll("#page-33 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+        sum += wert;
+    });
+
+    saveSeitenSumme("page-33", sum);
+
+    const gesamtDiv = document.getElementById("gesamtSumme33");
+    if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
+}
+
+// -----------------------------
+// SEITE 34 – Wallbox Huawei (tga23.csv)
+// -----------------------------
+
+function loadPage34() {
+
+   const container = document.getElementById("content-34");
+    if (!container) return;
+
+    if (container.innerHTML.trim() !== "") return;
+
+    fetch("tga23.csv")
+        .then(response => response.text())
+        .then(data => {
+
+            const lines = data.split("\n").slice(1);
+            let html = "";
+let headerInserted = false;
+
+           const gespeicherteWerte =
+                JSON.parse(localStorage.getItem("page34Data") || "{}");
+
+            lines.forEach((line, index) => {
+                if (!line.trim()) return;
+
+                const cols = line.split(";");
+                const colA = cols[0]?.trim();
+                const colB = cols[1]?.trim();
+                const colC = cols[2]?.trim();
+                const colD = cols[3]?.trim();
+
+                if (colA === "Titel") {
+                    html += `<div class="title">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Untertitel") {
+                    html += `<div class="subtitle">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Zwischentitel") {
+                    html += `<div class="midtitle">${colB}</div>`;
+                    return;
+                }
+if (colA === "Beschreibung_fett") {
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
+  return;
+}
+                const preis = parseFloat(colD?.replace(",", "."));
+                if (!isNaN(preis)) {
+
+if (!headerInserted) {
+        html += `
+          <div class="row table-header">
+            <div class="header-img-cell">
+        <img src="bild41.jpg" class="header-img" alt="Bild">
+        </div>
+            <div>Beschreibung</div>
+            <div>Einheit</div>
+            <div style="text-align:center;">Menge</div>
+            <div style="text-align:right;">Preis / Einheit</div>
+            <div style="text-align:right;">Positionsergebnis</div>
+          </div>
+        `;
+        headerInserted = true;
+}
+
+                    const menge = gespeicherteWerte[index] || 0;
+
+                    html += `
+                       <div class="row">
+                            <div class="col-a">${colA}</div>
+                           <div class="col-b">${colB}</div>
+                            <div class="col-c">${colC}</div>
+
+                           <input class="menge-input"
+                                   type="number" min="0" step="any"
+                                   value="${menge}"
+                                   oninput="calcRow34(this, ${preis}, ${index})">
+
+                            <div class="col-d">
+                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                            </div>
+
+                            <div class="col-e">0,00 €</div>
+                        </div>`;
+                } else {
+                    html += `
+                        <div class="row no-price">
+                            <div class="col-a">${colA}</div>
+                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+                        </div>`;
+                }
+            });
+
+            html += `<div id="gesamtSumme34" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+            html += `<div id="gesamtSumme34Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+         </div>`;
+
+            container.innerHTML = html;
+            berechneGesamt34();
+        });
+}
+
+function calcRow34(input, preis, index) {
+
+    const row = input.parentElement;
+    const ergebnis = row.querySelector(".col-e");
+    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+
+    const sum = menge * preis;
+    ergebnis.innerText =
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+
+    let gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page32Data") || "{}");
+
+    gespeicherteWerte[index] = menge;
+    localStorage.setItem("page34Data", JSON.stringify(gespeicherteWerte));
+
+    berechneGesamt34();
+}
+
+function berechneGesamt34() {
+
+    let sum = 0;
+
+   document.querySelectorAll("#page-34 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+        sum += wert;
+    });
+
+    saveSeitenSumme("page-34", sum);
+
+    const gesamtDiv = document.getElementById("gesamtSumme34");
+    if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
+}
+
+
+// -----------------------------
+// SEITE 35 – Dienstleistungen (tga24.csv)
+// -----------------------------
+
+function loadPage35() {
+
+   const container = document.getElementById("content-35");
+    if (!container) return;
+
+    if (container.innerHTML.trim() !== "") return;
+
+    fetch("tga24.csv")
+        .then(response => response.text())
+        .then(data => {
+
+            const lines = data.split("\n").slice(1);
+            let html = "";
+let headerInserted = false;
+
+           const gespeicherteWerte =
+                JSON.parse(localStorage.getItem("page35Data") || "{}");
+
+            lines.forEach((line, index) => {
+                if (!line.trim()) return;
+
+                const cols = line.split(";");
+                const colA = cols[0]?.trim();
+                const colB = cols[1]?.trim();
+                const colC = cols[2]?.trim();
+                const colD = cols[3]?.trim();
+
+                if (colA === "Titel") {
+                    html += `<div class="title">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Untertitel") {
+                    html += `<div class="subtitle">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Zwischentitel") {
+                    html += `<div class="midtitle">${colB}</div>`;
+                    return;
+                }
+if (colA === "Beschreibung_fett") {
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
+  return;
+}
+                const preis = parseFloat(colD?.replace(",", "."));
+                if (!isNaN(preis)) {
+
 //if (!headerInserted) {
 //        html += `
 //          <div class="row table-header">
@@ -3737,147 +5260,148 @@ function berechneGesamt24() {
 //        `;
 //        headerInserted = true;
 //}
-//
-//                    const menge = gespeicherteWerte[index] || 0;
-//
-//                    html += `
-//                       <div class="row">
-//                            <div class="col-a">${colA}</div>
-//                           <div class="col-b">${colB}</div>
-//                            <div class="col-c">${colC}</div>
-//
-//                           <input class="menge-input"
-//                                   type="number" min="0" step="any"
-//                                   value="${menge}"
-//                                   oninput="calcRow27(this, ${preis}, ${index})">
-//
-//                            <div class="col-d">
-//                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
-//                            </div>
-//
-//                            <div class="col-e">0,00 €</div>
-//                        </div>`;
-//                } else {
-//                    html += `
-//                        <div class="row no-price">
-//                            <div class="col-a">${colA}</div>
-//                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
-//                        </div>`;
-//                }
-//            });
-//
-//            html += `<div id="gesamtSumme27" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-//            html += `<div id="gesamtSumme27Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-//          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-//         </div>`;
-//
-//            container.innerHTML = html;
-//            berechneGesamt27();
-//        });
-//}
-//
-//function calcRow27(input, preis, index) {
-//
-//    const row = input.parentElement;
-//    const ergebnis = row.querySelector(".col-e");
-//    const menge = parseFloat(input.value.replace(",", ".")) || 0;
-//
-//    const sum = menge * preis;
-//    ergebnis.innerText =
-//        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-//
-//    let gespeicherteWerte =
-//        JSON.parse(localStorage.getItem("page27Data") || "{}");
-//
-//    gespeicherteWerte[index] = menge;
-//    localStorage.setItem("page27Data", JSON.stringify(gespeicherteWerte));
-//
-//    berechneGesamt27();
-//}
-//
-//function berechneGesamt27() {
-//
-//    let sum = 0;
-//
-//   document.querySelectorAll("#page-27 .col-e").forEach(el => {
-//        const wert = parseFloat(
-//            el.innerText.replace("€","")
-//                       .replace(/\./g,"")
-//                       .replace(",",".")
-//                       .trim()
-//        ) || 0;
-//        sum += wert;
-//    });
-//
-//    saveSeitenSumme("page-27", sum);
-//
-//    const gesamtDiv = document.getElementById("gesamtSumme27");
-//    if (gesamtDiv) {
-//        gesamtDiv.innerText =
-//            "Gesamtsumme Angebot: " +
-//            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-//    }
-//}
+
+                    const menge = gespeicherteWerte[index] || 0;
+
+                    html += `
+                       <div class="row">
+                            <div class="col-a">${colA}</div>
+                           <div class="col-b">${colB}</div>
+                            <div class="col-c">${colC}</div>
+
+                           <input class="menge-input"
+                                   type="number" min="0" step="any"
+                                   value="${menge}"
+                                   oninput="calcRow35(this, ${preis}, ${index})">
+
+                            <div class="col-d">
+                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                            </div>
+
+                            <div class="col-e">0,00 €</div>
+                        </div>`;
+                } else {
+                    html += `
+                        <div class="row no-price">
+                            <div class="col-a">${colA}</div>
+                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+                        </div>`;
+                }
+            });
+
+            html += `<div id="gesamtSumme35" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+            html += `<div id="gesamtSumme35Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+         </div>`;
+
+            container.innerHTML = html;
+            berechneGesamt35();
+        });
+}
+
+function calcRow35(input, preis, index) {
+
+    const row = input.parentElement;
+    const ergebnis = row.querySelector(".col-e");
+    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+
+    const sum = menge * preis;
+    ergebnis.innerText =
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+
+    let gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page35Data") || "{}");
+
+    gespeicherteWerte[index] = menge;
+    localStorage.setItem("page35Data", JSON.stringify(gespeicherteWerte));
+
+    berechneGesamt35();
+}
+
+function berechneGesamt35() {
+
+    let sum = 0;
+
+   document.querySelectorAll("#page-35 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+        sum += wert;
+    });
+
+    saveSeitenSumme("page-35", sum);
+
+    const gesamtDiv = document.getElementById("gesamtSumme35");
+    if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
+}
+
 
 // -----------------------------
-// SEITE 28 –  (xxx.csv)
+// SEITE 36 – Zuschläge (tga25.csv)
 // -----------------------------
-//
-//function loadPage28() {
-//
-//    const container = document.getElementById("content-28");
-//    if (!container) return;
-//
-//    if (container.innerHTML.trim() !== "") return;
-//
-//    fetch("xxx.csv")
-//        .then(response => response.text())
-//        .then(data => {
-//
-//            const lines = data.split("\n").slice(1);
-//            let html = "";
-//		let headerInserted = false;
-//
-//            const gespeicherteWerte =
-//                JSON.parse(localStorage.getItem("page28Data") || "{}");
-//
-//            lines.forEach((line, index) => {
-//                if (!line.trim()) return;
-//
-//                const cols = line.split(";");
-//                const colA = cols[0]?.trim();
-//                const colB = cols[1]?.trim();
-//                const colC = cols[2]?.trim();
-//                const colD = cols[3]?.trim();
-//
-//                if (colA === "Titel") {
-//                    html += `<div class="title">${colB}</div>`;
-//                    return;
-//                }
-//                if (colA === "Untertitel") {
-//                    html += `<div class="subtitle">${colB}</div>`;
-//                    return;
-//                }
-//                if (colA === "Zwischentitel") {
-//                    html += `<div class="midtitle">${colB}</div>`;
-//                    return;
-//                }
-//if (colA === "Beschreibung_fett") {
-//  html += `
-//    <div class="row beschreibung-fett-row">
-//      <div class="col-a"></div>
-//      <div class="col-b beschreibung-fett">${colB}</div>
-//      <div class="col-c"></div>
-//      <div class="col-d"></div>
-//      <div class="col-e"></div>
-//      <div class="col-f"></div>
-//    </div>
-//  `;
-//  return;
-//}
-//                const preis = parseFloat(colD?.replace(",", "."));
-//                if (!isNaN(preis)) {
-//
+
+function loadPage36() {
+
+   const container = document.getElementById("content-36");
+    if (!container) return;
+
+    if (container.innerHTML.trim() !== "") return;
+
+    fetch("tga25.csv")
+        .then(response => response.text())
+        .then(data => {
+
+            const lines = data.split("\n").slice(1);
+            let html = "";
+let headerInserted = false;
+
+           const gespeicherteWerte =
+                JSON.parse(localStorage.getItem("page36Data") || "{}");
+
+            lines.forEach((line, index) => {
+                if (!line.trim()) return;
+
+                const cols = line.split(";");
+                const colA = cols[0]?.trim();
+                const colB = cols[1]?.trim();
+                const colC = cols[2]?.trim();
+                const colD = cols[3]?.trim();
+
+                if (colA === "Titel") {
+                    html += `<div class="title">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Untertitel") {
+                    html += `<div class="subtitle">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Zwischentitel") {
+                    html += `<div class="midtitle">${colB}</div>`;
+                    return;
+                }
+if (colA === "Beschreibung_fett") {
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+      <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
+  return;
+}
+                const preis = parseFloat(colD?.replace(",", "."));
+                if (!isNaN(preis)) {
+
 //if (!headerInserted) {
 //        html += `
 //          <div class="row table-header">
@@ -3893,87 +5417,246 @@ function berechneGesamt24() {
 //        `;
 //        headerInserted = true;
 //}
-//
-//                   const menge = gespeicherteWerte[index] || 0;
-//
-//                    html += `
-//                        <div class="row">
-//                            <div class="col-a">${colA}</div>
-//                            <div class="col-b">${colB}</div>
-//                            <div class="col-c">${colC}</div>
-//
-//                           <input class="menge-input"
-//                                   type="number" min="0" step="any"
-//                                   value="${menge}"
-//                                   oninput="calcRow28(this, ${preis}, ${index})">
-//
-//                            <div class="col-d">
-//                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
-//                            </div>
-//
-//                            <div class="col-e">0,00 €</div>
-//                        </div>`;
-//                } else {
-//                    html += `
-//                        <div class="row no-price">
-//                            <div class="col-a">${colA}</div>
-//                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
-//                        </div>`;
-//                }
-//            });
-//
-//            html += `<div id="gesamtSumme28" class="gesamt">Gesamtsumme: 0,00 €</div>`;
-//            html += `<div id="gesamtSumme28Rabatt" class="gesamt rabatt" data-rabatt="angebot">
-//          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
-//         </div>`;
-//
-//            container.innerHTML = html;
-//            berechneGesamt28();
-//        });
-//}
-//
-//function calcRow28(input, preis, index) {
-//
-//    const row = input.parentElement;
-//    const ergebnis = row.querySelector(".col-e");
-//    const menge = parseFloat(input.value.replace(",", ".")) || 0;
-//
-//    const sum = menge * preis;
-//    ergebnis.innerText =
-//        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-//
-//    let gespeicherteWerte =
-//        JSON.parse(localStorage.getItem("page28Data") || "{}");
-//
-//    gespeicherteWerte[index] = menge;
-//    localStorage.setItem("page28Data", JSON.stringify(gespeicherteWerte));
-//
-//    berechneGesamt28();
-//}
-//
-//function berechneGesamt28() {
-//
-//    let sum = 0;
-//
-//    document.querySelectorAll("#page-28 .col-e").forEach(el => {
-//        const wert = parseFloat(
-//            el.innerText.replace("€","")
-//                       .replace(/\./g,"")
-//                       .replace(",",".")
-//                       .trim()
-//        ) || 0;
-//        sum += wert;
-//    });
-//
-//    saveSeitenSumme("page-28", sum);
-//
-//    const gesamtDiv = document.getElementById("gesamtSumme28");
-//   if (gesamtDiv) {
-//        gesamtDiv.innerText =
-//            "Gesamtsumme Angebot: " +
-//            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
-//    }
-//}
+
+                    const menge = gespeicherteWerte[index] || 0;
+
+                    html += `
+                       <div class="row">
+                            <div class="col-a">${colA}</div>
+                           <div class="col-b">${colB}</div>
+                            <div class="col-c">${colC}</div>
+
+                           <input class="menge-input"
+                                   type="number" min="0" step="any"
+                                   value="${menge}"
+                                   oninput="calcRow36(this, ${preis}, ${index})">
+
+                            <div class="col-d">
+                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                            </div>
+
+                            <div class="col-e">0,00 €</div>
+                        </div>`;
+                } else {
+                    html += `
+                        <div class="row no-price">
+                            <div class="col-a">${colA}</div>
+                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+                        </div>`;
+                }
+            });
+
+            html += `<div id="gesamtSumme36" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+            html += `<div id="gesamtSumme36Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+         </div>`;
+
+            container.innerHTML = html;
+            berechneGesamt36();
+        });
+}
+
+function calcRow36(input, preis, index) {
+
+    const row = input.parentElement;
+    const ergebnis = row.querySelector(".col-e");
+    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+
+    const sum = menge * preis;
+    ergebnis.innerText =
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+
+    let gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page36Data") || "{}");
+
+    gespeicherteWerte[index] = menge;
+    localStorage.setItem("page36Data", JSON.stringify(gespeicherteWerte));
+
+    berechneGesamt36();
+}
+
+function berechneGesamt36() {
+
+    let sum = 0;
+
+   document.querySelectorAll("#page-36 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+        sum += wert;
+    });
+
+    saveSeitenSumme("page-36", sum);
+
+    const gesamtDiv = document.getElementById("gesamtSumme36");
+    if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
+}
+
+
+
+
+// -----------------------------
+// SEITE 28 – Wechselrichter SMA (tga17.csv)
+// -----------------------------
+
+function loadPage28() {
+
+    const container = document.getElementById("content-28");
+    if (!container) return;
+
+    if (container.innerHTML.trim() !== "") return;
+
+    fetch("tga17.csv")
+        .then(response => response.text())
+        .then(data => {
+
+            const lines = data.split("\n").slice(1);
+            let html = "";
+		let headerInserted = false;
+
+            const gespeicherteWerte =
+                JSON.parse(localStorage.getItem("page28Data") || "{}");
+
+            lines.forEach((line, index) => {
+                if (!line.trim()) return;
+
+                const cols = line.split(";");
+                const colA = cols[0]?.trim();
+                const colB = cols[1]?.trim();
+                const colC = cols[2]?.trim();
+                const colD = cols[3]?.trim();
+
+                if (colA === "Titel") {
+                    html += `<div class="title">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Untertitel") {
+                    html += `<div class="subtitle">${colB}</div>`;
+                    return;
+                }
+                if (colA === "Zwischentitel") {
+                    html += `<div class="midtitle">${colB}</div>`;
+                    return;
+                }
+if (colA === "Beschreibung_fett") {
+  html += `
+    <div class="row beschreibung-fett-row">
+      <div class="col-a"></div>
+     <div class="col-b beschreibung-fett">${colB}</div>
+      <div class="col-c"></div>
+      <div class="col-d"></div>
+      <div class="col-e"></div>
+      <div class="col-f"></div>
+    </div>
+  `;
+  return;
+}
+                const preis = parseFloat(colD?.replace(",", "."));
+                if (!isNaN(preis)) {
+
+if (!headerInserted) {
+        html += `
+          <div class="row table-header">
+            <div class="header-img-cell">
+        <img src="bild29.jpg" class="header-img" alt="Bild">
+        </div>
+            <div>Beschreibung</div>
+            <div>Einheit</div>
+            <div style="text-align:center;">Menge</div>
+            <div style="text-align:right;">Preis / Einheit</div>
+            <div style="text-align:right;">Positionsergebnis</div>
+          </div>
+        `;
+        headerInserted = true;
+}
+
+                   const menge = gespeicherteWerte[index] || 0;
+
+                    html += `
+                        <div class="row">
+                            <div class="col-a">${colA}</div>
+                            <div class="col-b">${colB}</div>
+                            <div class="col-c">${colC}</div>
+
+                           <input class="menge-input"
+                                   type="number" min="0" step="any"
+                                   value="${menge}"
+                                   oninput="calcRow28(this, ${preis}, ${index})">
+
+                            <div class="col-d">
+                                ${preis.toLocaleString("de-DE",{minimumFractionDigits:2})} €
+                            </div>
+
+                           <div class="col-e">0,00 €</div>
+                        </div>`;
+                } else {
+                    html += `
+                        <div class="row no-price">
+                            <div class="col-a">${colA}</div>
+                            <div class="col-b" style="grid-column: 2 / 7;">${colB}</div>
+                        </div>`;
+                }
+            });
+
+            html += `<div id="gesamtSumme28" class="gesamt">Gesamtsumme: 0,00 €</div>`;
+            html += `<div id="gesamtSumme28Rabatt" class="gesamt rabatt" data-rabatt="angebot">
+          Gesamtsumme abzgl. SHK-Rabatt (15%): 0,00 €
+         </div>`;
+
+            container.innerHTML = html;
+            berechneGesamt28();
+        });
+}
+
+function calcRow28(input, preis, index) {
+
+    const row = input.parentElement;
+    const ergebnis = row.querySelector(".col-e");
+    const menge = parseFloat(input.value.replace(",", ".")) || 0;
+
+    const sum = menge * preis;
+    ergebnis.innerText =
+        sum.toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+
+    let gespeicherteWerte =
+        JSON.parse(localStorage.getItem("page28Data") || "{}");
+
+    gespeicherteWerte[index] = menge;
+    localStorage.setItem("page28Data", JSON.stringify(gespeicherteWerte));
+
+    berechneGesamt28();
+}
+
+function berechneGesamt28() {
+
+    let sum = 0;
+
+    document.querySelectorAll("#page-28 .col-e").forEach(el => {
+        const wert = parseFloat(
+            el.innerText.replace("€","")
+                       .replace(/\./g,"")
+                       .replace(",",".")
+                       .trim()
+        ) || 0;
+        sum += wert;
+    });
+
+    saveSeitenSumme("page-28", sum);
+
+    const gesamtDiv = document.getElementById("gesamtSumme28");
+   if (gesamtDiv) {
+        gesamtDiv.innerText =
+            "Gesamtsumme Angebot: " +
+            getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
+    }
+}
 
 
 // -----------------------------
@@ -4199,9 +5882,9 @@ window.saveSeitenSumme = saveSeitenSumme;
 window.getGesamtAngebotssumme = getGesamtAngebotssumme;
 window.loadPage14 = loadPage14;
 window.berechneGesamt14 = berechneGesamt14;
-//window.loadPage143 = loadPage143;
-//window.calcRow143 = calcRow143;
-//window.berechneGesamt143 = berechneGesamt143;
+window.loadPage143 = loadPage143;
+window.calcRow143 = calcRow143;
+window.berechneGesamt143 = berechneGesamt143;
 window.savePage5Data = savePage5Data;
 window.loadPage40 = loadPage40;
 window.clearInputs = clearInputs;
@@ -4234,28 +5917,40 @@ window.berechneGesamt23 = berechneGesamt23;
 window.loadPage24 = loadPage24;
 window.calcRow24 = calcRow24;
 window.berechneGesamt24 = berechneGesamt24;
-//window.loadPage25 = loadPage25;
-//window.calcRow25 = calcRow25;
-//window.berechneGesamt25 = berechneGesamt25;
-//window.loadPage27 = loadPage27;
-//window.calcRow27 = calcRow27;
-//window.berechneGesamt27 = berechneGesamt27;
-//window.loadPage28 = loadPage28;
-//window.calcRow28 = calcRow28;
-//window.berechneGesamt28 = berechneGesamt28;
-//window.loadPage30 = loadPage30;
-//window.calcRow30 = calcRow30;
-//window.berechneGesamt30 = berechneGesamt30;
-//window.loadPage31 = loadPage31;
-//window.calcRow31 = calcRow31;
-//window.berechneGesamt31 = berechneGesamt31;
-//window.loadPage32 = loadPage32;
-//window.calcRow32 = calcRow32;
-//window.berechneGesamt32 = berechneGesamt32;
-//window.loadPage33 = loadPage33;
-//window.calcRow33 = calcRow33;
-//window.berechneGesamt33 = berechneGesamt33;
-//window.loadPage13 = loadPage13;
-//window.calcRow13 = calcRow13;
-//window.berechneGesamt13 = berechneGesamt13;
+window.loadPage25 = loadPage25;
+window.calcRow25 = calcRow25;
+window.berechneGesamt25 = berechneGesamt25;
+window.loadPage27 = loadPage27;
+window.calcRow27 = calcRow27;
+window.berechneGesamt27 = berechneGesamt27;
+window.loadPage28 = loadPage28;
+window.calcRow28 = calcRow28;
+window.berechneGesamt28 = berechneGesamt28;
+window.loadPage30 = loadPage30;
+window.calcRow30 = calcRow30;
+window.berechneGesamt30 = berechneGesamt30;
+window.loadPage31 = loadPage31;
+window.calcRow31 = calcRow31;
+window.berechneGesamt31 = berechneGesamt31;
+window.loadPage32 = loadPage32;
+window.calcRow32 = calcRow32;
+window.berechneGesamt32 = berechneGesamt32;
+window.loadPage33 = loadPage33;
+window.calcRow33 = calcRow33;
+window.berechneGesamt33 = berechneGesamt33;
+window.loadPage13 = loadPage13;
+window.calcRow13 = calcRow13;
+window.berechneGesamt13 = berechneGesamt13;
+window.loadPage34 = loadPage34;
+window.calcRow34 = calcRow34;
+window.berechneGesamt34 = berechneGesamt34;
+window.loadPage35 = loadPage35;
+window.calcRow35 = calcRow35;
+window.berechneGesamt35 = berechneGesamt35;
+window.loadPage36 = loadPage36;
+window.calcRow36 = calcRow36;
+window.berechneGesamt36 = berechneGesamt36;
+window.loadPage26 = loadPage26;
+window.calcRow26 = calcRow26;
+window.berechneGesamt26 = berechneGesamt26;
 window.startKomplettFlow = startKomplettFlow;
