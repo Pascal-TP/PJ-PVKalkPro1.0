@@ -531,11 +531,11 @@ async function showPage(id, fromHistory = false) {
   if (!el) return;           // Sicherheitsnetz
   el.classList.add("active");  
   
-if (id === "page-14" || id === "page-14-2") {
-  // wichtig: erst laden, dann anwenden
-  // (falls loadPage14/page142 den Content erst füllt)
-  setTimeout(() => applyWrRecommendation(id), 0);
-}
+// if (id === "page-14" || id === "page-14-2") {
+//  // wichtig: erst laden, dann anwenden
+//  // (falls loadPage14/page142 den Content erst füllt)
+//  setTimeout(() => applyWrRecommendation(id), 0);
+//}
 
   if (id === "page-14") loadPage14();
   if (id === "page-14-3") loadPage143();
