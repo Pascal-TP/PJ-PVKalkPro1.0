@@ -1569,9 +1569,9 @@ optimiererVerwendet = false;
 
 // Dynamische Inhalte leeren (damit nichts „stehen bleibt“)
     const idsToClear = [
-        "page14-content",
-        "content-14-3",
-        "content-14-2",
+        "content-14",
+        "content-143",
+        "content-142",
         "content-8",
         "content-18",
         "content-20",
