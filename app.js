@@ -1918,11 +1918,11 @@ function loadPage8() {
             const gespeicherteWerte =
                 JSON.parse(localStorage.getItem("page8Data") || "{}");
 
-      // Bild-Auflösung: 1..20 -> bildX.jpg (oder direkt Dateiname in CSV)
+      // Bild-Auflösung: 1..40 -> bildX.jpg (oder direkt Dateiname in CSV)
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 20);
+        const n = parseInt(v, 40);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
@@ -2292,11 +2292,11 @@ function loadPage20() {
       const gespeicherteWerte =
         JSON.parse(localStorage.getItem("page20Data") || "{}");
 
-      // Bild-Auflösung: 1..10 -> bildX.jpg
+      // Bild-Auflösung: 1..40 -> bildX.jpg
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 10);
+        const n = parseInt(v, 40);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         // optional: falls du direkt "meinbild.jpg" einträgst
         return v;
@@ -2473,11 +2473,11 @@ function loadPage21() {
       const gespeicherteWerte =
         JSON.parse(localStorage.getItem("page21Data") || "{}");
 
-      // Bild-Auflösung: 1..20 -> bildX.jpg (oder direkt Dateiname in CSV)
+      // Bild-Auflösung: 1..40 -> bildX.jpg (oder direkt Dateiname in CSV)
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 10);
+        const n = parseInt(v, 40);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
@@ -3238,11 +3238,11 @@ function loadPage22() {
       const gespeicherteWerte =
         JSON.parse(localStorage.getItem("page22Data") || "{}");
 
-      // Bild-Auflösung: 1..20 -> bildX.jpg (oder direkt Dateiname in CSV)
+      // Bild-Auflösung: 1..40 -> bildX.jpg (oder direkt Dateiname in CSV)
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 10);
+        const n = parseInt(v, 40);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
@@ -3574,11 +3574,11 @@ function loadPage10() {
             const gespeicherteWerte =
                 JSON.parse(localStorage.getItem("page10Data") || "{}");
 
-      // Bild-Auflösung: 1..20 -> bildX.jpg (oder direkt Dateiname in CSV)
+      // Bild-Auflösung: 1..40 -> bildX.jpg (oder direkt Dateiname in CSV)
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 20);
+        const n = parseInt(v, 40);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
@@ -4243,11 +4243,11 @@ function loadPage25() {
             const gespeicherteWerte =
                 JSON.parse(localStorage.getItem("page25Data") || "{}");
 
-      // Bild-Auflösung: 1..20 -> bildX.jpg (oder direkt Dateiname in CSV)
+      // Bild-Auflösung: 1..40 -> bildX.jpg (oder direkt Dateiname in CSV)
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 20);
+        const n = parseInt(v, 40);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
