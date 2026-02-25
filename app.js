@@ -1508,27 +1508,28 @@ function exportCsvPage40() {
     return;
   }
 
-  // Gewünschtes Trennzeichen:
-  const SEP = "-";
+  const SEP = "-"; // Vorgabe
 
-  // CSV Kopf (Zeile 1)
-  const header = ["Artikelnummer", "Menge", "Mengeneinheit"];
+  // Excel-Hinweiszeile, damit es sicher in Spalten trennt (auch bei "-")
+  const lines = [];
+  lines.push(`sep=${SEP}`);
 
-  function esc(val) {
-    const s = String(val ?? "").trim();
-    // Standard-CSV-Quoting: alles in "..." und Anführungszeichen doppeln
-    return `"${s.replace(/"/g, '""')}"`;
+  // Kopfzeile
+  lines.push(["Artikelnummer", "Menge", "Mengeneinheit"].join(SEP));
+
+  // Werte "CSV-sicher" machen (ohne Anführungszeichen)
+  function clean(val) {
+    return String(val ?? "")
+      .trim()
+      .replace(/\r?\n/g, " "); // keine Zeilenumbrüche in Zellen
   }
 
-  const lines = [];
-  lines.push(header.map(esc).join(SEP));
-
   rows.forEach(r => {
-    const artikel = r.querySelector(".col-a")?.innerText ?? "";
-    const einheit = r.querySelector(".col-c")?.innerText ?? "";
-    const menge   = r.querySelector(".col-d")?.innerText ?? "";
+    const artikel = clean(r.querySelector(".col-a")?.innerText);
+    const einheit = clean(r.querySelector(".col-c")?.innerText);
+    const menge   = clean(r.querySelector(".col-d")?.innerText);
 
-    lines.push([artikel, menge, einheit].map(esc).join(SEP));
+    lines.push([artikel, menge, einheit].join(SEP));
   });
 
   const csv = lines.join("\n");
