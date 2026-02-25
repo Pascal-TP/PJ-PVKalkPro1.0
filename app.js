@@ -1058,7 +1058,7 @@ function loadPage14() {
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 40);
+        const n = parseInt(v, 10);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
@@ -1737,7 +1737,7 @@ function loadPage142() {
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 40);
+        const n = parseInt(v, 10);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
@@ -1922,7 +1922,7 @@ function loadPage8() {
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 40);
+        const n = parseInt(v, 10);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
@@ -2296,7 +2296,7 @@ function loadPage20() {
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 40);
+        const n = parseInt(v, 10);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         // optional: falls du direkt "meinbild.jpg" einträgst
         return v;
@@ -2477,7 +2477,7 @@ function loadPage21() {
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 40);
+        const n = parseInt(v, 10);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
@@ -2664,7 +2664,7 @@ function loadPage13() {
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 40);
+        const n = parseInt(v, 10);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
@@ -2848,7 +2848,7 @@ function loadPage26() {
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 40);
+        const n = parseInt(v, 10);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
@@ -3032,7 +3032,7 @@ function loadPage143() {
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 40);
+        const n = parseInt(v, 10);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
@@ -3242,7 +3242,7 @@ function loadPage22() {
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 40);
+        const n = parseInt(v, 10);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
@@ -3578,7 +3578,7 @@ function loadPage10() {
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 40);
+        const n = parseInt(v, 10);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
@@ -4247,7 +4247,7 @@ function loadPage25() {
       function resolvePosImg(colImg) {
         const v = (colImg || "").trim();
         if (!v) return "";
-        const n = parseInt(v, 40);
+        const n = parseInt(v, 10);
         if (!isNaN(n) && n > 0) return `bild${n}.jpg`;
         return v;
       }
