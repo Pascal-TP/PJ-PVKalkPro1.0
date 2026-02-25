@@ -135,151 +135,150 @@ function startSplashScreen() {
   }, 3000);
 }
 
-// -----------------------------
-// PV-Module zählen für Emfpehlung
-// -----------------------------
+		// -----------------------------
+		// PV-Module zählen für Emfpehlung
+		// -----------------------------
+//
+//function getPvModuleCount() {
+//  const d23 = JSON.parse(localStorage.getItem("page23Data") || "{}");
+//  const d24 = JSON.parse(localStorage.getItem("page24Data") || "{}");
+//
+//  const sumObj = (obj) => Object.values(obj).reduce((acc, v) => {
+//    const n = parseFloat(String(v).replace(",", ".")) || 0;
+//    return acc + n;
+//  }, 0);
+//
+//  const total = sumObj(d23) + sumObj(d24);
+//  return Math.round(total); // falls irgendwo Dezimalwerte wären
+//}
+//
+//function getWrRecommendationText(modules) {
+//  if (modules <= 0) return null;
+//
+//  if (modules <= 7)  return "3.0";
+//  if (modules <= 9)  return "4.0";
+//  if (modules <= 11) return "5.0";
+//  if (modules <= 14) return "6.0";
+//  if (modules <= 18) return "8.0";
+//  if (modules <= 23) return "10.0";
+//  if (modules <= 28) return "12.0";
+//  if (modules <= 33) return "15.0";
+//  return "15.0"; // >33: konservativ (oder null, wenn du lieber warnen willst)
+//}
 
-function getPvModuleCount() {
-  const d23 = JSON.parse(localStorage.getItem("page23Data") || "{}");
-  const d24 = JSON.parse(localStorage.getItem("page24Data") || "{}");
-
-  const sumObj = (obj) => Object.values(obj).reduce((acc, v) => {
-    const n = parseFloat(String(v).replace(",", ".")) || 0;
-    return acc + n;
-  }, 0);
-
-  const total = sumObj(d23) + sumObj(d24);
-  return Math.round(total); // falls irgendwo Dezimalwerte wären
-}
-
-function getWrRecommendationText(modules) {
-  if (modules <= 0) return null;
-
-  if (modules <= 7)  return "3.0";
-  if (modules <= 9)  return "4.0";
-  if (modules <= 11) return "5.0";
-  if (modules <= 14) return "6.0";
-  if (modules <= 18) return "8.0";
-  if (modules <= 23) return "10.0";
-  if (modules <= 28) return "12.0";
-  if (modules <= 33) return "15.0";
-  return "15.0"; // >33: konservativ (oder null, wenn du lieber warnen willst)
-}
-
-// -----------------------------
-// Wechselrichter-Empfhelung
-// -----------------------------
-
-function extractWrSizeFromRow(rowEl) {
-  const descRaw = (rowEl.querySelector(".col-b")?.innerText || "").trim();
-  if (!descRaw) return null;
-
-  // Normalisieren: 3,0 -> 3.0
-  const desc = descRaw.replace(",", ".");
-
-  // Match: 3.0 / 3 / 10.0 / 10 / 12.0 / 12 / 15.0 / 15
-  const m = desc.match(/(?:^|[^0-9])(3(?:\.0)?|4(?:\.0)?|5(?:\.0)?|6(?:\.0)?|8(?:\.0)?|10(?:\.0)?|12(?:\.0)?|15(?:\.0)?)(?![0-9])/);
-  if (!m) return null;
-
-  // Immer als "x.0" zurückgeben
-  const num = m[1];
-  return num.includes(".") ? num : `${num}.0`;
-}
-
-function applyWrRecommendation(pageId) {
-  const pageEl = document.getElementById(pageId);
-  if (!pageEl) return;
-
-  const modules = getPvModuleCount();
-  const reco = getWrRecommendationText(modules);
-
-  // Box anlegen/finden
-  let box = pageEl.querySelector(".wr-reco-box");
-  if (!box) {
-    box = document.createElement("div");
-    box.className = "wr-reco-box";
-    // direkt unter die H2 setzen
-    const h2 = pageEl.querySelector("h2");
-    if (h2 && h2.parentNode) h2.parentNode.insertBefore(box, h2.nextSibling);
-  }
-
-  // Wenn keine Module gewählt: nichts machen
-  if (!reco) {
-    box.style.display = "none";
-    pageEl.querySelectorAll(".wr-dimmed").forEach(r => r.classList.remove("wr-dimmed"));
-    pageEl.querySelectorAll(".wr-warn").forEach(w => w.remove());
-    return;
-  }
-
-  box.style.display = "block";
-  box.innerHTML = `Empfehlung anhand der PV-Module (${modules} Stück): <strong>Wechselrichter ${reco}</strong>`;
-
-  // Alle Positions-Zeilen (mit Eingabefeld) durchgehen
-  const inputs = pageEl.querySelectorAll("input.menge-input");
-  let hasMismatch = false;
-  inputs.forEach(inp => {
-    const row = inp.closest(".row");
-    if (!row) return;
-
-    // Warntext entfernen (wird ggf. neu gesetzt)
-    const existingWarn = row.querySelector(".wr-warn");
-    if (existingWarn) existingWarn.remove();
-
-    const size = extractWrSizeFromRow(row);
-
-    // Nur ausgrauen, wenn wir eine WR-Größe überhaupt erkennen konnten
-    const shouldDim = (size && size !== reco);
-    hasMismatch = true;
-    row.classList.toggle("wr-dimmed", shouldDim);
-
-    // falls schon Wert > 0 eingetragen und dimmed -> Hinweis anzeigen
-    const val = parseFloat(String(inp.value).replace(",", ".")) || 0;
-    if (shouldDim && val > 0) {
-      const warn = document.createElement("div");
-      warn.className = "wr-warn";
-      warn.innerText = "Achtung: Wechselrichter nicht passend!";
-      row.appendChild(warn);
-    }
-// Ergebnis für Seite 40 merken
-if (hasMismatch) localStorage.setItem("wrMismatch", "1");
-else localStorage.removeItem("wrMismatch");
-
-// Optional: für Anzeige auf Seite 40 (empfohlen)
-localStorage.setItem("wrRecoSize", reco);
-localStorage.setItem("wrRecoModules", String(modules));
-  });
-
-  // Einmaliger Event-Listener je Seite: bei Eingabe Warnung setzen/entfernen
-  if (!pageEl.dataset.wrRecoListener) {
-    pageEl.addEventListener("input", (e) => {
-      const inp = e.target;
-      if (!inp || !inp.classList || !inp.classList.contains("menge-input")) return;
-
-      const row = inp.closest(".row");
-      if (!row) return;
-
-      const val = parseFloat(String(inp.value).replace(",", ".")) || 0;
-
-      // alten Warntext entfernen
-      const old = row.querySelector(".wr-warn");
-      if (old) old.remove();
-
-      if (row.classList.contains("wr-dimmed") && val > 0) {
-        const warn = document.createElement("div");
-        warn.className = "wr-warn";
-        warn.innerText = "Achtung: Wechselrichter nicht passend!";
-        row.appendChild(warn);
-      }
-    }, true);
-
-    pageEl.dataset.wrRecoListener = "1";
-  }
-}
+		// -----------------------------
+		// Wechselrichter-Empfhelung
+		// -----------------------------
+//
+//function extractWrSizeFromRow(rowEl) {
+//  const descRaw = (rowEl.querySelector(".col-b")?.innerText || "").trim();
+//  if (!descRaw) return null;
+//
+//  // Normalisieren: 3,0 -> 3.0
+//  const desc = descRaw.replace(",", ".");
+//
+//  // Match: 3.0 / 3 / 10.0 / 10 / 12.0 / 12 / 15.0 / 15
+//  const m = desc.match(/(?:^|[^0-9])(3(?:\.0)?|4(?:\.0)?|5(?:\.0)?|6(?:\.0)?|8(?:\.0)?|10(?:\.0)?|12(?:\.0)?|15(?:\.0)?)(?![0-9])/);
+//  if (!m) return null;
+//
+//  // Immer als "x.0" zurückgeben
+//  const num = m[1];
+//  return num.includes(".") ? num : `${num}.0`;
+//}
+//
+//function applyWrRecommendation(pageId) {
+//  const pageEl = document.getElementById(pageId);
+//  if (!pageEl) return;
+//
+//  const modules = getPvModuleCount();
+// const reco = getWrRecommendationText(modules);
+//
+//  // Box anlegen/finden
+//  let box = pageEl.querySelector(".wr-reco-box");
+//  if (!box) {
+//    box = document.createElement("div");
+//    box.className = "wr-reco-box";
+//    // direkt unter die H2 setzen
+//    const h2 = pageEl.querySelector("h2");
+//    if (h2 && h2.parentNode) h2.parentNode.insertBefore(box, h2.nextSibling);
+//  }
+//
+//  // Wenn keine Module gewählt: nichts machen
+//  if (!reco) {
+//    box.style.display = "none";
+//    pageEl.querySelectorAll(".wr-dimmed").forEach(r => r.classList.remove("wr-dimmed"));
+//    pageEl.querySelectorAll(".wr-warn").forEach(w => w.remove());
+//    return;
+//  }
+//
+//  box.style.display = "block";
+//  box.innerHTML = `Empfehlung anhand der PV-Module (${modules} Stück): <strong>Wechselrichter ${reco}</strong>`;
+//
+//  // Alle Positions-Zeilen (mit Eingabefeld) durchgehen
+//  const inputs = pageEl.querySelectorAll("input.menge-input");
+//  let hasMismatch = false;
+//  inputs.forEach(inp => {
+//    const row = inp.closest(".row");
+//    if (!row) return;
+//
+//    // Warntext entfernen (wird ggf. neu gesetzt)
+//    const existingWarn = row.querySelector(".wr-warn");
+//    if (existingWarn) existingWarn.remove();
+//
+//    const size = extractWrSizeFromRow(row);
+//
+//    // Nur ausgrauen, wenn wir eine WR-Größe überhaupt erkennen konnten
+//    const shouldDim = (size && size !== reco);
+//    hasMismatch = true;
+//    row.classList.toggle("wr-dimmed", shouldDim);
+//
+//    // falls schon Wert > 0 eingetragen und dimmed -> Hinweis anzeigen
+//    const val = parseFloat(String(inp.value).replace(",", ".")) || 0;
+//    if (shouldDim && val > 0) {
+//      const warn = document.createElement("div");
+//      warn.className = "wr-warn";
+//      warn.innerText = "Achtung: Wechselrichter nicht passend!";
+//      row.appendChild(warn);
+//    }
+//// Ergebnis für Seite 40 merken
+//if (hasMismatch) localStorage.setItem("wrMismatch", "1");
+//else localStorage.removeItem("wrMismatch");
+//
+//// Optional: für Anzeige auf Seite 40 (empfohlen)
+//localStorage.setItem("wrRecoSize", reco);
+//localStorage.setItem("wrRecoModules", String(modules));
+//  });
+//
+//  // Einmaliger Event-Listener je Seite: bei Eingabe Warnung setzen/entfernen
+//  if (!pageEl.dataset.wrRecoListener) {
+//    pageEl.addEventListener("input", (e) => {
+//      const inp = e.target;
+//      if (!inp || !inp.classList || !inp.classList.contains("menge-input")) return;
+//
+//      const row = inp.closest(".row");
+//      if (!row) return;
+//
+//      const val = parseFloat(String(inp.value).replace(",", ".")) || 0;
+//
+//      // alten Warntext entfernen
+//      const old = row.querySelector(".wr-warn");
+//      if (old) old.remove();
+//
+//      if (row.classList.contains("wr-dimmed") && val > 0) {
+//        const warn = document.createElement("div");
+//        warn.className = "wr-warn";
+//        warn.innerText = "Achtung: Wechselrichter nicht passend!";
+//        row.appendChild(warn);
+//      }
+//    }, true);
+//
+//    pageEl.dataset.wrRecoListener = "1";
+//  }
+//}
 
 // -----------------------------
 // Reset bei reload (F5)
 // -----------------------------
-
 
 function resetStoredInputsOnReload() {
   // Reload erkennen (F5 / Browser-Reload)
@@ -494,12 +493,9 @@ const db = getFirestore(fbApp);
 //
 //window.registerRequest = registerRequest;
 
-
-
 // -----------------------------
 // TableHeaderWithImage - Bild neben Spaltenüberschriften einfügen
 // -----------------------------
-
 
 function renderTableHeaderWithImage(imgSrc = "bild3.jpg") {
   return `
@@ -515,7 +511,6 @@ function renderTableHeaderWithImage(imgSrc = "bild3.jpg") {
     </div>
   `;
 }
-
 
 // -----------------------------
 // showPage
@@ -713,7 +708,6 @@ function handleUserAction(val) {
 }
 window.handleUserAction = handleUserAction;
 
-
 async function savePassword() {
   const n1 = newPass1.value;
   const n2 = newPass2.value;
@@ -801,26 +795,26 @@ window.exportLoginLog = exportLoginLog;
 //    return;
 //  }
 //
- // // ✅ udoc holen
+// // ✅ udoc holen
 //  const uref = doc(db, "users", uid);
 //  const udoc = await getDoc(uref);
 //
 //  // ✅ schon freigegeben?
 //  if (udoc.exists() && udoc.data().approved === true) {
- //   alert("User ist bereits freigegeben.");
- //   return;
- // }
+//   alert("User ist bereits freigegeben.");
+//   return;
+// }
 //
- // await updateDoc(uref, {
- //   approved: true,
- //   approvedAt: serverTimestamp(),
- //   approvedBy: auth.currentUser.email
- // });
+// await updateDoc(uref, {
+//   approved: true,
+//   approvedAt: serverTimestamp(),
+//   approvedBy: auth.currentUser.email
+// });
 //
- // await sendPasswordResetEmail(auth, email);
+// await sendPasswordResetEmail(auth, email);
 //
- // alert("Freigegeben. Passwort-Reset-Mail wurde gesendet.");
- // if (typeof loadAdminPage === "function") loadAdminPage();
+// alert("Freigegeben. Passwort-Reset-Mail wurde gesendet.");
+// if (typeof loadAdminPage === "function") loadAdminPage();
 //}
 //
 //window.loadPendingUsers = loadPendingUsers;
@@ -830,8 +824,6 @@ window.exportLoginLog = exportLoginLog;
 // -----------------------------
 // LOGBUCH - NUR FÜR ADMIN
 // -----------------------------
-
-
 
 function updateAdminUI_() {
   const adminEmail = "pascal.gasch@tpholding.de";
@@ -864,35 +856,35 @@ function updateAdminUI_() {
 //  box.innerHTML = "<div>Lade…</div>";
 //
 //  try {
- //   const q = query(collection(db, "users"), where("approved", "==", false));
- //   const snap = await getDocs(q);
+//   const q = query(collection(db, "users"), where("approved", "==", false));
+//   const snap = await getDocs(q);
 //
- //   if (snap.empty) {
- //     box.innerHTML = "<div>Keine offenen Registrierungen 🎉</div>";
-  //    return;
-  //  }
+//   if (snap.empty) {
+//     box.innerHTML = "<div>Keine offenen Registrierungen 🎉</div>";
+//    return;
+//  }
 //
-  //  let html = "";
-  //  snap.forEach(d => {
-  //    const u = d.data();
- //     html += `
- //       <div style="border:1px solid #ddd; padding:10px; margin:10px 0; border-radius:8px;">
-  //        <div><strong>Firma:</strong> ${u.firma || ""}</div>
-  //        <div><strong>Ansprechpartner:</strong> ${u.name || u.ansprechpartner || ""}</div>
-  //        <div><strong>Adresse:</strong> ${u.strasse || ""} ${u.hausnr || ""}, ${u.plz || ""} ${u.ort || ""}</div>
-  //        <div><strong>E-Mail:</strong> ${u.email || ""}</div>
-  //        <div><strong>Telefon:</strong> ${u.tel || ""}</div>
+//  let html = "";
+//  snap.forEach(d => {
+//    const u = d.data();
+//     html += `
+//       <div style="border:1px solid #ddd; padding:10px; margin:10px 0; border-radius:8px;">
+//        <div><strong>Firma:</strong> ${u.firma || ""}</div>
+//        <div><strong>Ansprechpartner:</strong> ${u.name || u.ansprechpartner || ""}</div>
+//        <div><strong>Adresse:</strong> ${u.strasse || ""} ${u.hausnr || ""}, ${u.plz || ""} ${u.ort || ""}</div>
+//        <div><strong>E-Mail:</strong> ${u.email || ""}</div>
+//        <div><strong>Telefon:</strong> ${u.tel || ""}</div>
 //
-  //        <div style="margin-top:8px;">
- //           <button onclick="approveUser('${d.id}','${(u.email || "").replace(/'/g, "\\'")}')">
- //             Freigeben + Passwort-Link senden
+//        <div style="margin-top:8px;">
+//           <button onclick="approveUser('${d.id}','${(u.email || "").replace(/'/g, "\\'")}')">
+//             Freigeben + Passwort-Link senden
 //            </button>
- //         </div>
+//         </div>
 //        </div>
- //     `;
- //   });
+//     `;
+//   });
 //
- //   box.innerHTML = html;
+//   box.innerHTML = html;
 //
 //  } catch (e) {
 //    console.error("loadAdminPage Fehler:", e);
@@ -1214,9 +1206,6 @@ function berechneGesamt14() {
     }
 }
 
-
-
-
 // -----------------------------
 // SEITE 40 – Ausgabeseite Kostenvoranschlag / Anfrage
 // -----------------------------
@@ -1251,7 +1240,6 @@ async function loadPage40() {
         "jahresstrombedarf":"Jahresstrombedarf kWh",
         "waermepumpe_strombedarf":"Wärmepumpe Strombedarf kWh",
         "wallbox":"Wallbox"
-
     };
 
     let html = "";
@@ -1512,7 +1500,6 @@ function sendMailPage40() {
 // -----------------------------
 // SEITE 40 – Export als CSV - (Button "Export CsV")
 // -----------------------------
-
 
 function exportCsvPage40() {
   const rows = document.querySelectorAll("#summary-content .summary-row");
@@ -1893,9 +1880,6 @@ function berechneGesamt142() {
     }
 }
 
-
-
-
 // -----------------------------
 // SEITE 8 – Optimierer (tga10.csv)
 // -----------------------------
@@ -2034,7 +2018,6 @@ function loadPage8() {
       berechneGesamt8();
     });
 }
-
 
 function isOptimiererSelected() {
   const data = JSON.parse(localStorage.getItem("page8Data") || "{}");
@@ -2633,10 +2616,6 @@ function berechneGesamt21() {
     }
 }
 
-
-
-
-
 // -----------------------------
 // SEITE 13 – Speicher Huawei (tga22.csv)
 // -----------------------------
@@ -2819,7 +2798,6 @@ function berechneGesamt13() {
             getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
     }
 }
-
 
 // -----------------------------
 // SEITE 26 – Speicher Fronius (tga14.csv)
@@ -3004,7 +2982,6 @@ function berechneGesamt26() {
     }
 }
 
-
 // -----------------------------
 // SEITE 14.3 – Wechselrichter hybrid a-TroniX (tga13.csv)
 // -----------------------------
@@ -3187,33 +3164,6 @@ function berechneGesamt143() {
             getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // -----------------------------
 // SEITE 22 – Extras (Zählerschrank) (tga11.csv)
@@ -3690,7 +3640,6 @@ function loadPage10() {
       berechneGesamt10();
     });
 }
-
 
 function calcRow10(input, preis, index) {
 
@@ -4209,18 +4158,6 @@ function berechneGesamt30() {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 // -----------------------------
 // SEITE 25 – Speicher a-TroniX (tga14.csv)
 // -----------------------------
@@ -4359,7 +4296,6 @@ function loadPage25() {
       berechneGesamt25();
     });
 }
-
 
 function calcRow25(input, preis, index) {
 
@@ -4872,7 +4808,6 @@ function berechneGesamt32() {
     }
 }
 
-
 // -----------------------------
 // SEITE 33 – Wechselrichter hybrid Huawei (tga21.csv)
 // -----------------------------
@@ -5185,7 +5120,6 @@ function berechneGesamt34() {
     }
 }
 
-
 // -----------------------------
 // SEITE 35 – Dienstleistungen (tga24.csv)
 // -----------------------------
@@ -5341,7 +5275,6 @@ function berechneGesamt35() {
             getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
     }
 }
-
 
 // -----------------------------
 // SEITE 36 – Zuschläge (tga25.csv)
@@ -5499,9 +5432,6 @@ function berechneGesamt36() {
     }
 }
 
-
-
-
 // -----------------------------
 // SEITE 28 – Wechselrichter SMA (tga17.csv)
 // -----------------------------
@@ -5657,7 +5587,6 @@ function berechneGesamt28() {
             getGesamtAngebotssumme().toLocaleString("de-DE",{minimumFractionDigits:2}) + " €";
     }
 }
-
 
 // -----------------------------
 // Eingabefelder - 0 entfernen bei Eingabe
@@ -5832,7 +5761,6 @@ function showLoader40(show) {
   if (!l) return;
   l.classList.toggle("hidden", !show);
 }
-
 
 // -----------------------------
 
