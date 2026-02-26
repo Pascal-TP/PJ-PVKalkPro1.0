@@ -1515,7 +1515,7 @@ function exportCsvPage40() {
   lines.push(`sep=${SEP}`);
 
   // Kopfzeile
-  lines.push(["Artikelnummer", "Menge", "Mengeneinheit"].join(SEP));
+  lines.push(["Artikelnummer", "Menge"].join(SEP));
 
   // Werte "CSV-sicher" machen (ohne Anführungszeichen)
   function clean(val) {
@@ -1526,16 +1526,15 @@ function exportCsvPage40() {
 
   rows.forEach(r => {
     const artikel = clean(r.querySelector(".col-a")?.innerText);
-    const einheit = clean(r.querySelector(".col-c")?.innerText);
     const menge   = clean(r.querySelector(".col-d")?.innerText);
 
-    lines.push([artikel, menge, einheit].join(SEP));
+    lines.push([artikel, menge].join(SEP));
   });
 
   const csv = lines.join("\n");
 
   const datum = new Date().toLocaleDateString("de-DE").replaceAll(".", "-");
-  const filename = `Seite40_Tabelle_${datum}.csv`;
+  const filename = `PJ_KalkPro_CSV-Export_${datum}.csv`;
 
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
