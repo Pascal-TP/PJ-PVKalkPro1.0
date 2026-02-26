@@ -28,7 +28,7 @@ Beschreibung_fett;Leistungen:;;;
 Beschreibung_fett;Nicht enthalten:;;;
 ;- Örtliche Veränderung sowie damit verbundene Leitungsverlängerungen;;;
 ;;;;
-H66TG3010 01;Zählerschrank EFH Standard (110x55cm) mit einem Zählerplatz mit Bestückung;€/Stk.;2712,4;12
+H66TG301001;Zählerschrank EFH Standard (110x55cm) mit einem Zählerplatz mit Bestückung;€/Stk.;2712,4;12
 ;;;;
 Untertitel;Montage und Lieferung Zählerschrank EFH Standard (110x80cm) mit zwei Zählerplätzen ohne Bestückung ohne örtliche Veränderung;;;
 Beschreibung_fett;Materialien:;;;
@@ -55,12 +55,4 @@ Beschreibung_fett;Leistungen:;;;
 Beschreibung_fett;Nicht enthalten:;;;
 ;- Örtliche Veränderung sowie damit verbundene Leitungsverlängerungen;;;
 ;;;;
-H66TG3012 01;Zählerschrank EFH Standard (110x80cm) mit zwei Zählerplätzen mit Bestückung;€/Stk.;3227,3;14
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
-;;;;
+H66TG301201;Zählerschrank EFH Standard (110x80cm) mit zwei Zählerplätzen mit Bestückung;€/Stk.;3227,3;14
