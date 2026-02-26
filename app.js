@@ -1354,7 +1354,7 @@ hinweiseContainer.innerHTML = "";
 
 container.innerHTML += `
   <div class="row table-header">
-    <div></div>
+    <div>EDV-Nr.</div>
     <div>Beschreibung</div>
     <div>Einheit</div>
     <div style="text-align:center;">Menge</div>
