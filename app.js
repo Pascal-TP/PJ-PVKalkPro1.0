@@ -1210,6 +1210,91 @@ function berechneGesamt14() {
 // SEITE 40 – Ausgabeseite Kostenvoranschlag / Anfrage
 // -----------------------------
 
+function isPreisZeile(colD) {
+  if (!colD) return false;
+  const p = parseFloat(String(colD).replace(",", "."));
+  return !isNaN(p);
+}
+
+function renderHinweisLine(colA, colB) {
+  const text = (colB || "").trim();
+  if (!text) return "";
+
+  if (colA === "Titel") return `<div class="title">${text}</div>`;
+  if (colA === "Untertitel") return `<div class="subtitle">${text}</div>`;
+  if (colA === "Zwischentitel") return `<div class="midtitle">${text}</div>`;
+
+  // “Beschreibungstext”-Zeilen (no-price)
+  return `<div class="hinweis-row">${text}</div>`;
+}
+
+/**
+ * Extrahiert Textblöcke (Titel/Untertitel/Zwischentitel + no-price-Beschreibungen)
+ * so, dass ein Block NUR dann ausgegeben wird, wenn darunter (bis zum nächsten Block)
+ * mindestens eine Artikelposition Menge > 0 hat.
+ */
+function extractTriggeredTextBlocks(lines, dataObj) {
+  const out = [];
+
+  let pendingHeaderParts = [];      // sammelt Textzeilen bis zur ersten Preiszeile (oder bis zum nächsten Block)
+  let sectionHeaderHtml = "";       // “Header” für die aktuelle Preis-Sektion
+  let inSection = false;
+  let sectionHasQty = false;
+
+  function flushSectionIfNeeded() {
+    if (inSection && sectionHasQty && sectionHeaderHtml.trim()) {
+      out.push(sectionHeaderHtml);
+    }
+  }
+
+  for (let index = 0; index < lines.length; index++) {
+    const line = lines[index];
+    if (!line || !line.trim()) continue;
+
+    const cols = line.split(";");
+    const colA = (cols[0] || "").trim();
+    const colB = (cols[1] || "").trim();
+    const colD = (cols[3] || "").trim();
+
+    const istTitelZeile = (colA === "Titel" || colA === "Untertitel" || colA === "Zwischentitel");
+    const preisVorhanden = isPreisZeile(colD);
+
+    // TEXT-ZEILE (Titel/Untertitel/Zwischentitel oder "no-price"-Beschreibung)
+    if (istTitelZeile || !preisVorhanden) {
+      // Wenn wir gerade in einer Preis-Sektion waren und jetzt ein neuer Textblock beginnt:
+      if (inSection) {
+        flushSectionIfNeeded();
+        inSection = false;
+        sectionHasQty = false;
+        sectionHeaderHtml = "";
+        pendingHeaderParts = [];
+      }
+
+      const html = renderHinweisLine(colA, colB);
+      if (html) pendingHeaderParts.push(html);
+      continue;
+    }
+
+    // PREIS-ZEILE
+    const menge = parseFloat((dataObj[index] ?? 0)) || 0;
+
+    // Start einer neuen Preis-Sektion: der bis dahin gesammelte Textblock ist der “Header”
+    if (!inSection) {
+      inSection = true;
+      sectionHasQty = false;
+      sectionHeaderHtml = pendingHeaderParts.join("");
+      pendingHeaderParts = [];
+    }
+
+    if (menge > 0) sectionHasQty = true;
+  }
+
+  // Letzte Sektion am Ende flushen
+  flushSectionIfNeeded();
+
+  return out.join("");
+}
+
 async function loadPage40() {
 
     const angebotTyp = localStorage.getItem("angebotTyp") || "kv";
@@ -1259,11 +1344,13 @@ async function loadPage40() {
 }
 
     const container = document.getElementById("summary-content");
-    const hinweiseContainer = document.getElementById("hinweise-content");
-    if (!container || !hinweiseContainer) return;
+const seitenHinweiseContainer = document.getElementById("seitenhinweise-content");
+const hinweiseContainer = document.getElementById("hinweise-content");
+if (!container || !hinweiseContainer || !seitenHinweiseContainer) return;
 
-    container.innerHTML = "";
-    hinweiseContainer.innerHTML = "";
+container.innerHTML = "";
+seitenHinweiseContainer.innerHTML = "";
+hinweiseContainer.innerHTML = "";
 
 container.innerHTML += `
   <div class="row table-header">
@@ -1305,6 +1392,9 @@ container.innerHTML += `
         { key: "page36Data", csv: "tga25.csv" }
     ];
 
+let seitenHinweiseHtml = "";
+let firstHinweisBlock = true;
+
     for (const seite of seitenConfig) {
 
         const data = JSON.parse(localStorage.getItem(seite.key) || "{}");
@@ -1312,6 +1402,14 @@ container.innerHTML += `
         const response = await fetch(seite.csv);
         const csvText = await response.text();
         const lines = csvText.split("\n").slice(1);
+
+// 1) Seitenbezogene Textblöcke (nur wenn auf dieser Seite Mengen > 0 in der jeweiligen Sektion)
+const blocksHtml = extractTriggeredTextBlocks(lines, data);
+if (blocksHtml.trim()) {
+  if (!firstHinweisBlock) seitenHinweiseHtml += `<hr class="seitenhinweis-sep">`;
+  firstHinweisBlock = false;
+  seitenHinweiseHtml += blocksHtml;
+}
 
         lines.forEach((line, index) => {
 
@@ -1348,7 +1446,7 @@ container.innerHTML += `
                 container.appendChild(zeile);
                 gesamt += menge * preis;
             }
-
+seitenHinweiseContainer.innerHTML = seitenHinweiseHtml;
         });
     }
 
@@ -1594,7 +1692,8 @@ optimiererVerwendet = false;
         "content-36",
         "content-26",
         "summary-content",
-        "hinweise-content"
+        "hinweise-content",
+        "seitenhinweise-content"
     ];
     idsToClear.forEach(id => {
         const el = document.getElementById(id);
