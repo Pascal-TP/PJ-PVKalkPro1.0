@@ -227,6 +227,32 @@ button:active {
   display: none !important;
 }
 
+/* No-JS Hinweis: standardmäßig sichtbar */
+.no-js-message {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 14px 16px;
+  background: #fff6d5;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Wenn JS aktiv ist, No-JS Meldung ausblenden */
+html.js .no-js-message {
+  display: none;
+}
+
+/* Wenn App gelockt ist: alles verstecken */
+body.app-locked .page {
+  display: none !important;
+}
+
+/* … außer Login-Seite */
+body.app-locked #page-login {
+  display: block !important;
+}
+
 .gesamt.rabatt {
   font-size: 14px;
   font-weight: 600;
