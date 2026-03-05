@@ -27,6 +27,12 @@ body {
     display: block;
 }
 
+/* Ohne JS (html hat keine Klasse "js") sollen KEINE Seiten sichtbar sein */
+html:not(.js) .page,
+html:not(.js) .page.active {
+  display: none !important;
+}
+
 input {
     display: block;
     margin: 10px auto;
@@ -241,6 +247,11 @@ button:active {
 /* Wenn JS aktiv ist, No-JS Meldung ausblenden */
 html.js .no-js-message {
   display: none;
+}
+
+html:not(.js) .page,
+html:not(.js) .page.active {
+  display: none !important;
 }
 
 /* Wenn App gelockt ist: alles verstecken */
