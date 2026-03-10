@@ -4140,7 +4140,7 @@ function berechneGesamt24() {
 }
 
 // -----------------------------
-// SEITE 30 – Wallbox SMA (tga17.csv)
+// SEITE 30 – Wallbox SMA (tga19.csv)
 // -----------------------------
 
 function loadPage30() {
@@ -4151,7 +4151,7 @@ function loadPage30() {
 
     if (container.innerHTML.trim() !== "") return;
 
-    fetch("tga17.csv")
+    fetch("tga19.csv")
         .then(response => response.text())
         .then(data => {
 
