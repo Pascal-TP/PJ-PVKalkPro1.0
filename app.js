@@ -691,6 +691,11 @@ async function login() {
   const email = loginUser.value.trim();
   const pw = loginPass.value;
 
+if (!isPrivacyAccepted()) {
+    loginError.innerText = "Bitte zuerst die allgemeinen Hinweise bestätigen.";
+    return;
+  }
+
   if (!email || !pw) {
     loginError.innerText = "Bitte E-Mail und Passwort eingeben.";
     return;
