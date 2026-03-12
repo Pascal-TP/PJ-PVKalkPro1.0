@@ -12,6 +12,13 @@ body {
     max-width: 400px;
 }
 
+.Bild_Versicherung {
+    margin: 30px auto;
+    display: block;
+    width: 50%;
+    max-width: 150px;
+}
+
 .page {
     display: none;
 }
@@ -20,18 +27,19 @@ body {
     display: block;
 }
 
-input,
-select,
-textarea {
+/* Ohne JS (html hat keine Klasse "js") sollen KEINE Seiten sichtbar sein */
+html:not(.js) .page,
+html:not(.js) .page.active {
+  display: none !important;
+}
+
+input {
     display: block;
     margin: 10px auto;
-    padding: 10px;
+    padding: 10px;   
     width: 250px;
     background: #fff6d5;
     border: 1px solid #ccc;
-    border-radius: 0;
-    box-sizing: border-box;
-    font: inherit;
 }
 
 button {
@@ -61,7 +69,7 @@ button:active {
 }
 
 .hint {
-    max-width: 600px;
+    max-width: 800px;
     margin: 20px auto;
     font-size: 14px;
 }
@@ -83,16 +91,11 @@ button:active {
 }
 
 #login-info {
-  position: fixed;
-  top: 50px;
-  right: 15px;
-  font-size: 14px;
-  text-align: right;
-
-  /* NEU: kein Link-Verhalten */
-  cursor: default;
-  font-weight: 400;
-  user-select: text;
+    position: fixed;
+    top: 50px;              /* unter dem Timer */
+    right: 15px;
+    font-size: 14px;
+    text-align: right;
 }
 
 /* ================================
@@ -101,6 +104,10 @@ button:active {
 .title { text-align: center;font-weight: bold; font-size: 24px; margin-top: 25px; }
 .subtitle { text-align: center;font-weight: bold; font-size: 18px; margin-top: 20px; }
 .midtitle { text-align: center;font-weight: bold; font-size: 16px; margin-top: 15px; }
+
+.beschreibung-fett {
+  font-weight: 700;
+}
 
 .price-table {
     max-width: 1200px;
@@ -194,7 +201,6 @@ button:active {
     max-width: 1000px;
     margin: 30px auto;
 }
-.hidden { display: none; }
 
 /* ================================
    Seitenbezogene Hinweise (aus ndfX.csv, abhängig von Mengen)
@@ -223,6 +229,42 @@ button:active {
   margin: 16px 0;
 }
 
+.hidden {
+  display: none !important;
+}
+
+/* No-JS Hinweis: standardmäßig sichtbar */
+.no-js-message {
+  max-width: 700px;
+  margin: 30px auto;
+  padding: 14px 16px;
+  background: #fff6d5;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Wenn JS aktiv ist, No-JS Meldung ausblenden */
+html.js .no-js-message {
+  display: none;
+}
+
+html:not(.js) .page,
+html:not(.js) .page.active {
+  display: none !important;
+}
+
+/* Wenn App gelockt ist: alles verstecken */
+/* … außer öffentliche Seiten */
+body.app-locked .page {
+  display: none !important;
+}
+
+body.app-locked #page-login.active,
+body.app-locked #page-start.active,
+body.app-locked #page-hinweis.active {
+  display: block !important;
+}
 
 .gesamt.rabatt {
   font-size: 14px;
@@ -256,6 +298,37 @@ button:active {
 .table-header > div {
   opacity: 0.9;
 }
+
+.header-img-cell{
+  display:flex;
+  align-items:center;
+}
+
+.header-img{
+  width: 140px;     /* anpassen */
+  height: auto;
+  display:block;
+}
+
+.with-pos-images .row{
+  display:grid;
+  grid-template-columns: 60px 160px 4fr 100px 100px 120px 120px; /* Bild + 6 Spalten */
+  gap: 15px;
+  align-items:center;
+}
+
+.pos-img-cell{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.pos-img{
+  max-height: 42px;
+  width: auto;
+  display:block;
+}
+
 
 /* ===== PDF-Modus (für html2pdf/html2canvas) ===== */
 body.pdf-mode .button-bar,
@@ -320,35 +393,33 @@ body.pdf-mode > img.logo {
 }
 body.pdf-mode #loader40 { display: none !important; }
 
-.hidden {
-  display: none !important;
-}
-
-/* No-JS Hinweis: standardmäßig sichtbar */
-.no-js-message {
-  max-width: 700px;
-  margin: 30px auto;
-  padding: 14px 16px;
+select {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 250px;
   background: #fff6d5;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  font-family: "Segoe UI", sans-serif;
+}
+#user-menu-wrapper {
+  position: fixed;
+  top: 70px;          /* unter Release + Timer */
+  right: 15px;
+  text-align: right;
+  z-index: 1000;
 }
 
-/* Wenn JS aktiv ist, No-JS Meldung ausblenden */
-html.js .no-js-message {
-  display: none;
-}
-/* Wenn App gelockt ist: alles verstecken */
-/* … außer öffentliche Seiten */
-body.app-locked .page {
-  display: none !important;
-}
+#login-info {
+  position: fixed;
+  top: 50px;
+  right: 15px;
+  font-size: 14px;
+  text-align: right;
 
-body.app-locked #page-login.active,
-body.app-locked #page-start.active,
-body.app-locked #page-hinweis.active {
-  display: block !important;
+  /* NEU: kein Link-Verhalten */
+  cursor: default;
+  font-weight: 400;
+  user-select: text;
 }
 
 #user-actions {
@@ -366,27 +437,15 @@ body.app-locked #page-hinweis.active {
   border: 1px solid #ccc;
   border-radius: 6px;
 }
-
 #user-action-select option[value="logout"] {
   font-weight: 700;
   color: #b00020; /* dezentes Rot */
 }
-
 .start-slogan {
   margin-top: 20px;
   font-size: 20px;
   font-weight: 500;
   color: #333;
-}
-/* Seite 40: falls Inhalt breiter wird, sauber horizontal scrollen statt „verschoben wirken“ */
-#page-40 {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Buttons immer zentrieren */
-#page-40 .button-bar {
-  text-align: center;
 }
 
 /* ===== PDF-Modus: Typografie auf Seite 40 kleiner (Blob-PDF) ===== */
@@ -413,6 +472,49 @@ body.pdf-mode #page-40 .hinweis-row {
   color: #333;
 }
 
+/* ================================
+   KOMPLETT-FLOW BUTTONS (BLAU)
+================================ */
+button.btn-komplett {
+  background: #2f6fed;       /* Blau */
+  color: white;
+}
+
+button.btn-komplett:hover {
+  background: #5a8cff;       /* helleres Blau */
+  transform: translateY(-1px);
+}
+
+button.btn-komplett:active {
+  background: #1f55c9;       /* dunkler beim Klick */
+  transform: translateY(0px);
+}
+/* ================================
+   WR Empfehlung / Ausgrauen / Warnung
+================================ */
+.wr-reco-box{
+  max-width: 1100px;
+  margin: 10px auto 18px auto;
+  padding: 12px 14px;
+  border-radius: 10px;
+  text-align: left;
+  font-weight: 600;
+  background: #eaf2ff;
+  border: 1px solid rgba(47,111,237,0.35);
+}
+
+.wr-dimmed{
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+.wr-warn{
+  grid-column: 1 / -1;
+  text-align: left;
+  color: darkred;
+  font-weight: 700;
+  margin-top: 4px;
+}
 
 /* =========================================
    Seite 40 – reduzierte Textgrößen
@@ -448,7 +550,6 @@ body.pdf-mode #page-40 .hinweis-row {
 #page-40 .summary-cell {
   font-size: 11.5px;
 }
-
 /* === Legal Links (allgemeine Hinweise) === */
 .legal-links {
   display: flex;
