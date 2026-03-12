@@ -1694,7 +1694,7 @@ function sendMailPage40() {
     subject = "Anfrage";
     mailAdresse = "pv@peterjensen.de";
   } else {
-    subject = `Kostenvoranschlag - TGA - ${new Date().toLocaleDateString("de-DE")}`;
+    subject = `Kostenvoranschlag - PJ - ${new Date().toLocaleDateString("de-DE")}`;
     mailAdresse = "";
   }
 
