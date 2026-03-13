@@ -49,20 +49,16 @@ function getCurrentVisiblePageId() {
 function toggleKomplettFlow() {
   if (isKomplettFlow()) {
     clearKomplettFlow();
+    updateKomplettIndicator();
+
+    const currentPageId = getCurrentVisiblePageId();
+    if (currentPageId) applyFlowUI(currentPageId);
   } else {
     setKomplettFlow();
+    updateKomplettIndicator();
+    showPage("page-15");
   }
-
-  updateKomplettIndicator();
-
-  const currentPageId = getCurrentVisiblePageId();
-  if (currentPageId) applyFlowUI(currentPageId);
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  clearKomplettFlow();
-  updateKomplettIndicator();
-});
 
 function applyFlowUI(pageId) {
   if (pageId === "page-8") {
@@ -457,6 +453,7 @@ function resetStoredInputsOnReload() {
 
   // Flow-State ebenfalls löschen
   clearKomplettFlow();
+  updateKomplettIndicator();
 
   // Nur deine Eingabe-/Angebotsdaten löschen (Auth bleibt erhalten!)
   const keysToRemove = [
@@ -1932,7 +1929,7 @@ function clearInputs() {
 
   optimiererVerwendet = false;
   clearKomplettFlow();
-
+updateKomplettIndicator();
 
   // localStorage komplett löschen
   localStorage.clear();
