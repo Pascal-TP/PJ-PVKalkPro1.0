@@ -166,8 +166,8 @@ function getPvModuleCount() {
 function getWrRecommendationText(modules) {
   if (modules <= 0) return null;
 
-  if (modules <= 7)  return "3.0";
-  if (modules <= 9)  return "4.0";
+  if (modules <= 7) return "3.0";
+  if (modules <= 9) return "4.0";
   if (modules <= 11) return "5.0";
   if (modules <= 14) return "6.0";
   if (modules <= 18) return "8.0";
@@ -202,7 +202,7 @@ function applyWrRecommendation(pageId) {
   if (!pageEl) return;
 
   const modules = getPvModuleCount();
- const reco = getWrRecommendationText(modules);
+  const reco = getWrRecommendationText(modules);
 
   // Box anlegen/finden
   let box = pageEl.querySelector(".wr-reco-box");
@@ -240,7 +240,8 @@ function applyWrRecommendation(pageId) {
 
     // Nur ausgrauen, wenn wir eine WR-Größe überhaupt erkennen konnten
     const shouldDim = (size && size !== reco);
-    hasMismatch = true;
+    if (shouldDim) hasMismatch = true;
+
     row.classList.toggle("wr-dimmed", shouldDim);
 
     // falls schon Wert > 0 eingetragen und dimmed -> Hinweis anzeigen
@@ -251,13 +252,13 @@ function applyWrRecommendation(pageId) {
       warn.innerText = "Achtung: Wechselrichter nicht passend!";
       row.appendChild(warn);
     }
-// Ergebnis für Seite 40 merken
-if (hasMismatch) localStorage.setItem("wrMismatch", "1");
-else localStorage.removeItem("wrMismatch");
+    // Ergebnis für Seite 40 merken
+    if (hasMismatch) localStorage.setItem("wrMismatch", "1");
+    else localStorage.removeItem("wrMismatch");
 
-// Optional: für Anzeige auf Seite 40 (empfohlen)
-localStorage.setItem("wrRecoSize", reco);
-localStorage.setItem("wrRecoModules", String(modules));
+    // Optional: für Anzeige auf Seite 40
+    localStorage.setItem("wrRecoSize", reco);
+    localStorage.setItem("wrRecoModules", String(modules));
   });
 
   // Einmaliger Event-Listener je Seite: bei Eingabe Warnung setzen/entfernen
@@ -428,66 +429,66 @@ const db = getFirestore(fbApp);
 // -----------------------------
 
 function isPrivacyAccepted() {
-    const cb1 = document.getElementById("chkPrivacyAck");
-    return !!(cb1?.checked);
+  const cb1 = document.getElementById("chkPrivacyAck");
+  return !!(cb1?.checked);
 }
 
 function updateAuthButtons() {
-    const ok = isPrivacyAccepted();
+  const ok = isPrivacyAccepted();
 
-    const btnLogin = document.getElementById("btnLogin");
-    
-    // NICHT disabled setzen -> sonst kein Klick -> keine Fehlermeldung
-    btnLogin?.classList.toggle("btn-disabled", !ok);
-    }
+  const btnLogin = document.getElementById("btnLogin");
+
+  // NICHT disabled setzen -> sonst kein Klick -> keine Fehlermeldung
+  btnLogin?.classList.toggle("btn-disabled", !ok);
+}
 
 document.addEventListener("DOMContentLoaded", () => {
-    const cb1 = document.getElementById("chkPrivacyAck");
- //   const cbDetail = document.getElementById("chkDetail");
- //   const besichtigung = document.getElementById("besichtigung");
+  const cb1 = document.getElementById("chkPrivacyAck");
+  //   const cbDetail = document.getElementById("chkDetail");
+  //   const besichtigung = document.getElementById("besichtigung");
 
-    cb1?.addEventListener("change", updateAuthButtons);
+  cb1?.addEventListener("change", updateAuthButtons);
 
-    if (cb1) cb1.checked = false;
+  if (cb1) cb1.checked = false;
 
- //   if (cbDetail) {
- //     cbDetail.checked = false;
- //     cbDetail.addEventListener("change", updatePage5DetailUI);
-      // danach Dienstleistungs-Feld synchronisieren
- //       syncBesichtigungToPage21();
-  
-  
-    updateAuthButtons();
+  //   if (cbDetail) {
+  //     cbDetail.checked = false;
+  //     cbDetail.addEventListener("change", updatePage5DetailUI);
+  // danach Dienstleistungs-Feld synchronisieren
+  //       syncBesichtigungToPage21();
+
+
+  updateAuthButtons();
 });
 
-  //  updatePage5DetailUI();
+//  updatePage5DetailUI();
 
-  //  handlePage5Hinweis(
-  //      "besichtigung",
-  //      "Hinweis: Für die Baustellenbesichtigung wird eine Beratungspauschale erhoben. Bei Auswahl 'ja' wird automatisch auf der Seite 'Dienstleistungen' die Menge 1 eingetragen."
-  //  );
-    
- //   handlePage5Hinweis(
- //       "schnellauslegung",
- //       "Hinweis: Für die Schnellauslegung werden zusätzliche Projektunterlagen benötigt und es entstehen zusätzliche Kosten. Tragen Sie wenn möglich bei Dienstleistungen das Flächenmaß ein."
- //   );
+//  handlePage5Hinweis(
+//      "besichtigung",
+//      "Hinweis: Für die Baustellenbesichtigung wird eine Beratungspauschale erhoben. Bei Auswahl 'ja' wird automatisch auf der Seite 'Dienstleistungen' die Menge 1 eingetragen."
+//  );
 
- //   handlePage5Hinweis(
- //       "berechnung",
- //       "Hinweis: Für die Heizflächenberechnung werden zusätzliche Angaben und Unterlagen benötigt und es entstehen zusätzliche Kosten. Tragen Sie wenn möglich bei Dienstleistungen das Flächenmaß ein."
- //   );
+//   handlePage5Hinweis(
+//       "schnellauslegung",
+//       "Hinweis: Für die Schnellauslegung werden zusätzliche Projektunterlagen benötigt und es entstehen zusätzliche Kosten. Tragen Sie wenn möglich bei Dienstleistungen das Flächenmaß ein."
+//   );
 
- //   handlePage5Hinweis(
- //       "heizlastberechnung",
- //       "Hinweis: Für die Heizlastberechnung werden vollständige Gebäudedaten und Unterlagen benötigt und es entstehen zusätzliche Kosten. Tragen Sie wenn möglich bei Dienstleistungen das Flächenmaß ein."
- //   );
+//   handlePage5Hinweis(
+//       "berechnung",
+//       "Hinweis: Für die Heizflächenberechnung werden zusätzliche Angaben und Unterlagen benötigt und es entstehen zusätzliche Kosten. Tragen Sie wenn möglich bei Dienstleistungen das Flächenmaß ein."
+//   );
+
+//   handlePage5Hinweis(
+//       "heizlastberechnung",
+//       "Hinweis: Für die Heizlastberechnung werden vollständige Gebäudedaten und Unterlagen benötigt und es entstehen zusätzliche Kosten. Tragen Sie wenn möglich bei Dienstleistungen das Flächenmaß ein."
+//   );
 //  });
 
 //if (besichtigung) {
- //   besichtigung.addEventListener("change", () => {
- //       savePage5Data?.();
- //       syncBesichtigungToPage21();
- //   });
+//   besichtigung.addEventListener("change", () => {
+//       savePage5Data?.();
+//       syncBesichtigungToPage21();
+//   });
 //}
 
 
@@ -621,9 +622,16 @@ async function showPage(id, fromHistory = false) {
   if (!el) return;           // Sicherheitsnetz
   el.classList.add("active");
 
-   if (id === "page-14" || id === "page-14-2") {
-    // wichtig: erst laden, dann anwenden
-    // (falls loadPage14/page142 den Content erst füllt)
+  // Empfehlung Wechselrichter:
+  // wichtig: erst laden, dann anwenden
+  // (falls loadPage14/page142 den Content erst füllt)
+  if (
+    id === "page-14" ||
+    id === "page-14-2" ||
+    id === "page-14-3" ||
+    id === "page-28" ||
+    id === "page-33"
+  ) {
     setTimeout(() => applyWrRecommendation(id), 0);
   }
 
@@ -665,11 +673,11 @@ async function showPage(id, fromHistory = false) {
       showLoader40(false);
     }
   }
-   // Checkboxen beim Seitenwechsel zurücksetzen
-    const cb1 = document.getElementById("chkPrivacyAck");
-        if (cb1) cb1.checked = false;
-    
-    updateAuthButtons();
+  // Checkboxen beim Seitenwechsel zurücksetzen
+  const cb1 = document.getElementById("chkPrivacyAck");
+  if (cb1) cb1.checked = false;
+
+  updateAuthButtons();
 
 }
 
@@ -691,7 +699,7 @@ async function login() {
   const email = loginUser.value.trim();
   const pw = loginPass.value;
 
-if (!isPrivacyAccepted()) {
+  if (!isPrivacyAccepted()) {
     loginError.innerText = "Bitte zuerst die allgemeinen Hinweise bestätigen.";
     return;
   }
@@ -1263,6 +1271,7 @@ function loadPage14() {
       </div>`;
 
       container.innerHTML = html;
+      setTimeout(() => applyWrRecommendation("page-14"), 0);
       berechneGesamt14();
     });
 }
@@ -1567,7 +1576,7 @@ async function loadPage40() {
   const wrMismatch = localStorage.getItem("wrMismatch") === "1";
   const wrRecoSize = localStorage.getItem("wrRecoSize") || "";
   const wrRecoModules = localStorage.getItem("wrRecoModules") || "";
-  
+
   let wrHinweis = document.getElementById("wr-hinweis-print");
   if (!wrHinweis) {
     wrHinweis = document.createElement("div");
@@ -1576,7 +1585,7 @@ async function loadPage40() {
     wrHinweis.style.marginTop = "20px";
     wrHinweis.style.color = "darkred";
     wrHinweis.style.fontWeight = "700";
-  
+
     // Platzierung: unter Optimierer-Hinweis (falls vorhanden), sonst unter Angebotspreis
     const opt = document.getElementById("optimierer-hinweis-print");
     if (opt && opt.parentNode) opt.parentNode.insertBefore(wrHinweis, opt.nextSibling);
@@ -1585,7 +1594,7 @@ async function loadPage40() {
       if (preis && preis.parentNode) preis.parentNode.insertBefore(wrHinweis, preis.nextSibling);
     }
   }
-  
+
   if (wrMismatch && wrRecoSize && wrRecoModules) {
     wrHinweis.innerHTML =
       `Achtung!<br>` +
@@ -2043,6 +2052,7 @@ function loadPage142() {
       </div>`;
 
       container.innerHTML = html;
+      setTimeout(() => applyWrRecommendation("page-14-2"), 0);
       berechneGesamt142();
     });
 }
@@ -3335,6 +3345,7 @@ function loadPage143() {
       </div>`;
 
       container.innerHTML = html;
+      setTimeout(() => applyWrRecommendation("page-14-3"), 0);
       berechneGesamt143();
     });
 }
@@ -5145,6 +5156,7 @@ function loadPage33() {
          </div>`;
 
       container.innerHTML = html;
+      setTimeout(() => applyWrRecommendation("page-33"), 0);
       berechneGesamt33();
     });
 }
@@ -5773,6 +5785,7 @@ function loadPage28() {
          </div>`;
 
       container.innerHTML = html;
+      setTimeout(() => applyWrRecommendation("page-28"), 0);
       berechneGesamt28();
     });
 }
