@@ -1156,7 +1156,7 @@ function submitPage5() {
 function savePage5Data() {
   const ids = [
     "pj-contact", "pj-number", "shk-name", "shk-contact",
-    "shk-email", "shk-phone", "site-adress", "execution-date", "dachpfanne-ausfuehrung",
+    "shk-email", "shk-phone", "site-address", "execution-date", "dachpfanne-ausfuehrung",
     "zeichnung-plaene", "zaehlerschrank", "wechselrichter_speicher", "jahresstrombedarf",
     "waermepumpe_strombedarf", "wallbox"
   ];
@@ -1464,7 +1464,7 @@ async function loadPage40() {
       "shk-contact": "SHK Ansprechpartner",
       "shk-email": "SHK E-Mail",
       "shk-phone": "SHK Telefon-Nr.",
-      "site-adress": "Adresse Baustelle",
+      "site-address": "Adresse Baustelle",
       "execution-date": "Gewünschter Ausführungstermin",
       "dachpfanne-ausfuehrung": "Ausführung - Dachpfanne",
       "zeichnung-plaene": "Zeichnung / Pläne",
@@ -1692,7 +1692,7 @@ function direktZumAngebot() {
 
   const fields = [
     "pj-contact", "pj-number", "shk-name", "shk-contact",
-    "shk-email", "shk-phone", "site-adress", "execution-date", "dachpfanne-ausfuehrung",
+    "shk-email", "shk-phone", "site-address", "execution-date", "dachpfanne-ausfuehrung",
     "zeichnung-plaene", "zaehlerschrank", "wechselrichter_speicher", "jahresstrombedarf",
     "waermepumpe_strombedarf", "wallbox"
   ];
