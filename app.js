@@ -177,6 +177,37 @@ function getWrRecommendationText(modules) {
   return "15.0"; // >33: konservativ (oder null, wenn du lieber warnen willst)
 }
 
+function getAvailableWrRecommendation(pageEl, modules) {
+  const baseReco = getWrRecommendationText(modules);
+  if (!baseReco) return null;
+
+  const baseNum = parseFloat(baseReco);
+
+  // alle auf dieser Seite vorhandenen WR-Größen sammeln
+  const sizes = Array.from(pageEl.querySelectorAll("input.menge-input"))
+    .map(inp => inp.closest(".row"))
+    .filter(Boolean)
+    .map(row => extractWrSizeFromRow(row))
+    .filter(Boolean)
+    .map(v => parseFloat(v))
+    .filter(v => !isNaN(v));
+
+  if (!sizes.length) return baseReco;
+
+  // doppelte Werte entfernen und sortieren
+  const uniqueSorted = [...new Set(sizes)].sort((a, b) => a - b);
+
+  // zuerst exakte oder nächsthöhere Größe suchen
+  let selected = uniqueSorted.find(v => v >= baseNum);
+
+  // wenn nichts Höheres existiert, größte vorhandene Größe nehmen
+  if (selected == null) {
+    selected = uniqueSorted[uniqueSorted.length - 1];
+  }
+
+  return selected.toFixed(1);
+}
+
 // -----------------------------
 // Wechselrichter-Empfhelung
 // -----------------------------
@@ -185,16 +216,18 @@ function extractWrSizeFromRow(rowEl) {
   const descRaw = (rowEl.querySelector(".col-b")?.innerText || "").trim();
   if (!descRaw) return null;
 
-  // Normalisieren: 3,0 -> 3.0
-  const desc = descRaw.replace(",", ".");
+  // alle Kommas in Punkte umwandeln
+  const desc = descRaw.replace(/,/g, ".");
 
-  // Match: 3.0 / 3 / 10.0 / 10 / 12.0 / 12 / 15.0 / 15
-  const m = desc.match(/(?:^|[^0-9])(3(?:\.0)?|4(?:\.0)?|5(?:\.0)?|6(?:\.0)?|8(?:\.0)?|10(?:\.0)?|12(?:\.0)?|15(?:\.0)?)(?![0-9])/);
-  if (!m) return null;
+  // sucht nach Zahl vor "kW" in Klammern, z. B. (17.5 kW) oder (33.3 kW)
+  let m = desc.match(/\((\d+(?:\.\d+)?)\s*kW\)/i);
+  if (m) return m[1];
 
-  // Immer als "x.0" zurückgeben
-  const num = m[1];
-  return num.includes(".") ? num : `${num}.0`;
+  // Fallback: erste Zahl mit Dezimalstelle aus Beschreibung holen
+  m = desc.match(/(\d+(?:\.\d+)?)/);
+  if (m) return m[1];
+
+  return null;
 }
 
 function applyWrRecommendation(pageId) {
@@ -202,7 +235,7 @@ function applyWrRecommendation(pageId) {
   if (!pageEl) return;
 
   const modules = getPvModuleCount();
-  const reco = getWrRecommendationText(modules);
+const reco = getAvailableWrRecommendation(pageEl, modules);
 
   // Box anlegen/finden
   let box = pageEl.querySelector(".wr-reco-box");
