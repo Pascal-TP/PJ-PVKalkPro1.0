@@ -133,7 +133,102 @@ function applyFlowUI(pageId) {
     if (normalBtn) normalBtn.classList.toggle("hidden", k);
     if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
   }
+if (pageId === "page-14-3") {
+    const normalBtn = document.getElementById("btnWeiter143Normal");
+    const komplettBtn = document.getElementById("btnWeiter143Komplett");
 
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+  if (pageId === "page-25") {
+    const normalBtn = document.getElementById("btnWeiter25Normal");
+    const komplettBtn = document.getElementById("btnWeiter25Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+  if (pageId === "page-26") {
+    const normalBtn = document.getElementById("btnWeiter26Normal");
+    const komplettBtn = document.getElementById("btnWeiter26Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+  if (pageId === "page-27") {
+    const normalBtn = document.getElementById("btnWeiter27Normal");
+    const komplettBtn = document.getElementById("btnWeiter27Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+  if (pageId === "page-28") {
+    const normalBtn = document.getElementById("btnWeiter28Normal");
+    const komplettBtn = document.getElementById("btnWeiter28Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+  if (pageId === "page-30") {
+    const normalBtn = document.getElementById("btnWeiter30Normal");
+    const komplettBtn = document.getElementById("btnWeiter30Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+  if (pageId === "page-31") {
+    const normalBtn = document.getElementById("btnWeiter31Normal");
+    const komplettBtn = document.getElementById("btnWeiter31Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+  if (pageId === "page-32") {
+    const normalBtn = document.getElementById("btnWeiter32Normal");
+    const komplettBtn = document.getElementById("btnWeiter32Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+  if (pageId === "page-33") {
+    const normalBtn = document.getElementById("btnWeiter33Normal");
+    const komplettBtn = document.getElementById("btnWeiter33Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+  if (pageId === "page-34") {
+    const normalBtn = document.getElementById("btnWeiter34Normal");
+    const komplettBtn = document.getElementById("btnWeiter34Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+  if (pageId === "page-35") {
+    const normalBtn = document.getElementById("btnWeiter35Normal");
+    const komplettBtn = document.getElementById("btnWeiter35Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
+  if (pageId === "page-36") {
+    const normalBtn = document.getElementById("btnWeiter36Normal");
+    const komplettBtn = document.getElementById("btnWeiter36Komplett");
+
+    const k = isKomplettFlow();
+    if (normalBtn) normalBtn.classList.toggle("hidden", k);
+    if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
+  }
 }
 
 // -----------------------------
