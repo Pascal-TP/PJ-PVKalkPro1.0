@@ -23,7 +23,7 @@
         <img src="logo.png" class="logo">
 
         <!-- Countdown -->
-        <div id="release-info">Release: V1.0.2</div>
+        <div id="release-info">Release: V1.0.3</div>
         <div id="timer">Logout in: 10:00</div>
 
         <!-- NEU: Angemeldet als -->
@@ -97,7 +97,15 @@
 
         <div class="error" id="loginError"></div>
 
-        <button onclick="login()">Anmelden</button>
+ <div class="ack-row">
+                <label class="ack-label">
+                    <input type="checkbox" id="chkPrivacyAck">
+                    <span>Ich habe die allgemeinen Hinweise zur Kenntnis genommen.</span>
+                </label>
+            </div>
+
+
+        <button id="btnLogin" onclick="login()">Anmelden</button>
 
         <button onclick="forgotPassword()">Passwort vergessen</button><br><br>
         <p>(Auf dem Smartphone genießen Sie die optimale Ansicht im Querformat.)</p>
@@ -108,13 +116,17 @@
             Personenbezogene Daten, die für die Anfrage an NDF eingegeben werden, dienen ausschließlich<br>der
             Erstellung von PDF-Dokumenten und werden nicht dauerhaft gespeichert.<br>
             Eine Weiterverarbeitung oder Auswertung der Daten findet nicht statt.</p><br>
-        <br>
+        
+        <div class="legal-links">
+                <a href="#" class="legal-link" onclick="showPage('page-hinweis'); return false;">Allgemeine Hinweise</a>
+            </div>
+            <br>
         <br>
         <!--  <p><strong>Noch keine Login-Daten?</strong><br>
     <button onclick="showPage('page-register')">Hier registrieren</button>-->
     </div>
-    <!--
-<!-- SEITE 1.1 Registrierung:  -->
+    
+<!-- SEITE 1.1 Registrierung:  
     <div id="page-register" class="page">
         <h2>Registrierung</h2>
 
@@ -138,7 +150,7 @@
         <button onclick="registerRequest()">Registrierung absenden</button>
     </div>
 
-    <!-- SEITE 1.1 Registrierung:  -->
+     SEITE 1.1 Registrierung:  
     <div id="page-admin" class="page">
         <h2>Adminbereich</h2>
 
@@ -150,9 +162,47 @@
         <div id="admin-registrations" class="box">
             <div>Lade Daten…</div>
         </div>
-    </div>
+    </div>-->
+
+<!-- SEITE: ALLGEMEINE HINWEISE -->
+        <div class="page" id="page-hinweis">
+            <h2>Allgemeine Hinweise</h2>
+
+            <div class="box" style="text-align:left;">
+
+                <h3>Informationen zu Errichtung von Photovoltaikanlagen:</h3>
+                - Für die Montage der Photovoltaikmodule muss in der Regel die Arbeitsstelle auf dem Dach durch ein Gerüst gesichert werden.<br>
+                - Des Weiteren muss ein sicherer Platz zur Lagerung der Module auf dem Dach oder dem Gerüst geschaffen werden.
+                Dies muss bauseitig erfolgen. Nach vorheriger Absprache können diese Arbeiten auch von unserem Dienstleister kostenpflichtig übernommen werden.<br>
+                - Wenn Veränderungen am Bestandsteil der Elektroanlage von unserem Dienstleister vorgenommen werden, wird die Anlage vor Wiederinbetriebnahme durch eine Sichtprüfung und elektrotechnischen Messungen auf Mängel überprüft.
+                Sollten im Zuge dessen Fehler auftauchen, behält sich unser Dienstleister vor, für die betroffenen Anlagenteile keine Haftung zu übernehmen.<br>
+                - Grundsätzlich ist unserem Dienstleister, wenn vorhanden, das Prüf-/Messprotokoll der Elektrofachkraft, die zuletzt Änderungen an der Elektroanlage ausgeführt hat, vorzulegen.<br>
+                - Bei Nachrüstung eines Fehlerstromschutzschalters in älteren Stromkreisen kann es aufgrund eines alten Installationsstandards zu Komplikationen führen, die eine Fehlersuche nach sich ziehen.
+                Diese Fehlersuche ist nicht Bestandteil des Angebotes und wird nach tatsächlichem Aufwand berechnet.
+                Die Abrechnung der Fehlersuche erfolgt pro angefangene Viertelstunde zu 69,00 EUR/h.<br>
+                - Es muss dafür Sorge getragen werden, dass ein reibungsloser Ablauf der nötigen Arbeiten möglich ist.<br>
+                - Stromkreise müssen problemlos abschaltbar sein.<br>
+                - Der kurzzeitige Ausfall von Betriebsmitteln ist während der Arbeiten unseres Dienstleisters möglich, somit ist keine Betriebssicherheit gegeben.<br>
+                - Die Stromkreisverteiler und Arbeitsplätze müssen frei zugänglich sein.<br>
+
+                <h3>Wichtiger Hinweis für Dächer mit Pappdocken:</h3>
+                - Bei Dächern mit Pappdocken kann es beim Anheben der Dachpfannen und dem Setzen der Dachhaken unter Umständen zu Beschädigungen an den vorhandenen Pappdocken kommen (Alter, Porosität, etc.).
+                Die durch unseren Dienstleister offensichtlich beschädigten Pappdocken werden selbstverständlich auf seine Kosten ausgetaucht. Für alle weiteren Leistungen ist bauseits ein Dachdecker hinzuzuziehen.
+                Eine Haftungsübernahme oder das Ausstellen einer Garantie zur späteren Dichtigkeit des Daches ist nicht Bestandteil des Angebotes und somit ausdrücklich ausgeschlossen.
+                Sofern erst im späteren Projektverlauf der Dachaufbau inkl. Pappdocken erkennbar wird, ohne dass im Angebot ausdrücklich darauf hingewiesen wurde, wird durch den entstandenen Mehraufwand eine Neukalkulation erforderlich.<br>
+
+                <h3>Hinweise zu Statik:</h3>
+                - Der Leistungsumfang unseres Dienstleisters beinhaltet keine statische Prüfung der baulichen Gegebenheiten.
+                Mit Beauftragung des Angebotes bestätigen Sie die bauseitige Prüfung und statische Freigabe der von unserem Dienstleister angebotenen Leistungen.<br>
 
 
+                Stand: April 2025<br><br>
+            </div>
+
+            <div class="button-bar">
+                <button onclick="showPage('page-login')">Zurück zum Login</button>
+            </div>
+        </div>
 
     <!-- SEITE 2: PASSWORT ÄNDERN -->
     <div class="page" id="page-change">
@@ -176,13 +226,13 @@
         <h2>Bitte auswählen</h2>
 
         <button onclick="showPage('page-4')">KV</button>
-        <button onclick="showPage('page-5')">Anfrage an TGA</button><br>
+        <button onclick="showPage('page-5')">Anfrage an PJ</button><br>
         <button onclick="showPage('page-3-1')">Info: Der Weg zur Photovoltaikanlage</button>
 
         <p class="hint">
             KV = Kostenvoranschlag – die schnelle und direkte Ermittlung eines Richtpreises für den Kunden<br><br>
-            Anfrage an TGA – Ermittlung eines Richtpreises für den Kunden, jedoch mit der Möglichkeit ein qualifiziertes
-            Angebot von TGA per Mail anzufragen.<br>
+            Anfrage an PJ – Ermittlung eines Richtpreises für den Kunden, jedoch mit der Möglichkeit ein qualifiziertes
+            Angebot von PJ per Mail anzufragen.<br>
         </p>
 
         <button id="btnExportLog" class="hidden" onclick="exportLoginLog()">Login-Log herunterladen</button>
@@ -207,18 +257,24 @@
 
         <button onclick="showPage('page-6')">DC</button>
         <button onclick="showPage('page-7')">AC</button><br><br>
+        <p class="hint">
+                    <strong>_________________________________</strong><br><br>
+                </p>
+        
+        <button type="button" onclick="toggleKomplettFlow()">Komplettlösung</button>
+<span id="komplett-indicator" class="flow-indicator">AUS</span>
+        <br><p>Wenn Sie die <strong>Komplettleistung</strong> auswählen, werden Sie Schritt für Schritt durch alle benötigten Punkte geführt.<br>
+        Der <strong>hellblaue „Weiter“-Button</strong> signalisiert, dass Sie sich im geführten Komplett-Bereich befinden.<br>
+        Durch Betätigen von <strong>F5 (Seite neu laden)</strong> oder der Aktion <strong>„Eingaben löschen“</strong> werden alle Eingaben zurückgesetzt.<br>
+        Wenn Sie ins <strong>Hauptmenü zurückkehren</strong> oder den Bereich verlassen, bleiben Ihre Eingaben erhalten und<br>
+        Sie können die Konfiguration jederzeit an beliebiger Stelle fortsetzen.</p>
+        <br>
+        <br>
+        <p class="hint">
+                    <strong>_________________________________</strong><br><br>
+                </p>
         <button onclick="showPage('page-35')">Dienstleistungen</button>
         <button onclick="showPage('page-36')">Zuschläge</button>
-
-        <!--    <button class="btn-komplett" onclick="startKomplettFlow()">Komplettleistung</button> -->
-        <!-- <br><p>Wenn Sie die <strong>Komplettleistung</strong> auswählen, werden Sie Schritt für Schritt durch alle benötigten Punkte geführt.<br> -->
-        <!-- Der <strong>hellblaue „Weiter“-Button</strong> signalisiert, dass Sie sich im geführten Komplett-Bereich befinden.<br> -->
-        <!-- Durch Betätigen von <strong>F5 (Seite neu laden)</strong> oder der Aktion <strong>„Eingaben löschen“</strong> werden alle Eingaben zurückgesetzt.<br> -->
-        <!-- Wenn Sie ins <strong>Hauptmenü zurückkehren</strong> oder den Bereich verlassen, bleiben Ihre Eingaben erhalten und<br> -->
-        <!-- Sie können die Konfiguration jederzeit an beliebiger Stelle fortsetzen.</p> -->
-        <br>
-        <br>
-        <br>
         <button onclick="showPage('page-14-1')">Downloadbereich</button>
         <br>
         <br>
@@ -226,9 +282,9 @@
 
     </div>
 
-    <!-- SEITE 5: ANFRAGE AN TGA -->
+    <!-- SEITE 5: ANFRAGE AN PJ -->
     <div class="page" id="page-5">
-        <h2>Anfrage an TGA</h2><br>
+        <h2>Anfrage an PJ</h2><br>
 
         <p class="hint">
             <strong>Kontaktdaten:</strong><br>
@@ -335,7 +391,7 @@
 
         <div class="button-bar">
             <button onclick="submitPage5()">Eingabe und Weiter</button>
-            <button onclick="direktZumAngebot()">Eingabe und Direkt zum Angebot</button>
+            <button onclick="direktZumAngebot()">Eingabe und Direkt zur Ausgabeseite</button>
         </div>
     </div>
 
@@ -387,8 +443,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button id="btnWeiter21Normal" onclick="direktZumAngebot()">Direkt zum Angebot</button>
-            <button id="btnWeiter14Komplett" class="btn-komplett hidden" onclick="showPage('page-18')">Weiter</button>
+            <button id="btnWeiter21Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter14Komplett" class="btn-komplett hidden" onclick="showPage('page-18-1')">Weiter</button>
 
         </div>
     </div>
@@ -396,6 +452,10 @@
     <!-- SEITE 14.1: Downloadbereich -->
     <div class="page" id="page-14-1">
         <h2>Download - Datenblätter / Checklisten / Infos</h2>
+
+        <a href="2002800194 Jinko JKM460N-48HL4M-DB Datenblatt DE.pdf" target="_blank">
+            Datenblatt – TigerNeo 48HL4M-DB Jinko
+        </a><br><br>
 
         <a href="Fronius Symo Gen24 Plus_Datenblatt.pdf" target="_blank">
             Datenblatt – Fronius Symo Gen24 Plus
@@ -419,7 +479,12 @@
 
         <a href="Versicherung.pdf" target="_blank">
             Info – 12 Monate Rundum-Versicherung inklusive!
+        </a><<br><br>
+
+	<a href="Allgemeine Hinweise.pdf" target="_blank">
+            Info - Allgemeine Hinweise
         </a><br><br>
+
 
         <br><br>
 
@@ -434,7 +499,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button id="btnWeiter143Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter143Komplett" class="btn-komplett hidden" onclick="showPage('page-10-1')">Weiter</button>
         </div>
     </div>
 
@@ -481,7 +547,7 @@
         <h2>Hinweis</h2>
 
         <p>
-            Für eine Anfrage an TGA müssen zuerst die Kontaktdaten vollständig ausgefüllt werden.
+            Für eine Anfrage an PJ müssen zuerst die "Kontaktdaten" vollständig ausgefüllt werden.
         </p>
 
         <div class="button-bar">
@@ -541,7 +607,7 @@
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
             <button id="btnWeiter142Normal" onclick="showPage('page-21')">Weiter</button>
             <button id="btnWeiter142Komplett" class="btn-komplett hidden" onclick="showPage('page-21')">Weiter</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
         </div>
     </div>
 
@@ -553,7 +619,7 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button id="btnWeiter8Normal" onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button id="btnWeiter8Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
             <button id="btnWeiter8Komplett" class="btn-komplett hidden" onclick="showPage('page-9')">Weiter</button>
         </div>
     </div>
@@ -567,7 +633,7 @@
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
 
-            <button id="btnWeiter18Normal" onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button id="btnWeiter18Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
             <button id="btnWeiter18Komplett" class="btn-komplett hidden" onclick="showPage('page-20')">Weiter</button>
 
         </div>
@@ -584,7 +650,7 @@
             <button id="btnWeiter20Normal" onclick="showPage('page-22')">Weiter</button>
             <button id="btnWeiter20Komplett" class="btn-komplett hidden" onclick="showPage('page-22')">Weiter</button>
 
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
         </div>
     </div>
 
@@ -596,8 +662,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button id="btnWeiter21Normal" onclick="direktZumAngebot()">Direkt zum Angebot</button>
-            <button id="btnWeiter21Komplett" class="btn-komplett hidden" onclick="showPage('page-10')">Weiter</button>
+            <button id="btnWeiter21Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter21Komplett" class="btn-komplett hidden" onclick="showPage('page-10-1')">Weiter</button>
         </div>
     </div>
 
@@ -609,9 +675,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button id="btnWeiter22Normal" onclick="direktZumAngebot()">Direkt zum Angebot</button>
-            <button id="btnWeiter22Komplett" class="btn-komplett hidden" onclick="direktZumAngebot()">Direkt zum
-                Angebot</button>
+            <button id="btnWeiter22Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter22Komplett" class="btn-komplett hidden" onclick="showPage('page-32')">weiter</button>
         </div>
     </div>
 
@@ -623,9 +688,9 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button id="btnWeiter9Normal" onclick="showPage('page-11')">Weiter</button>
+            <button id="btnWeiter9Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
             <button id="btnWeiter9Komplett" class="btn-komplett hidden" onclick="showPage('page-11')">Weiter</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            
         </div>
     </div>
 
@@ -637,8 +702,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button id="btnWeiter10Normal" onclick="direktZumAngebot()">Direkt zum Angebot</button>
-            <button id="btnWeiter10Komplett" class="btn-komplett hidden" onclick="showPage('page-18')">Weiter</button>
+            <button id="btnWeiter10Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter10Komplett" class="btn-komplett hidden" onclick="showPage('page-18-1')">Weiter</button>
 
         </div>
     </div>
@@ -707,7 +772,7 @@
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
             <button id="btnWeiter23Normal" onclick="showPage('page-8')">Weiter</button>
             <button id="btnWeiter23Komplett" class="btn-komplett hidden" onclick="showPage('page-8')">Weiter</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
         </div>
     </div>
 
@@ -722,7 +787,7 @@
 
             <button id="btnWeiter24Normal" onclick="showPage('page-8')">Weiter</button>
             <button id="btnWeiter24Komplett" class="btn-komplett hidden" onclick="showPage('page-8')">Weiter</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
         </div>
     </div>
 
@@ -734,7 +799,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button id="btnWeiter25Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter25Komplett" class="btn-komplett hidden" onclick="showPage('page-18-1')">Weiter</button>
         </div>
     </div>
 
@@ -746,7 +812,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button id="btnWeiter26Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter26Komplett" class="btn-komplett hidden" onclick="showPage('page-18-1')">Weiter</button>
         </div>
     </div>
 
@@ -770,7 +837,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button id="btnWeiter27Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter27Komplett" class="btn-komplett hidden" onclick="showPage('page-20')">Weiter</button>
         </div>
     </div>
 
@@ -782,7 +850,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button id="btnWeiter28Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter28Komplett" class="btn-komplett hidden" onclick="showPage('page-10-1')">Weiter</button>
         </div>
     </div>
 
@@ -794,7 +863,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button id="btnWeiter30Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter30Komplett" class="btn-komplett hidden" onclick="showPage('page-20')">Weiter</button>
         </div>
     </div>
 
@@ -806,7 +876,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button id="btnWeiter31Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter31Komplett" class="btn-komplett hidden" onclick="showPage('page-18-1')">Weiter</button>
         </div>
     </div>
 
@@ -818,7 +889,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button id="btnWeiter32Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter32Komplett" class="btn-komplett hidden" onclick="showPage('page-35')">Weiter</button>
         </div>
     </div>
 
@@ -830,7 +902,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button id="btnWeiter33Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter33Komplett" class="btn-komplett hidden" onclick="showPage('page-10-1')">Weiter</button>
         </div>
     </div>
 
@@ -842,7 +915,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button id="btnWeiter34Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter34Komplett" class="btn-komplett hidden" onclick="showPage('page-20')">Weiter</button>
         </div>
     </div>
 
@@ -854,7 +928,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button id="btnWeiter35Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter35Komplett" class="btn-komplett hidden" onclick="showPage('page-36')">Weiter</button>
         </div>
     </div>
 
@@ -866,7 +941,8 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button id="btnWeiter36Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            <button id="btnWeiter36Komplett" class="btn-komplett hidden" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
         </div>
     </div>
 
@@ -878,7 +954,7 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button onclick="direktZumAngebot()">Direkt zum Angebot</button>
+            <button onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
         </div>
     </div>
 
