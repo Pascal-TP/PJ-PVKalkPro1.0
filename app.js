@@ -23,17 +23,46 @@ const FLOW_KEY = "flowMode";
 function isKomplettFlow() {
   return sessionStorage.getItem(FLOW_KEY) === "komplett";
 }
+
 function setKomplettFlow() {
   sessionStorage.setItem(FLOW_KEY, "komplett");
 }
+
 function clearKomplettFlow() {
   sessionStorage.removeItem(FLOW_KEY);
 }
 
-function startKomplettFlow() {
-  setKomplettFlow();
-  showPage("page-15"); // Einstieg Komplett (Versicherung) – wie bisher
+function updateKomplettIndicator() {
+  const el = document.getElementById("komplett-indicator");
+  if (!el) return;
+
+  const active = isKomplettFlow();
+  el.textContent = active ? "AKTIV" : "AUS";
+  el.classList.toggle("active", active);
 }
+
+function getCurrentVisiblePageId() {
+  const visiblePage = document.querySelector('.page:not(.hidden)');
+  return visiblePage ? visiblePage.id : null;
+}
+
+function toggleKomplettFlow() {
+  if (isKomplettFlow()) {
+    clearKomplettFlow();
+  } else {
+    setKomplettFlow();
+  }
+
+  updateKomplettIndicator();
+
+  const currentPageId = getCurrentVisiblePageId();
+  if (currentPageId) applyFlowUI(currentPageId);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  clearKomplettFlow();
+  updateKomplettIndicator();
+});
 
 function applyFlowUI(pageId) {
   if (pageId === "page-8") {
@@ -44,7 +73,6 @@ function applyFlowUI(pageId) {
     if (normalBtn) normalBtn.classList.toggle("hidden", k);
     if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
   }
-
   if (pageId === "page-15") {
     const normalBtn = document.getElementById("btnWeiter15Normal");
     const komplettBtn = document.getElementById("btnWeiter15Komplett");
@@ -133,7 +161,7 @@ function applyFlowUI(pageId) {
     if (normalBtn) normalBtn.classList.toggle("hidden", k);
     if (komplettBtn) komplettBtn.classList.toggle("hidden", !k);
   }
-if (pageId === "page-14-3") {
+  if (pageId === "page-14-3") {
     const normalBtn = document.getElementById("btnWeiter143Normal");
     const komplettBtn = document.getElementById("btnWeiter143Komplett");
 
@@ -330,7 +358,7 @@ function applyWrRecommendation(pageId) {
   if (!pageEl) return;
 
   const modules = getPvModuleCount();
-const reco = getAvailableWrRecommendation(pageEl, modules);
+  const reco = getAvailableWrRecommendation(pageEl, modules);
 
   // Box anlegen/finden
   let box = pageEl.querySelector(".wr-reco-box");

@@ -260,7 +260,8 @@
         <button onclick="showPage('page-35')">Dienstleistungen</button>
         <button onclick="showPage('page-36')">Zuschläge</button>
 
-        <button class="btn-komplett" onclick="startKomplettFlow()">Komplettleistung</button>
+        <button type="button" onclick="toggleKomplettFlow()">Komplettlösung</button>
+<span id="komplett-indicator" class="flow-indicator">AUS</span>
         <br><p>Wenn Sie die <strong>Komplettleistung</strong> auswählen, werden Sie Schritt für Schritt durch alle benötigten Punkte geführt.<br>
         Der <strong>hellblaue „Weiter“-Button</strong> signalisiert, dass Sie sich im geführten Komplett-Bereich befinden.<br>
         Durch Betätigen von <strong>F5 (Seite neu laden)</strong> oder der Aktion <strong>„Eingaben löschen“</strong> werden alle Eingaben zurückgesetzt.<br>
@@ -682,9 +683,9 @@
 
         <div class="button-bar">
             <button onclick="showPage('page-4')">Zurück zum Hauptmenü</button>
-            <button id="btnWeiter9Normal" onclick="showPage('page-11')">Weiter</button>
+            <button id="btnWeiter9Normal" onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
             <button id="btnWeiter9Komplett" class="btn-komplett hidden" onclick="showPage('page-11')">Weiter</button>
-            <button onclick="direktZumAngebot()">Direkt zur Ausgabeseite</button>
+            
         </div>
     </div>
 

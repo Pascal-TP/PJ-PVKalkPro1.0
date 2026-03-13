@@ -678,3 +678,19 @@ button.btn-disabled:hover {
 .modal-content button {
   cursor: pointer;
 }
+.flow-indicator {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #d9d9d9;
+  color: #333;
+  vertical-align: middle;
+}
+
+.flow-indicator.active {
+  background: #4dad32;
+  color: #fff;
+}
