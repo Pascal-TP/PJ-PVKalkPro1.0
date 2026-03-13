@@ -6282,4 +6282,4 @@ window.berechneGesamt36 = berechneGesamt36;
 window.loadPage26 = loadPage26;
 window.calcRow26 = calcRow26;
 window.berechneGesamt26 = berechneGesamt26;
-window.startKomplettFlow = startKomplettFlow;
+window.toggleKomplettFlow = toggleKomplettFlow;
