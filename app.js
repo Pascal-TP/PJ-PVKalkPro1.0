@@ -300,31 +300,34 @@ function getAvailableWrRecommendation(pageEl, modules) {
   const baseReco = getWrRecommendationText(modules);
   if (!baseReco) return null;
 
-  const baseNum = parseFloat(baseReco);
+  const baseNum = parseFloat(String(baseReco).replace(",", "."));
 
-  // alle auf dieser Seite vorhandenen WR-Größen sammeln
   const sizes = Array.from(pageEl.querySelectorAll("input.menge-input"))
     .map(inp => inp.closest(".row"))
     .filter(Boolean)
     .map(row => extractWrSizeFromRow(row))
     .filter(Boolean)
-    .map(v => parseFloat(v))
+    .map(v => parseFloat(String(v).replace(",", ".")))
     .filter(v => !isNaN(v));
 
-  if (!sizes.length) return baseReco;
-
-  // doppelte Werte entfernen und sortieren
-  const uniqueSorted = [...new Set(sizes)].sort((a, b) => a - b);
-
-  // zuerst exakte oder nächsthöhere Größe suchen
-  let selected = uniqueSorted.find(v => v >= baseNum);
-
-  // wenn nichts Höheres existiert, größte vorhandene Größe nehmen
-  if (selected == null) {
-    selected = uniqueSorted[uniqueSorted.length - 1];
+  if (!sizes.length) {
+    return { baseReco, finalReco: null, noMatch: true };
   }
 
-  return selected.toFixed(1);
+  const uniqueSorted = [...new Set(sizes)].sort((a, b) => a - b);
+
+  // exakte oder nächsthöhere Größe
+  const selected = uniqueSorted.find(v => v >= baseNum);
+
+  if (selected == null) {
+    return { baseReco, finalReco: null, noMatch: true };
+  }
+
+  return {
+    baseReco,
+    finalReco: selected.toFixed(1),
+    noMatch: false
+  };
 }
 
 // -----------------------------
@@ -354,24 +357,30 @@ function applyWrRecommendation(pageId) {
   if (!pageEl) return;
 
   const modules = getPvModuleCount();
-  const reco = getAvailableWrRecommendation(pageEl, modules);
+  const recoData = getAvailableWrRecommendation(pageEl, modules);
+  if (!recoData) return;
+
+  const { baseReco, finalReco, noMatch } = recoData;
 
   // Box anlegen/finden
-  let box = pageEl.querySelector(".wr-reco-box");
-  if (!box) {
-    box = document.createElement("div");
-    box.className = "wr-reco-box";
-    // direkt unter die H2 setzen
-    const h2 = pageEl.querySelector("h2");
-    if (h2 && h2.parentNode) h2.parentNode.insertBefore(box, h2.nextSibling);
-  }
-
-  // Wenn keine Module gewählt: nichts machen
-  if (!reco) {
-    box.style.display = "none";
-    pageEl.querySelectorAll(".wr-dimmed").forEach(r => r.classList.remove("wr-dimmed"));
-    pageEl.querySelectorAll(".wr-warn").forEach(w => w.remove());
-    return;
+  if (noMatch) {
+    box.innerHTML = `
+    <strong>Empfohlene Wechselrichtergröße:</strong> ${baseReco}<br>
+    <span class="wr-no-match">
+      Auf dieser Seite ist keine passende Wechselrichtergröße verfügbar.
+    </span>
+  `;
+  } else if (finalReco !== baseReco) {
+    box.innerHTML = `
+    <strong>Empfohlene Wechselrichtergröße:</strong> ${baseReco}<br>
+    <span class="wr-alt-reco">
+      Auf dieser Seite nicht vorhanden – nächsthöhere verfügbare Größe: ${finalReco}
+    </span>
+  `;
+  } else {
+    box.innerHTML = `
+    <strong>Empfohlene Wechselrichtergröße:</strong> ${baseReco}
+  `;
   }
 
   box.style.display = "block";
@@ -380,64 +389,70 @@ function applyWrRecommendation(pageId) {
   // Alle Positions-Zeilen (mit Eingabefeld) durchgehen
   const inputs = pageEl.querySelectorAll("input.menge-input");
   let hasMismatch = false;
+
   inputs.forEach(inp => {
     const row = inp.closest(".row");
     if (!row) return;
 
-    // Warntext entfernen (wird ggf. neu gesetzt)
     const existingWarn = row.querySelector(".wr-warn");
     if (existingWarn) existingWarn.remove();
 
     const size = extractWrSizeFromRow(row);
 
-    // Nur ausgrauen, wenn wir eine WR-Größe überhaupt erkennen konnten
-    const shouldDim = (size && size !== reco);
-    if (shouldDim) hasMismatch = true;
+    let shouldDim = true;
+
+    if (!noMatch && size && finalReco && size === finalReco) {
+      shouldDim = false;
+    }
 
     row.classList.toggle("wr-dimmed", shouldDim);
 
-    // falls schon Wert > 0 eingetragen und dimmed -> Hinweis anzeigen
     const val = parseFloat(String(inp.value).replace(",", ".")) || 0;
     if (shouldDim && val > 0) {
+      hasMismatch = true;
+
+      const warn = document.createElement("div");
+      warn.className = "wr-warn";
+      warn.innerText = noMatch
+        ? "Achtung: Auf dieser Seite ist keine passende Wechselrichtergröße verfügbar!"
+        : "Achtung: Wechselrichter nicht passend!";
+      row.appendChild(warn);
+    }
+  
+  // Ergebnis für Seite 40 merken
+  if (hasMismatch) localStorage.setItem("wrMismatch", "1");
+  else localStorage.removeItem("wrMismatch");
+
+  // Optional: für Anzeige auf Seite 40
+  localStorage.setItem("wrRecoSize", reco);
+  localStorage.setItem("wrRecoModules", String(modules));
+});
+
+// Einmaliger Event-Listener je Seite: bei Eingabe Warnung setzen/entfernen
+if (!pageEl.dataset.wrRecoListener) {
+  pageEl.addEventListener("input", (e) => {
+    const inp = e.target;
+    if (!inp || !inp.classList || !inp.classList.contains("menge-input")) return;
+
+    const row = inp.closest(".row");
+    if (!row) return;
+
+    const val = parseFloat(String(inp.value).replace(",", ".")) || 0;
+
+    // alten Warntext entfernen
+    const old = row.querySelector(".wr-warn");
+    if (old) old.remove();
+
+    if (row.classList.contains("wr-dimmed") && val > 0) {
       const warn = document.createElement("div");
       warn.className = "wr-warn";
       warn.innerText = "Achtung: Wechselrichter nicht passend!";
       row.appendChild(warn);
     }
-    // Ergebnis für Seite 40 merken
-    if (hasMismatch) localStorage.setItem("wrMismatch", "1");
-    else localStorage.removeItem("wrMismatch");
+  }, true);
 
-    // Optional: für Anzeige auf Seite 40
-    localStorage.setItem("wrRecoSize", reco);
-    localStorage.setItem("wrRecoModules", String(modules));
-  });
-
-  // Einmaliger Event-Listener je Seite: bei Eingabe Warnung setzen/entfernen
-  if (!pageEl.dataset.wrRecoListener) {
-    pageEl.addEventListener("input", (e) => {
-      const inp = e.target;
-      if (!inp || !inp.classList || !inp.classList.contains("menge-input")) return;
-
-      const row = inp.closest(".row");
-      if (!row) return;
-
-      const val = parseFloat(String(inp.value).replace(",", ".")) || 0;
-
-      // alten Warntext entfernen
-      const old = row.querySelector(".wr-warn");
-      if (old) old.remove();
-
-      if (row.classList.contains("wr-dimmed") && val > 0) {
-        const warn = document.createElement("div");
-        warn.className = "wr-warn";
-        warn.innerText = "Achtung: Wechselrichter nicht passend!";
-        row.appendChild(warn);
-      }
-    }, true);
-
-    pageEl.dataset.wrRecoListener = "1";
-  }
+  pageEl.dataset.wrRecoListener = "1";
+}
 }
 
 // -----------------------------
@@ -1929,7 +1944,7 @@ function clearInputs() {
 
   optimiererVerwendet = false;
   clearKomplettFlow();
-updateKomplettIndicator();
+  updateKomplettIndicator();
 
   // localStorage komplett löschen
   localStorage.clear();
