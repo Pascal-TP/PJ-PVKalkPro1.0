@@ -358,35 +358,51 @@ function applyWrRecommendation(pageId) {
 
   const modules = getPvModuleCount();
   const recoData = getAvailableWrRecommendation(pageEl, modules);
-  if (!recoData) return;
+
+  // Box anlegen/finden
+  let box = pageEl.querySelector(".wr-reco-box");
+  if (!box) {
+    box = document.createElement("div");
+    box.className = "wr-reco-box";
+    const h2 = pageEl.querySelector("h2");
+    if (h2 && h2.parentNode) h2.parentNode.insertBefore(box, h2.nextSibling);
+  }
+
+  // Wenn keine Module gewählt: alles zurücksetzen
+  if (!recoData || !recoData.baseReco) {
+    box.style.display = "none";
+    pageEl.querySelectorAll(".wr-dimmed").forEach(r => r.classList.remove("wr-dimmed"));
+    pageEl.querySelectorAll(".wr-warn").forEach(w => w.remove());
+    localStorage.removeItem("wrMismatch");
+    localStorage.removeItem("wrRecoSize");
+    localStorage.removeItem("wrRecoModules");
+    return;
+  }
 
   const { baseReco, finalReco, noMatch } = recoData;
 
-  // Box anlegen/finden
+  box.style.display = "block";
+
   if (noMatch) {
     box.innerHTML = `
-    <strong>Empfohlene Wechselrichtergröße:</strong> ${baseReco}<br>
-    <span class="wr-no-match">
-      Auf dieser Seite ist keine passende Wechselrichtergröße verfügbar.
-    </span>
-  `;
+      <strong>Empfohlene Wechselrichtergröße:</strong> ${baseReco}<br>
+      <span class="wr-no-match">
+        Auf dieser Seite ist keine passende Wechselrichtergröße verfügbar.
+      </span>
+    `;
   } else if (finalReco !== baseReco) {
     box.innerHTML = `
-    <strong>Empfohlene Wechselrichtergröße:</strong> ${baseReco}<br>
-    <span class="wr-alt-reco">
-      Auf dieser Seite nicht vorhanden – nächsthöhere verfügbare Größe: ${finalReco}
-    </span>
-  `;
+      <strong>Empfohlene Wechselrichtergröße:</strong> ${baseReco}<br>
+      <span class="wr-alt-reco">
+        Auf dieser Seite nicht vorhanden – nächsthöhere verfügbare Größe: ${finalReco}
+      </span>
+    `;
   } else {
     box.innerHTML = `
-    <strong>Empfohlene Wechselrichtergröße:</strong> ${baseReco}
-  `;
+      <strong>Empfohlene Wechselrichtergröße:</strong> ${baseReco}
+    `;
   }
 
-  box.style.display = "block";
-  box.innerHTML = `Empfehlung anhand der PV-Module (${modules} Stück): <strong>Wechselrichter ${reco}</strong>`;
-
-  // Alle Positions-Zeilen (mit Eingabefeld) durchgehen
   const inputs = pageEl.querySelectorAll("input.menge-input");
   let hasMismatch = false;
 
@@ -418,41 +434,40 @@ function applyWrRecommendation(pageId) {
         : "Achtung: Wechselrichter nicht passend!";
       row.appendChild(warn);
     }
-  
-  // Ergebnis für Seite 40 merken
-  if (hasMismatch) localStorage.setItem("wrMismatch", "1");
+  });
+
+  if (hasMismatch || noMatch) localStorage.setItem("wrMismatch", "1");
   else localStorage.removeItem("wrMismatch");
 
-  // Optional: für Anzeige auf Seite 40
-  localStorage.setItem("wrRecoSize", reco);
+  // Für Seite 40 immer die Grundempfehlung merken
+  localStorage.setItem("wrRecoSize", baseReco);
   localStorage.setItem("wrRecoModules", String(modules));
-});
 
-// Einmaliger Event-Listener je Seite: bei Eingabe Warnung setzen/entfernen
-if (!pageEl.dataset.wrRecoListener) {
-  pageEl.addEventListener("input", (e) => {
-    const inp = e.target;
-    if (!inp || !inp.classList || !inp.classList.contains("menge-input")) return;
+  if (!pageEl.dataset.wrRecoListener) {
+    pageEl.addEventListener("input", (e) => {
+      const inp = e.target;
+      if (!inp || !inp.classList || !inp.classList.contains("menge-input")) return;
 
-    const row = inp.closest(".row");
-    if (!row) return;
+      const row = inp.closest(".row");
+      if (!row) return;
 
-    const val = parseFloat(String(inp.value).replace(",", ".")) || 0;
+      const val = parseFloat(String(inp.value).replace(",", ".")) || 0;
 
-    // alten Warntext entfernen
-    const old = row.querySelector(".wr-warn");
-    if (old) old.remove();
+      const old = row.querySelector(".wr-warn");
+      if (old) old.remove();
 
-    if (row.classList.contains("wr-dimmed") && val > 0) {
-      const warn = document.createElement("div");
-      warn.className = "wr-warn";
-      warn.innerText = "Achtung: Wechselrichter nicht passend!";
-      row.appendChild(warn);
-    }
-  }, true);
+      if (row.classList.contains("wr-dimmed") && val > 0) {
+        const warn = document.createElement("div");
+        warn.className = "wr-warn";
+        warn.innerText = noMatch
+          ? "Achtung: Auf dieser Seite ist keine passende Wechselrichtergröße verfügbar!"
+          : "Achtung: Wechselrichter nicht passend!";
+        row.appendChild(warn);
+      }
+    }, true);
 
-  pageEl.dataset.wrRecoListener = "1";
-}
+    pageEl.dataset.wrRecoListener = "1";
+  }
 }
 
 // -----------------------------
