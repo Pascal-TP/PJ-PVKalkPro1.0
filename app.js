@@ -429,9 +429,7 @@ function applyWrRecommendation(pageId) {
 
       const warn = document.createElement("div");
       warn.className = "wr-warn";
-      warn.innerText = noMatch
-        ? "Achtung: Auf dieser Seite ist keine passende Wechselrichtergröße verfügbar!"
-        : "Achtung: Wechselrichter nicht passend!";
+      warn.innerText = "Achtung: Dieser Wechselrichter ist nicht empfohlen.";
       row.appendChild(warn);
     }
   });
@@ -459,9 +457,7 @@ function applyWrRecommendation(pageId) {
       if (row.classList.contains("wr-dimmed") && val > 0) {
         const warn = document.createElement("div");
         warn.className = "wr-warn";
-        warn.innerText = noMatch
-          ? "Achtung: Auf dieser Seite ist keine passende Wechselrichtergröße verfügbar!"
-          : "Achtung: Wechselrichter nicht passend!";
+        warn.innerText = "Achtung: Dieser Wechselrichter ist nicht empfohlen.";
         row.appendChild(warn);
       }
     }, true);
