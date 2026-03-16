@@ -1036,7 +1036,7 @@ function handleUserAction(val) {
   }
 
   if (val === "clear") {
-    const ok = confirm("Alle Eingaben wirklich löschen?");
+    const ok = showConfirm("Alle Eingaben wirklich löschen?");
     if (ok) clearInputs();
   }
   if (val === "changePw") goToChange();
