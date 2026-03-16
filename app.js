@@ -1036,10 +1036,10 @@ function handleUserAction(val) {
   }
 
   if (val === "clear") {
-  showConfirm("Alle Eingaben wirklich löschen?", () => {
-    clearInputs();
-  });
-}
+    showConfirm("Alle Eingaben wirklich löschen?", () => {
+      clearInputs();
+    });
+  }
   if (val === "changePw") goToChange();
   if (val === "logout") logout();
 
@@ -2470,6 +2470,14 @@ function loadPage8() {
     });
 }
 
+function hasAnyPositiveInput(storageKey) {
+  const data = JSON.parse(localStorage.getItem(storageKey) || "{}");
+
+  return Object.values(data).some(v =>
+    (parseFloat(String(v).replace(",", ".")) || 0) > 0
+  );
+}
+
 function isOptimiererSelected() {
   const data = JSON.parse(localStorage.getItem("page8Data") || "{}");
   return Object.values(data).some(v => (parseFloat(String(v).replace(",", ".")) || 0) > 0);
@@ -2485,16 +2493,20 @@ function setupOptimiererHinweis() {
 
     const selected = isOptimiererSelected();
 
-    // Flag für Seite 40 immer aktuell setzen
+    const hasInput23 = hasAnyPositiveInput("page23Data");
+    const hasInput24 = hasAnyPositiveInput("page24Data");
+
+    // Flag für Seite 40
     optimiererVerwendet = selected;
 
-    // IMMER anzeigen, wenn nichts gewählt oder 0
-    if (!selected) {
+    // Hinweis nur wenn KEIN Optimierer UND Mengen vorhanden
+    if (!selected && (hasInput23 || hasInput24)) {
       showHinweis(
         "Achtung!\n\n" +
         "Sie haben keinen Optimierer ausgewählt!\n"
       );
     }
+
   }, true);
 }
 
