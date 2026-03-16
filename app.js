@@ -266,6 +266,46 @@ function startSplashScreen() {
 }
 
 // -----------------------------
+// Hinweistexte in eigenen Hinweisfenster
+// -----------------------------
+
+function showHinweis(text) {
+  document.getElementById("hinweisText").innerText = text;
+  document.getElementById("hinweisModal").style.display = "block";
+}
+
+function closeHinweis() {
+  document.getElementById("hinweisModal").style.display = "none";
+}
+
+function showConfirm(text, onOk) {
+
+  const modal = document.getElementById("hinweisModal");
+  const textBox = document.getElementById("hinweisText");
+  const okBtn = document.getElementById("hinweisOk");
+  const cancelBtn = document.getElementById("hinweisCancel");
+
+  textBox.innerText = text;
+
+  cancelBtn.style.display = "inline-block"; // Abbrechen anzeigen
+
+  okBtn.onclick = () => {
+    modal.style.display = "none";
+    if (typeof onOk === "function") onOk();
+  };
+
+  cancelBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+
+  modal.style.display = "block";
+}
+
+window.showHinweis = showHinweis;
+window.closeHinweis = closeHinweis;
+window.showConfirm = showConfirm;
+
+// -----------------------------
 // PV-Module zählen für Emfpehlung
 // -----------------------------
 
@@ -2439,7 +2479,7 @@ function setupOptimiererHinweis() {
 
     // IMMER anzeigen, wenn nichts gewählt oder 0
     if (!selected) {
-      alert(
+      showHinweis(
         "Achtung!\n\n" +
         "Sie haben keinen Optimierer ausgewählt!\n"
       );
