@@ -1,6 +1,6 @@
 let currentUser = null;
 function isLoggedIn() {
-  return !!currentUser;
+  return !!auth.currentUser;
 }
 
 function lockAppUI() {
@@ -2131,7 +2131,6 @@ function clearInputs() {
   // Angebots-Summen Objekt zurücksetzen (falls du es im RAM nutzt)
   angebotSummen = {};
 
-  currentUser = null;
   updateAdminUI_();
 
   document.querySelectorAll('[data-rabatt="angebot"]').forEach(el => {
