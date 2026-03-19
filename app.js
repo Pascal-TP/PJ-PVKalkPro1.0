@@ -3266,7 +3266,7 @@ function berechneGesamt13() {
 }
 
 // -----------------------------
-// SEITE 26 – Speicher Fronius (tga14.csv)
+// SEITE 26 – Speicher Fronius (tga15.csv)
 // -----------------------------
 
 function loadPage26() {
@@ -3277,7 +3277,7 @@ function loadPage26() {
 
   if (container.innerHTML.trim() !== "") return;
 
-  fetch("tga14.csv")
+  fetch("tga15.csv")
     .then(response => response.text())
     .then(data => {
 
